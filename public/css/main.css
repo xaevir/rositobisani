@@ -5268,6 +5268,28 @@ a.badge:focus {
   src: url("/fonts/Quicksand/Quicksand_Bold-webfont.eot");
   src: url("/fonts/Quicksand/Quicksand_Bold-webfont.eot?#iefix") format('embedded-opentype'), url("/fonts/Quicksand/Quicksand_Bold-webfont.woff") format('woff'), url("/fonts/Quicksand/Quicksand_Bold-webfont.ttf") format('truetype'), url("/fonts/Quicksand/Quicksand_Bold-webfont.svg#") format('svg');
 }
+@font-face {
+  font-family: 'SinaNova';
+  src: url("/fonts/SinaNova/SinaNova.eot");
+  src: url("/fonts/SinaNova/SinaNova.eot?#iefix") format('embedded-opentype'), url("/fonts/SinaNova/SinaNova.woff") format('woff'), url("/fonts/SinaNova/SinaNova.ttf") format('truetype'), url("/fonts/SinaNova/SinaNova.svg#") format('svg');
+}
+@font-face {
+  font-family: 'Nexa-Bold';
+  src: url("/fonts/Nexa-Bold/Nexa-Bold.eot");
+  src: url("/fonts/Nexa-Bold/Nexa-Bold.eot?#iefix") format('embedded-opentype'), url("/fonts/Nexa-Bold/Nexa-Bold.woff") format('woff'), url("/fonts/Nexa-Bold/Nexa-Bold.ttf") format('truetype'), url("/fonts/Nexa-Bold/Nexa-Bold.svg#") format('svg');
+}
+@font-face {
+  font-family: 'Asap';
+  src: url("/fonts/Asap/Asap-Regular-webfont.eot");
+  src: url("/fonts/Asap/Asap-Regular-webfont.eot?#iefix") format('embedded-opentype'), url("/fonts/Asap/Asap-Regular-webfont.woff") format('woff'), url("/fonts/Asap/Asap-Regular-webfont.ttf") format('truetype'), url("/fonts/Asap/Asap-Regular-webfont.svg#") format('svg');
+}
+@font-face {
+  font-family: 'LinuxLibertine';
+  src: url('/fonts/Linux-Libertine/linlibertine_re-4.7.5ro-webfont.eot');
+  src: url('/fonts/Linux-Libertine/linlibertine_re-4.7.5ro-webfont.eot?iefix') format('eot'), url('/fonts/Linux-Libertine/linlibertine_re-4.7.5ro-webfont.woff') format('woff'), url('/fonts/Linux-Libertine/linlibertine_re-4.7.5ro-webfont.ttf') format('truetype'), url('/fonts/Linux-Libertine/linlibertine_re-4.7.5ro-webfont.svg#webfontIgdJI780') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 [class^="icon-"] {
   background-image: url(/js/libs/bootstrap/img/glyphicons-halflings.png);
 }
@@ -5442,7 +5464,7 @@ form span.error {
   -moz-border-radius: 0;
   border-radius: 0;
   border: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #fff;
   background: #ec1c2d !important;
 }
 .navbar .navbar-inner .nav .active > a {
@@ -5489,25 +5511,33 @@ form span.error {
 }
 /* ==========================================================================
    Icons 
-   ========================================================================== */
+  ======================================================================== */
 #icons {
-  margin-top: 20px;
+  padding-top: 40px;
+  background-color: #111;
+  padding-bottom: 40px;
+  border-top: 5px solid #333;
 }
 #icons .container {
   width: 1170px;
 }
 #icons h1 {
+  font-family: SinaNova, arial;
   font-family: Quicksand-Book, arial;
   font-weight: normal;
   text-align: center;
+  text-shadow: 1px 1px 0px #111;
+  color: white;
+  font-size: 46px;
 }
 #icons .icon img {
-  height: 100px;
+  height: 115px;
+  padding-top: 20px;
 }
 #icons ul {
   list-style: none;
   *zoom: 1;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 #icons ul:before,
 #icons ul:after {
@@ -5523,6 +5553,21 @@ form span.error {
   margin: 0 33px;
   text-align: center;
 }
+#icons .circle-bg {
+  width: 163px;
+  height: 163px;
+  background-color: #fff;
+  background-color: #ec1c2d;
+  border-radius: 115px;
+  margin: 0 auto;
+}
+#icons h2 {
+  font-weight: normal;
+  font-size: 18px;
+  color: #ec1c2d;
+  color: #fff;
+  font-family: Nexa-Bold, arial;
+}
 #icons li span {
   display: inline-block;
   margin-top: 15px;
@@ -5534,13 +5579,28 @@ form span.error {
   text-align: center;
   margin-top: 20px;
 }
+#home section h1 {
+  font-family: SinaNova, arial;
+  font-family: Quicksand-Book, arial;
+  font-family: Nexa-Bold, arial;
+  font-family: Asap, arial;
+  font-family: LinuxLibertine;
+  font-weight: normal;
+  font-size: 44px;
+}
+#home hr {
+  height: 1px;
+  background-color: #fff;
+}
 #home .container {
   width: 1170px;
 }
 #home p {
-  line-height: 1.3;
+  line-height: 1.7;
   padding: 20px;
-  font-size: 20px;
+  font-size: 18px;
+  font-family: 'Libre Baskerville', serif;
+  font-weight: normal;
 }
 /* ==========================================================================
    Footer 
