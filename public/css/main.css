@@ -5465,7 +5465,14 @@ form span.error {
   border-radius: 0;
   border: none;
   border-bottom: 1px solid #fff;
-  background: #ec1c2d !important;
+  background-color: #e61829;
+  background-image: -moz-linear-gradient(top, #ec1c2d, #dc1223);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ec1c2d), to(#dc1223));
+  background-image: -webkit-linear-gradient(top, #ec1c2d, #dc1223);
+  background-image: -o-linear-gradient(top, #ec1c2d, #dc1223);
+  background-image: linear-gradient(to bottom, #ec1c2d, #dc1223);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec1c2d', endColorstr='#ffdc1223', GradientType=0);
 }
 .navbar .navbar-inner .nav .active > a {
   background-color: #ec1c2d;
