@@ -6,7 +6,7 @@ html(lang="en")
       title #{title} - Rosito Bisani 
     else
       title Rosito Bisani 
-    //meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='description', content='Serving the needs of the foodservice industry')
     link(rel='shortcut icon', href='/img/favicon.png')
     link(rel='stylesheet', href='/css/main.css')
@@ -20,10 +20,9 @@ html(lang="en")
       script(data-main='js/main-built', src='/js/libs/require.js')
     else 
       script(data-main='js/main', src='/js/libs/require.js')
-  body
+  body.home-page
     include nav
     #notification
-    block content
+    #app
+      block content
     include footer
-
-

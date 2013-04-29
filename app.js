@@ -52,10 +52,50 @@ app.get('/*', function(req, res, next) {
   else next();
 });
 
+// force xhr
+//app.get('/*', function(req, res, next) { 
+  //if ((/\.(gif|jpg|png|css|js|html)$/i).test(req.url)) 
+    //next()
+  //if (req.xhr) {
+    //res.render('layout', {})
+//})
 
 
-app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/', function(req, res) {
+  var locals = {title: 'Homepage'}
+  if (req.xhr) {
+    res.render('home', locals, function(err, html){
+      res.send({title: locals.title, body: html});
+    });
+  } else {
+    res.render('home_full', locals);
+  }
+});
+
+app.get('/black', function(req, res) {
+  var locals = {title: 'Black'}
+  if (req.xhr) {
+    res.render('home', locals, function(err, html){
+      res.send({title: locals.title, body: html});
+    });
+  } else {
+    res.render('home_full', locals);
+  }
+});
+
+
+
+app.get('/icons', function(req, res) {
+  var locals = {title: 'Icons'}
+  if (req.xhr) {
+    res.render('icons', locals, function(err, html){
+      res.send({title: locals.title, body: html});
+    });
+  } else {
+    res.render('icons_full', locals);
+  }
+});
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

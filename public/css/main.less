@@ -1,5 +1,5 @@
 @import "../js/libs/bootstrap/less/bootstrap.less";
-//@import "../js/libs/bootstrap/less/responsive.less";
+@import "../js/libs/bootstrap/less/responsive.less";
 // Fonts
 @import "fonts.less";
 
@@ -63,7 +63,7 @@ body {
   //background-color: #f8f8f8;
   //padding-top: 70px;
   //background-color: #EFEFEF;
- 
+  background: url(/img/bg.png) repeat top left; 
 }
 
 
@@ -169,11 +169,13 @@ form {
 
 @red: #ec1c2d;
 
-.navbar .navbar-inner {
+.home-page .navbar .navbar-inner, 
+.icons-page .navbar .navbar-inner {
   .border-radius(0);
   border: none;
   border-bottom: 1px solid #fff;
   #gradient > .vertical(@red, darken(@red, 5%));
+  //#gradient > .vertical(#f6f6f6, #d9d9d9);
   .nav .active > a {
     background-color: @red;
   }
@@ -185,15 +187,15 @@ form {
 }
 
 .navbar .container {
-  width: 1170px;  
-  position: relative;
+  //width: 1170px;  
+  //position: relative;
 }
 
 .navbar .brand {
   margin: 0;
   padding: 0;
 }
-.navbar .icon {
+.navbar .rb {
   position: absolute;
   //width: 140px;
   z-index: 2;
@@ -202,8 +204,8 @@ form {
 }
 
 .navbar .logo {
-  padding-top: 7px;
-  //width: 230px;
+  padding-top: 6px;
+  //width: 200px;
   //margin-left: 125px;
 }
 .navbar .nav {
@@ -213,7 +215,7 @@ form {
 }
 
 .navbar .nav li a {
-  padding: 25px 20px 20px;
+  padding: 24px 20px 20px;
   font-size: 18px;
   color: #fff;
   text-shadow: none;
@@ -235,104 +237,12 @@ form {
 
 .carousel-control {
   .border-radius-for-pie(23px);
+  .opacity(50);
 }
 
 
 
 
-/* ==========================================================================
-   Icons 
-  ======================================================================== */
-#icons {
-  padding-top: 40px;
-  background-color: #111;
-  //background-color: #333;
-  //background-color: #535353;
-  padding-bottom: 40px;
-  border-top: 5px solid #333;
-}
-#icons .container { 
-  width: 1170px;
-}
-
-#icons h1 {
-  font-family: SinaNova, arial;
-  font-family: Quicksand-Book, arial;
-  font-weight: normal;
-  text-align: center;
-  text-shadow: 1px 1px 0px #111;
-  //colr:#ec1c2d; 
-  color: white;
-  font-size: 46px;
-  span {
-    //background-color: #fff;
-    //background-color: @red; 
-    //padding: 7px;
-  }
-
-  span.first {
-    //font-size: 44px;
-  }
-  span.second {
-    //font-size: 32px;
-  }
- 
-}
-
-#icons .icon {
-  //border-radius: 100px;
-  //background: @red;
-  //background: #282B30;
-  //display: inline-block;
-}
-
-#icons .icon img {
-  height: 115px;
-  padding-top: 20px;
-  //display: inline-block;
-}
-
-#icons ul {
-  list-style: none;
-  .clearfix;
-  margin-top: 40px;
-}
-
-#icons li {
-  float: left;
-  margin: 0 33px;
-  text-align: center;
-  //color: @red;
-}
-
-#icons .circle-bg {
-  width: 163px;
-  height: 163px;
-  background-color: #fff;
-  background-color: @red; 
-  border-radius: 115px;
-  margin: 0 auto;
-}
-
-
-#icons h2{  
-  font-weight: normal;
-  font-size: 18px;
-  color: @red;
-  color: #fff;
-  font-family: Nexa-Bold, arial;
-}
-
-
-
-#icons li span {
-  display: inline-block;
-  margin-top: 15px;
-}
-
-#icons li b {
-  font-size: 20px;
-}
 
 #home section {
   //background: #eee url(/img/bg-section-fade.png) repeat-x top left;
@@ -356,27 +266,71 @@ form {
 }
 
 #home .container {
-  width: 1170px;
+  //width: 1170px;
 }
-#home p {
+#home .about p {
   line-height: 1.7;
   padding: 20px;
+  padding-top: 0;
+  padding-bottom: 5px;
   font-size: 18px;
   //font-family: SinaNova, arial;
   //font-family: Quicksand-Book, arial;
   font-family: 'Libre Baskerville', serif;
   font-weight: normal;
 }
+
+#home .row {
+  margin-top: 20px;
+}
+
+#home .box {
+  .clearfix;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  .border-radius-for-pie(5px);
+  padding: 20px;
+  margin-bottom: 15px;
+  h2 {
+    font-size: 24px;     
+    text-align: center;
+  }
+  img {
+    height: 100px;   
+    float: left;
+    margin-right: 10px;
+  }
+}
+
+#home .box.within {
+  width: 200px;
+  float: right;
+  border: none;
+  margin: 20px;
+  background-color: #eee;
+  h3 {
+    font-size: 18px;
+  }
+}
+
+#icons .box {  
+  float: left;
+  img {
+    height: 100px;   
+  }
+
+}
+
 /* ==========================================================================
    Footer 
    ========================================================================== */
 footer {
   background-color: #444;
-  margin-top: 100px;
+  margin-top: 30px;
 }
 
 footer .container {
-  width: 1170px;
+  ///width: 1170px;
 }
 
 footer ul {
