@@ -72,8 +72,8 @@ app.get('/', function(req, res) {
   }
 });
 
-app.get('/black', function(req, res) {
-  var locals = {title: 'Black'}
+app.get(/^\/v-./, function(req, res) {
+  var locals = {title: 'Home'}
   if (req.xhr) {
     res.render('home', locals, function(err, html){
       res.send({title: locals.title, body: html});
@@ -93,6 +93,17 @@ app.get('/icons', function(req, res) {
     });
   } else {
     res.render('icons_full', locals);
+  }
+});
+
+app.get('/new', function(req, res) {
+  var locals = {title: 'New'}
+  if (req.xhr) {
+    res.render('new', locals, function(err, html){
+      res.send({title: locals.title, body: html});
+    });
+  } else {
+    res.render('new_full', locals);
   }
 });
 

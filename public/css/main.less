@@ -63,7 +63,7 @@ body {
   //background-color: #f8f8f8;
   //padding-top: 70px;
   //background-color: #EFEFEF;
-  background: url(/img/bg.png) repeat top left; 
+  //background: url(/img/bg.png) repeat top left; 
 }
 
 
@@ -170,7 +170,8 @@ form {
 @red: #ec1c2d;
 
 .home-page .navbar .navbar-inner, 
-.icons-page .navbar .navbar-inner {
+.icons-page .navbar .navbar-inner,
+.new-page .navbar .navbar-inner {
   .border-radius(0);
   border: none;
   border-bottom: 1px solid #fff;
@@ -313,13 +314,6 @@ form {
   }
 }
 
-#icons .box {  
-  float: left;
-  img {
-    height: 100px;   
-  }
-
-}
 
 /* ==========================================================================
    Footer 
@@ -353,4 +347,165 @@ footer .logo img {
 
 footer .logo a{
   padding: 10px;
+}
+
+
+/* ==========================================================================
+   Icons 
+   ========================================================================== */
+#icons {
+  padding-top: 20px;
+  //background-color: #111;
+  //background-color: #333;
+  //background-color: #535353;
+  padding-bottom: 40px;
+  border-top: 5px solid #333;
+}
+#icons .container { 
+  width: 1170px;
+}
+
+#icons h1 {
+  font-family: SinaNova, arial;
+  font-family: Quicksand-Book, arial;
+  font-weight: normal;
+  text-align: center;
+  text-shadow: 1px 1px 0px #111;
+  //colr:#ec1c2d; 
+  color: white;
+  font-size: 46px;
+  span {
+    //background-color: #fff;
+    //background-color: @red; 
+    //padding: 7px;
+  }
+
+  span.first {
+    //font-size: 44px;
+  }
+  span.second {
+    //font-size: 32px;
+  }
+ 
+}
+
+#icons .icon {
+  //border-radius: 100px;
+  //background: @red;
+  //background: #282B30;
+  //display: inline-block;
+}
+
+#icons .icon img {
+  height: 115px;
+  padding-top: 20px;
+  //display: inline-block;
+}
+
+#icons ul {
+  list-style: none;
+  .clearfix;
+  margin-top: 20px;
+}
+
+#icons li {
+  float: left;
+  margin: 0 20px;
+  text-align: center;
+  width: 189px;
+  //color: @red;
+}
+
+#icons .circle-bg {
+  width: 163px;
+  height: 163px;
+  background-color: #fff;
+  //background-color: @red; 
+  border-radius: 115px;
+  margin: 0 auto;
+  .box-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+}
+
+#icons h2{  
+  font-weight: normal;
+  font-size: 22px;
+  color: @red;
+  //color: #fff;
+  //color: #111;
+  font-family: Nexa-Bold, arial;
+}
+
+#icons li span {
+  display: inline-block;
+  margin-top: 15px;
+}
+
+#icons li b {
+  font-size: 20px;
+}
+
+/* ==========================================================================
+   New 
+   ========================================================================== */
+#new {
+  background: #fff;
+  .container {
+    position: relative;
+  }
+}
+
+#new .headline {
+  margin: 50px 0 50px 0;
+}
+
+#new h1 {
+  text-align: center;
+  //text-shadow: 2px 2px 0px #fff;
+  //colr:#ec1c2d; 
+  //color: #111;
+  //color: @red;
+  font-size: 36px;
+  margin-top: 30px;
+  b {
+    font-family: georgia, serif;
+    font-size: 100px;
+    position: absolute;
+  }
+  b.l {
+    left: 35px;
+    top: 17px;
+  }
+  b.r {
+    top: 62px;
+  }
+}
+
+#new h3 {
+  text-align: center;
+}
+
+.thumbnails .thumbnail {
+  height: 684px;
+}
+
+.thumbnails h3{
+  padding: 0 20px;
+}
+.thumbnails p {
+  padding: 0 20px;
+}
+
+.philosophy {
+  margin: 50px 0;
+  #gradient > .vertical(#fff, #f7f7f7);
+  padding-bottom: 50px;
+  p {
+    width: 900px;
+    margin: 0 auto;
+    line-height: 1.7;
+    //padding: 20px;
+    font-size: 18px;
+    font-family: 'Libre Baskerville', serif;
+    font-weight: normal;
+  }
 }

@@ -4,7 +4,7 @@ define(function(require) {
 
   var initialize = function() {
     var router = new Router()
-    Backbone.history.start({pushState: true});
+    Backbone.history.start({pushState: true})
   }
 
   return {

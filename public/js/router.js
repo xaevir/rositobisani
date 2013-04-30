@@ -2,40 +2,52 @@ define(function(require) {
 
   var ContactView = require('views/contact')
   var NavView = require('views/nav')
-  ///var iconsTpl = require('text!templates/icons.html')
-  //var homeTpl = require('text!templates/home.html')
-
-  function autoResetRouter(){ 
-    _(this.routes).each(function(destination) {
-      _(this.routes).each(function(other) {
-        if (destination === other) return;
-        // route:x => reset_y
-        if(_.has(this, 'reset_'+other))
-          this.bind('route:'+destination, this['reset_'+other]);
-      }, this);
-    }, this);
-  }
 
   function setPageContent(content, title) {
     $('#app').html(content);
     document.title = title;
   }
 
+  var rp = Backbone.Router.prototype
+  var _route = rp.route;
+  rp.route = function(route, name) {
+    var callback = this[name]
+    return _route.call(this, route, name, function() {
+      //this.trigger.apply(this, ['beforeroute:' + name].concat(_.toArray(arguments)));
+      this.reset(name)
+      if (typeof callback !== 'undefined')
+        callback.apply(this, arguments);
+    });
+  };
+
   var Router = Backbone.Router.extend({
 
     initialize: function() {
       _.bindAll(this) 
       var navView = new NavView({el: $('.navbar')} )
-      autoResetRouter.call(this)
     },
 
     routes: {
       "": "home",
-      "black": "black",
+      "v-red-white-border": "red_white_border",
+      "v-red-no-border": "red_no_border",
+      "v-red-border-gray": "red_border_gray",
+      "v-white": "white",
       "icons": "icons",
+      "new": "new_page",
     },
 
-    // write a closure 
+    originalLogo: '/img/logo-white-gray-border.png',
+
+    reset: function(route, section) {
+      route = route.replace('route:', '');
+      if(this.prev_route)
+        if(_.has(this, 'reset_'+this.prev_route)){
+          var path = 'reset_'+this.prev_route 
+          this[path]()
+        }
+      this.prev_route = route
+    },
 
     home: function() {
       this.homeTpl;
@@ -43,6 +55,7 @@ define(function(require) {
 
       $('#myCarousel').carousel('cycle')
       $('body').addClass('home-page')
+      $('.logo').attr('src', this.originalLogo)
 
       // currently loaded page as sent by non xhr request
       if ($('#home').length) {
@@ -67,37 +80,86 @@ define(function(require) {
       $('body').removeClass('home-page')
     },
 
-    black: function() {
-      this.blackTpl;
-      this.blackTitle;
+
+    mainSetup: function(func) {
+      this.homeTpl;
+      this.homeTitle;
 
       $('#myCarousel').carousel('cycle')
-      $('body').addClass('black-page')
-      $('.navbar').addClass('navbar-inverse')
-      $('.logo').attr('src', '/img/logo-red.png')
-
       if ($('#home').length) {
-        return
+        return func()
       }
-      else if (this.blackTpl) {
-        setPageContent(this.blackTpl, this.blackTitle)
-        return
+      else if (this.homeTpl) {
+        setPageContent(this.homeTpl, this.homeTitle)
+        return func()
       }
       else {
         var self = this
         $.get('/', function(obj) {
-          self.blackTpl = obj.body
-          self.blackTitle = obj.title
-          setPageContent(self.blackTpl, self.blackTitle)
+          self.homeTpl = obj.body
+          self.homeTitle = obj.title
+          setPageContent(self.homeTpl, self.homeTitle)
         })
       }
     },
 
-    reset_black: function(){
+    red_white_border: function() {
+      this.mainSetup(function(){
+        $('body').addClass('black-page')
+        $('.navbar').addClass('navbar-inverse')
+        $('.logo').attr('src', '/img/logo-red-white-border.png')
+      })
+    },
+
+    reset_red_white_border: function(){
       $('body').removeClass('black-page')
       $('.navbar').removeClass('navbar-inverse')
-      $('.logo').attr('src', '/img/logo-white.png')
+      $('.logo').attr('src', this.originalLogo)
     },
+
+    red_no_border: function() {
+      this.mainSetup(function(){
+        $('body').addClass('black-page')
+        $('.navbar').addClass('navbar-inverse')
+        $('.logo').attr('src', '/img/logo-red-no-border.png')
+      })
+    },
+
+    reset_red_no_border: function(){
+      $('body').removeClass('black-page')
+      $('.navbar').removeClass('navbar-inverse')
+      $('.logo').attr('src', this.originalLogo)
+    },
+
+    red_border_gray: function() {
+      this.mainSetup(function(){
+        $('body').addClass('black-page')
+        $('.navbar').addClass('navbar-inverse')
+        $('.logo').attr('src', '/img/logo-red-gray-border.png')
+      })
+    },
+
+    reset_red_border_gray: function(){
+      $('body').removeClass('black-page')
+      $('.navbar').removeClass('navbar-inverse')
+      $('.logo').attr('src', this.originalLogo)
+    },
+
+
+    white: function() {
+      this.mainSetup(function(){
+        $('body').addClass('black-page')
+        $('.navbar').addClass('navbar-inverse')
+        $('.logo').attr('src', '/img/logo-white.png')
+      })
+    },
+
+    reset_white: function(){
+      $('body').removeClass('black-page')
+      $('.navbar').removeClass('navbar-inverse')
+      $('.logo').attr('src', this.originalLogo)
+    },
+
 
     icons: function() {
       this.iconsTpl;
@@ -129,6 +191,42 @@ define(function(require) {
     reset_icons: function(){
       $('body').removeClass('icons-page')
     },
+
+
+    new_page: function() {
+      this.newPageTpl;
+      this.newPageTitle;
+
+      $('#myCarousel').carousel('cycle')
+      $('.logo').attr('src', this.originalLogo)
+      $('body').addClass('new-page')
+
+      // currently loaded page as sent by non xhr request
+      if ($('#new-page').length) {
+        return
+      }
+      // page already loaded by another click
+      else if (this.newPageTpl) {
+        setPageContent(this.newPageTpl, this.newPageTitle)
+        return
+      }
+      else {
+        var self = this
+        $.get('/new', function(obj) {
+          self.newPageTpl = obj.body
+          self.newPageTitle = obj.title
+          setPageContent(self.newPageTpl, self.newPageTitle)
+        })
+      }
+    },
+
+
+    reset_new_page: function(){
+      $('body').removeClass('new-page')
+    },
+
+
+
 
     contact: function() {
       var view = new ContactView({el: $('.contact')} )
