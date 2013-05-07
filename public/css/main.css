@@ -8105,9 +8105,7 @@ form span.error {
 .navbar {
   margin-bottom: 0;
 }
-.home-page .navbar .navbar-inner,
-.icons-page .navbar .navbar-inner,
-.new-page .navbar .navbar-inner {
+.navbar .navbar-inner {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -8122,14 +8120,10 @@ form span.error {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec1c2d', endColorstr='#ffdc1223', GradientType=0);
 }
-.home-page .navbar .navbar-inner .nav .active > a,
-.icons-page .navbar .navbar-inner .nav .active > a,
-.new-page .navbar .navbar-inner .nav .active > a {
+.navbar .navbar-inner .nav .active > a {
   background-color: #ec1c2d;
 }
-.home-page .navbar .navbar-inner .nav > li > a:hover,
-.icons-page .navbar .navbar-inner .nav > li > a:hover,
-.new-page .navbar .navbar-inner .nav > li > a:hover {
+.navbar .navbar-inner .nav > li > a:hover {
   background-color: #ec1c2d;
 }
 .navbar .brand {
@@ -8143,7 +8137,7 @@ form span.error {
   right: 0;
 }
 .navbar .logo {
-  padding-top: 6px;
+  padding: 6px 0;
 }
 .navbar .nav {
   margin: 0;
@@ -8151,7 +8145,7 @@ form span.error {
   margin-left: 5px;
 }
 .navbar .nav li a {
-  padding: 24px 20px 20px;
+  padding: 28px 20px 24px;
   font-size: 18px;
   color: #fff;
   text-shadow: none;
@@ -8176,11 +8170,11 @@ form span.error {
   opacity: 0.5;
   filter: alpha(opacity=50);
 }
-#home section {
+#icons-left section {
   text-align: center;
   margin-top: 20px;
 }
-#home section h1 {
+#icons-left section h1 {
   font-family: SinaNova, arial;
   font-family: Quicksand-Book, arial;
   font-family: Nexa-Bold, arial;
@@ -8189,11 +8183,11 @@ form span.error {
   font-weight: normal;
   font-size: 44px;
 }
-#home hr {
+#icons-left hr {
   height: 1px;
   background-color: #fff;
 }
-#home .about p {
+#icons-left .about p {
   line-height: 1.7;
   padding: 20px;
   padding-top: 0;
@@ -8202,10 +8196,10 @@ form span.error {
   font-family: 'Libre Baskerville', serif;
   font-weight: normal;
 }
-#home .row {
+#icons-left .row {
   margin-top: 20px;
 }
-#home .box {
+#icons-left .box {
   *zoom: 1;
   border: 1px solid #ddd;
   background-color: #fff;
@@ -8216,48 +8210,48 @@ form span.error {
   padding: 20px;
   margin-bottom: 15px;
 }
-#home .box:before,
-#home .box:after {
+#icons-left .box:before,
+#icons-left .box:after {
   display: table;
   content: "";
   line-height: 0;
 }
-#home .box:after {
+#icons-left .box:after {
   clear: both;
 }
-#home .box:before,
-#home .box:after {
+#icons-left .box:before,
+#icons-left .box:after {
   display: table;
   content: "";
   line-height: 0;
 }
-#home .box:after {
+#icons-left .box:after {
   clear: both;
 }
-#home .box h2 {
+#icons-left .box h2 {
   font-size: 24px;
   text-align: center;
 }
-#home .box img {
+#icons-left .box img {
   height: 100px;
   float: left;
   margin-right: 10px;
 }
-#home .box.within {
+#icons-left .box.within {
   width: 200px;
   float: right;
   border: none;
   margin: 20px;
   background-color: #eee;
 }
-#home .box.within h3 {
+#icons-left .box.within h3 {
   font-size: 18px;
 }
 /* ==========================================================================
    Footer 
    ========================================================================== */
 footer {
-  background-color: #444;
+  background-color: #111;
   margin-top: 30px;
 }
 footer ul {
@@ -8279,136 +8273,505 @@ footer .logo a {
   padding: 10px;
 }
 /* ==========================================================================
-   Icons 
+   Silver Bar 
    ========================================================================== */
-#icons {
-  padding-top: 20px;
-  padding-bottom: 40px;
-  border-top: 5px solid #333;
+.section2 {
+  padding-bottom: 20px;
 }
-#icons .container {
-  width: 1170px;
-}
-#icons h1 {
-  font-family: SinaNova, arial;
+.section2 h2 {
+  font-family: LinuxLibertine, arial;
   font-family: Quicksand-Book, arial;
+  font-family: Nexa-Bold, arial;
+  color: #666;
+  color: #ec1c2d;
   font-weight: normal;
-  text-align: center;
-  text-shadow: 1px 1px 0px #111;
-  color: white;
-  font-size: 46px;
-}
-#icons .icon img {
-  height: 115px;
-  padding-top: 20px;
-}
-#icons ul {
-  list-style: none;
+  line-height: 1;
   *zoom: 1;
+}
+.section2 h2:before,
+.section2 h2:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.section2 h2:after {
+  clear: both;
+}
+.section2 h2:before,
+.section2 h2:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.section2 h2:after {
+  clear: both;
+}
+.section2 .header {
+  padding: 20px;
+  padding-bottom: 0;
+}
+.section2 .body {
+  padding: 20px;
+  padding-top: 0;
+}
+.section2 .span6 {
   margin-top: 20px;
 }
-#icons ul:before,
-#icons ul:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-#icons ul:after {
-  clear: both;
-}
-#icons ul:before,
-#icons ul:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-#icons ul:after {
-  clear: both;
-}
-#icons li {
-  float: left;
-  margin: 0 20px;
-  text-align: center;
-  width: 189px;
-}
-#icons .circle-bg {
-  width: 163px;
-  height: 163px;
-  background-color: #fff;
-  border-radius: 115px;
-  margin: 0 auto;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-#icons h2 {
-  font-weight: normal;
-  font-size: 22px;
-  color: #ec1c2d;
-  font-family: Nexa-Bold, arial;
-}
-#icons li span {
-  display: inline-block;
-  margin-top: 15px;
-}
-#icons li b {
-  font-size: 20px;
-}
-/* ==========================================================================
-   New 
-   ========================================================================== */
-#new {
+.section2 .span6 .content {
   background: #fff;
 }
-#new .container {
-  position: relative;
+.section2 .news-icon {
+  width: 75px;
+  margin-right: 20px;
+  float: left;
 }
-#new .headline {
-  margin: 50px 0 50px 0;
+.section2 .chat-icon {
+  width: 100px;
+  float: left;
+  margin-right: 20px;
 }
-#new h1 {
-  text-align: center;
-  font-size: 36px;
-  margin-top: 30px;
+.section2 .quotes {
+  font-family: georgia;
+  font-size: 30px;
+  float: left;
+  display: block;
 }
-#new h1 b {
-  font-family: georgia, serif;
-  font-size: 100px;
-  position: absolute;
+.section2 .quotes-r {
+  font-family: georgia;
+  font-size: 30px;
 }
-#new h1 b.l {
-  left: 35px;
-  top: 17px;
+.section2 .testimonials p {
+  margin-bottom: 30px;
 }
-#new h1 b.r {
-  top: 62px;
+.section2 .testimonials .header {
+  margin-bottom: 25px;
 }
-#new h3 {
-  text-align: center;
+#icons-in-navbar .section2 {
+  background: url(/img/bg.png) repeat top left;
+  padding-bottom: 20px;
 }
-.thumbnails .thumbnail {
-  height: 684px;
+#icons-in-navbar .section2 .divider {
+  background: url(/img/bg-module-top-shadow.png) no-repeat top center;
 }
-.thumbnails h3 {
-  padding: 0 20px;
+#icons-in-navbar .section2 .span6 {
+  margin-top: 20px;
 }
-.thumbnails p {
-  padding: 0 20px;
+#icons-in-navbar .section2 .span6 .content {
+  padding: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border: none;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+  -webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0.055);
+  -moz-box-shadow: 0 0px 0px rgba(0, 0, 0, 0.055);
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.055);
 }
-.philosophy {
-  margin: 50px 0;
-  background-color: #fcfcfc;
-  background-image: -moz-linear-gradient(top, #ffffff, #f7f7f7);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f7f7f7));
-  background-image: -webkit-linear-gradient(top, #ffffff, #f7f7f7);
-  background-image: -o-linear-gradient(top, #ffffff, #f7f7f7);
-  background-image: linear-gradient(to bottom, #ffffff, #f7f7f7);
+#icons-in-navbar .section2 .header {
+  background-color: #e61829;
+  background-image: -moz-linear-gradient(top, #ec1c2d, #dc1223);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ec1c2d), to(#dc1223));
+  background-image: -webkit-linear-gradient(top, #ec1c2d, #dc1223);
+  background-image: -o-linear-gradient(top, #ec1c2d, #dc1223);
+  background-image: linear-gradient(to bottom, #ec1c2d, #dc1223);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff7f7f7', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec1c2d', endColorstr='#ffdc1223', GradientType=0);
+}
+#icons-in-navbar .section2 .body {
+  padding: 20px;
+}
+#icons-in-navbar .section2 h2 {
+  font-family: LinuxLibertine, arial;
+  font-weight: normal;
+  margin: 0;
+  color: #fff;
+  padding: 20px;
+}
+#icons-in-navbar .section2 .testimonials p {
+  font-size: 16px;
+  font-family: Quicksand-Book, arial;
+}
+#icons-in-navbar .section2 .current-events p {
+  font-family: LinuxLibertine, arial;
+}
+#silver-bar .icons {
+  padding: 10px 0;
+  background-color: #dadada;
+  background-image: -moz-linear-gradient(top, #eeeeee, #bbbbbb);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#eeeeee), to(#bbbbbb));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #bbbbbb);
+  background-image: -o-linear-gradient(top, #eeeeee, #bbbbbb);
+  background-image: linear-gradient(to bottom, #eeeeee, #bbbbbb);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeeeee', endColorstr='#ffbbbbbb', GradientType=0);
+}
+#silver-bar .icons img {
+  height: 39px;
+  margin-top: 10px;
+}
+#silver-bar .icons .span2 {
+  text-align: center;
+}
+#silver-bar .icons h2 {
+  font-weight: normal;
+  font-size: 16px;
+  margin-top: 0;
+  color: #fff;
+  color: #ec1c2d;
+}
+#silver-bar .icons .circle-bg {
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  background-color: #ec1c2d;
+  border-radius: 115px;
+  margin: 0 auto;
+}
+#silver-bar .philosophy {
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f7f7f7), to(#ffffff));
+  background-image: -webkit-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: -o-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: linear-gradient(to bottom, #f7f7f7, #ffffff);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff7f7f7', endColorstr='#ffffffff', GradientType=0);
   padding-bottom: 50px;
 }
-.philosophy p {
-  width: 900px;
+#silver-bar .philosophy h1 {
+  text-align: center;
+  font-family: LinuxLibertine, arial;
+  font-weight: normal;
+}
+#silver-bar .philosophy .rb {
+  height: 200px;
+  float: left;
+  margin-right: 20px;
+}
+#silver-bar .philosophy p {
+  margin: 0 auto;
+  line-height: 1.7;
+  font-size: 18px;
+  font-family: 'Libre Baskerville', serif;
+  font-weight: normal;
+}
+#red-icons-on-black .icons {
+  background-color: #161616;
+  background-image: -moz-linear-gradient(top, #222222, #040404);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222222), to(#040404));
+  background-image: -webkit-linear-gradient(top, #222222, #040404);
+  background-image: -o-linear-gradient(top, #222222, #040404);
+  background-image: linear-gradient(to bottom, #222222, #040404);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff040404', GradientType=0);
+  padding: 10px 0;
+}
+#red-icons-on-black .icons img {
+  height: 39px;
+  margin-top: 10px;
+}
+#red-icons-on-black .icons .span2 {
+  text-align: center;
+}
+#red-icons-on-black .icons h2 {
+  font-weight: normal;
+  font-size: 16px;
+  margin-top: 0;
+  color: #fff;
+  color: #ec1c2d;
+}
+#red-icons-on-black .icons .circle-bg {
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  background-color: #ec1c2d;
+  border-radius: 115px;
+  margin: 0 auto;
+}
+#red-icons-on-black .philosophy {
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f7f7f7), to(#ffffff));
+  background-image: -webkit-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: -o-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: linear-gradient(to bottom, #f7f7f7, #ffffff);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff7f7f7', endColorstr='#ffffffff', GradientType=0);
+  padding-bottom: 50px;
+}
+#red-icons-on-black .philosophy h1 {
+  text-align: center;
+  font-family: LinuxLibertine, arial;
+  font-weight: normal;
+}
+#red-icons-on-black .philosophy .rb {
+  height: 200px;
+  float: left;
+  margin-right: 20px;
+}
+#red-icons-on-black .philosophy p {
+  margin: 0 auto;
+  line-height: 1.7;
+  font-size: 18px;
+  font-family: 'Libre Baskerville', serif;
+  font-weight: normal;
+}
+#red-icon-bar .icons {
+  background-color: #e61829;
+  background-image: -moz-linear-gradient(top, #ec1c2d, #dc1223);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ec1c2d), to(#dc1223));
+  background-image: -webkit-linear-gradient(top, #ec1c2d, #dc1223);
+  background-image: -o-linear-gradient(top, #ec1c2d, #dc1223);
+  background-image: linear-gradient(to bottom, #ec1c2d, #dc1223);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec1c2d', endColorstr='#ffdc1223', GradientType=0);
+  padding: 10px 0;
+}
+#red-icon-bar .icons img {
+  height: 39px;
+  margin-top: 10px;
+}
+#red-icon-bar .icons .span2 {
+  text-align: center;
+}
+#red-icon-bar .icons h2 {
+  font-weight: normal;
+  font-size: 16px;
+  margin-top: 0;
+  color: #fff;
+}
+#red-icon-bar .icons .circle-bg {
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  background-color: #ec1c2d;
+  border-radius: 115px;
+  margin: 0 auto;
+}
+#red-icon-bar .philosophy {
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f7f7f7), to(#ffffff));
+  background-image: -webkit-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: -o-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: linear-gradient(to bottom, #f7f7f7, #ffffff);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff7f7f7', endColorstr='#ffffffff', GradientType=0);
+  padding-bottom: 50px;
+}
+#red-icon-bar .philosophy h1 {
+  text-align: center;
+  font-family: LinuxLibertine, arial;
+  font-weight: normal;
+}
+#red-icon-bar .philosophy .rb {
+  height: 200px;
+  float: left;
+  margin-right: 20px;
+}
+#red-icon-bar .philosophy p {
+  margin: 0 auto;
+  line-height: 1.7;
+  font-size: 18px;
+  font-family: 'Libre Baskerville', serif;
+  font-weight: normal;
+}
+#icons-in-navbar .icons {
+  padding: 10px 0;
+}
+#icons-in-navbar .icons li {
+  text-align: center;
+  margin: 0 15px;
+}
+#icons-in-navbar .icons li img {
+  height: 29px;
+}
+#icons-in-navbar .icons .span2 {
+  text-align: center;
+}
+#icons-in-navbar .icons h2 {
+  font-weight: normal;
+  font-size: 14px;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #fff;
+}
+#icons-in-navbar .icons .circle-bg {
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  background-color: #ec1c2d;
+  border-radius: 115px;
+  margin: 0 auto;
+}
+#icons-in-navbar .philosophy {
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f7f7f7), to(#ffffff));
+  background-image: -webkit-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: -o-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: linear-gradient(to bottom, #f7f7f7, #ffffff);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff7f7f7', endColorstr='#ffffffff', GradientType=0);
+  padding-bottom: 50px;
+}
+#icons-in-navbar .philosophy h1 {
+  text-align: center;
+  font-family: LinuxLibertine, arial;
+  font-weight: normal;
+}
+#icons-in-navbar .philosophy .rb {
+  height: 200px;
+  float: left;
+  margin-right: 20px;
+}
+#icons-in-navbar .philosophy p {
+  margin: 0 auto;
+  line-height: 1.7;
+  font-size: 18px;
+  font-family: 'Libre Baskerville', serif;
+  font-weight: normal;
+}
+/* ==========================================================================
+   Home 
+   ========================================================================== */
+#home .icons {
+  background-color: #111;
+  padding: 20px 0;
+}
+#home .icons .span2 {
+  text-align: center;
+}
+#home .icons img {
+  height: 39px;
+}
+#home .icons h2 {
+  font-weight: normal;
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #fff;
+}
+#home .philosophy {
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f7f7f7), to(#ffffff));
+  background-image: -webkit-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: -o-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: linear-gradient(to bottom, #f7f7f7, #ffffff);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff7f7f7', endColorstr='#ffffffff', GradientType=0);
+  padding-bottom: 50px;
+}
+#home .philosophy h1 {
+  text-align: center;
+  font-family: LinuxLibertine, arial;
+  font-weight: normal;
+}
+#home .philosophy .rb {
+  height: 200px;
+  float: left;
+  margin-right: 20px;
+}
+#home .philosophy p {
+  margin: 0 auto;
+  line-height: 1.7;
+  font-size: 18px;
+  font-family: 'Libre Baskerville', serif;
+  font-weight: normal;
+}
+/* ==========================================================================
+   Machines 
+   ========================================================================== */
+#machines {
+  background: #fff;
+}
+#machines .headline {
+  margin: 50px 0 50px 0;
+}
+#machines .headline h1 {
+  position: relative;
+  text-align: center;
+  font-family: LinuxLibertine, arial;
+  font-weight: normal;
+  font-size: 36px;
+  margin-top: 30px;
+  line-height: 1;
+}
+#machines .headline h1 .quote {
+  margin-top: -28px;
+}
+#machines .headline h1 b {
+  font-family: georgia, serif;
+  font-size: 100px;
+  display: inline-block;
+  line-height: .1;
+  height: 54px;
+}
+#machines .headline h1 b.l {
+  margin-right: 10px;
+}
+#machines .headline h1 b.r {
+  margin-left: 10px;
+  height: 35px;
+  line-height: .7;
+  display: none;
+}
+#machines .products h2 {
+  text-align: center;
+  margin: 30px 0 20px;
+  font-size: 40px;
+  font-weight: normal;
+  font-family: Quicksand-Book, arial;
+}
+#machines .headline h3 {
+  text-align: center;
+  font-weight: normal;
+}
+#machines .products {
+  background: url(/img/bg.png) repeat top left;
+  padding-bottom: 20px;
+}
+#machines .products .divider {
+  background: url(/img/bg-module-top-shadow.png) no-repeat top center;
+}
+#machines .thumbnails .thumbnail {
+  padding: 20px;
+  padding-top: 30px;
+  background-color: #fff;
+}
+#machines .thumbnails .thumbnail img {
+  height: 200px;
+}
+#machines .thumbnails h3 {
+  text-align: center;
+}
+#machines .philosophy {
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f7f7f7), to(#ffffff));
+  background-image: -webkit-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: -o-linear-gradient(top, #f7f7f7, #ffffff);
+  background-image: linear-gradient(to bottom, #f7f7f7, #ffffff);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff7f7f7', endColorstr='#ffffffff', GradientType=0);
+  padding-bottom: 50px;
+}
+#machines .philosophy h1 {
+  text-align: center;
+  font-family: LinuxLibertine, arial;
+  font-weight: normal;
+}
+#machines .philosophy .rb {
+  height: 200px;
+  float: left;
+  margin-right: 20px;
+}
+#machines .philosophy p {
   margin: 0 auto;
   line-height: 1.7;
   font-size: 18px;

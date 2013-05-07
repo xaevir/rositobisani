@@ -169,9 +169,7 @@ form {
 
 @red: #ec1c2d;
 
-.home-page .navbar .navbar-inner, 
-.icons-page .navbar .navbar-inner,
-.new-page .navbar .navbar-inner {
+.navbar .navbar-inner {
   .border-radius(0);
   border: none;
   border-bottom: 1px solid #fff;
@@ -205,7 +203,7 @@ form {
 }
 
 .navbar .logo {
-  padding-top: 6px;
+  padding: 6px 0;
   //width: 200px;
   //margin-left: 125px;
 }
@@ -216,7 +214,7 @@ form {
 }
 
 .navbar .nav li a {
-  padding: 24px 20px 20px;
+  padding: 28px 20px 24px;
   font-size: 18px;
   color: #fff;
   text-shadow: none;
@@ -244,14 +242,12 @@ form {
 
 
 
-
-#home section {
-  //background: #eee url(/img/bg-section-fade.png) repeat-x top left;
+#icons-left section {
   text-align: center;
   margin-top: 20px;
 }
 
-#home section h1 {
+#icons-left section h1 {
   font-family: SinaNova, arial;
   font-family: Quicksand-Book, arial;
   font-family: Nexa-Bold, arial;
@@ -261,31 +257,29 @@ form {
   font-size: 44px;
 }
 
-#home hr {
+#icons-left hr {
   height: 1px;
   background-color: #fff;
 }
 
-#home .container {
+#icons-left .container {
   //width: 1170px;
 }
-#home .about p {
+#icons-left .about p {
   line-height: 1.7;
   padding: 20px;
   padding-top: 0;
   padding-bottom: 5px;
   font-size: 18px;
-  //font-family: SinaNova, arial;
-  //font-family: Quicksand-Book, arial;
   font-family: 'Libre Baskerville', serif;
   font-weight: normal;
 }
 
-#home .row {
+#icons-left .row {
   margin-top: 20px;
 }
 
-#home .box {
+#icons-left .box {
   .clearfix;
   border: 1px solid #ddd;
   background-color: #fff;
@@ -303,7 +297,7 @@ form {
   }
 }
 
-#home .box.within {
+#icons-left .box.within {
   width: 200px;
   float: right;
   border: none;
@@ -314,12 +308,12 @@ form {
   }
 }
 
-
 /* ==========================================================================
    Footer 
    ========================================================================== */
 footer {
-  background-color: #444;
+  //background-color: #444;
+  background-color: #111;
   margin-top: 30px;
 }
 
@@ -349,158 +343,560 @@ footer .logo a{
   padding: 10px;
 }
 
-
 /* ==========================================================================
-   Icons 
+   Silver Bar 
    ========================================================================== */
-#icons {
-  padding-top: 20px;
-  //background-color: #111;
-  //background-color: #333;
-  //background-color: #535353;
-  padding-bottom: 40px;
-  border-top: 5px solid #333;
-}
-#icons .container { 
-  width: 1170px;
+
+.section2 {
+  //background: url(/img/bg.png) repeat top left; 
+  padding-bottom: 20px;
+  h2 {
+    font-family: LinuxLibertine, arial;
+    //font-family: 'Libre Baskerville', serif;
+    font-family: Quicksand-Book, arial;
+    font-family: Nexa-Bold, arial;
+    ///font-family: Nexa-Bold, arial;
+    color: #666;
+    color: @red;
+    font-weight: normal;
+    line-height: 1;
+    .clearfix;
+  }
+  .testimonials {
+    p{
+      //font-family: Quicksand-Book, arial;
+      //font-family: LinuxLibertine, arial;
+    }
+  }
+  .current-events {
+    h2 {
+      //font-family: SinaNova, arial;
+      //font-family: Nexa-Bold, arial;
+    }
+    p {
+      //font-family: SinaNova, arial;
+      //font-family: Asap, arial;
+    }
+  }
+  .header {
+    //#gradient > .vertical(@red, darken(@red, 5%));
+    //#gradient > .vertical(#222, #111);
+    //#gradient > .vertical(#fff, #f2f2f2);
+    padding: 20px;
+    padding-bottom: 0;
+  }
+  .body {
+    padding: 20px;
+    padding-top: 0;
+  }
+  p {
+    //font-family: 'Libre Baskerville', serif;
+    //font-family: Nexa-Bold, arial;
+    //font-family: SinaNova, arial;
+    //font-family: Quicksand-Book, arial;
+    //font-family: Asap, arial;
+    //font-family: LinuxLibertine, arial;
+  }
+  .divider {
+    //background: url(/img/bg-module-top-shadow.png) no-repeat top center; 
+  }
+  .span6 {
+    margin-top: 20px;
+    .content {
+      //padding: 0px; 
+      background: #fff;
+      //border: 1px solid #eee;
+      //.border-radius(@baseBorderRadius);
+      //.box-shadow(0 1px 3px rgba(0,0,0,.055));
+    }
+  }
+  .news-icon {
+    width: 75px;
+    margin-right: 20px;
+    float: left;
+  }
+  .chat-icon {
+    width: 100px;
+    float: left;
+    margin-right: 20px;
+  }
+  .quotes {
+    //margin-top: -16px;
+    font-family: georgia;
+    font-size: 30px;
+    float: left;
+    display: block;
+  }
+  .quotes-r {
+    font-family: georgia;
+    font-size: 30px;
+    //float: left;
+    //display: block;
+  }
+  .testimonials {
+    p {
+      margin-bottom: 30px;
+    }
+    .header {
+      margin-bottom: 25px;
+    }
+  }
 }
 
-#icons h1 {
-  font-family: SinaNova, arial;
-  font-family: Quicksand-Book, arial;
-  font-weight: normal;
-  text-align: center;
-  text-shadow: 1px 1px 0px #111;
-  //colr:#ec1c2d; 
-  color: white;
-  font-size: 46px;
-  span {
+
+
+#icons-in-navbar .section2 {
+  background: url(/img/bg.png) repeat top left; 
+  padding-bottom: 20px;
+  .divider {
+    background: url(/img/bg-module-top-shadow.png) no-repeat top center; 
+  }
+  .span6 {
+    margin-top: 20px;
+    .content {
+      padding: 0;
+      background: #fff;
+      border: 1px solid #ddd;
+      border: none;
+      .border-radius(@baseBorderRadius);
+      .box-shadow(0 1px 3px rgba(0,0,0,.055));
+      .box-shadow(0 0px 0px rgba(0,0,0,.055));
+    }
+  }
+  .header {
+    #gradient > .vertical(@red, darken(@red, 5%));
+    //#gradient > .vertical(#222, #111);
+    //#gradient > .vertical(#fff, #f2f2f2);
+  }
+  .body {
+    padding: 20px;
+  }
+  h2 {
+    font-family: LinuxLibertine, arial; font-weight: normal;
+    margin: 0;
+    color: #fff;
+    padding: 20px;
+  }
+  .testimonials {
+    p{
+      font-size: 16px;
+      font-family: Quicksand-Book, arial;
+      //font-family: SinaNova, arial;
+    }
+  }
+  .current-events {
+    p {
+      //font-family: SinaNova, arial;
+      font-family: LinuxLibertine, arial;
+      //font-family: Asap, arial;
+    }
+  }
+  p {
+    //font-family: 'Libre Baskerville', serif;
+    //font-family: Nexa-Bold, arial;
+    //font-family: SinaNova, arial;
+    //font-family: Quicksand-Book, arial;
+    //font-family: Asap, arial;
+    //font-family: LinuxLibertine, arial;
+  }
+
+}
+
+
+#silver-bar {
+  .icons {
     //background-color: #fff;
-    //background-color: @red; 
-    //padding: 7px;
+    padding: 10px 0;
+    #gradient > .vertical(#eee, #bbb);
+    img {
+      height: 39px;
+      margin-top: 10px;
+    }
+    .span2 {
+      text-align: center;
+    }
+    h2{  
+      font-weight: normal;
+      font-size: 16px;
+      margin-top: 0;
+      color: #fff;
+      color: @red;
+    }
+    .circle-bg {
+      width: 60px;
+      height: 60px;
+      background-color: #fff;
+      background-color: @red; 
+      border-radius: 115px;
+      margin: 0 auto;
+    }
   }
-
-  span.first {
-    //font-size: 44px;
+  .philosophy {
+    #gradient > .vertical(#f7f7f7, #fff);
+      padding-bottom: 50px;
+    .container {
+    }
+    h1 {
+      text-align: center;
+      font-family: LinuxLibertine, arial;
+      font-weight: normal;
+    }
+    .rb {
+      height: 200px;
+      float: left;
+      margin-right: 20px;
+    }
+    p {
+      margin: 0 auto;
+      line-height: 1.7;
+      font-size: 18px;
+      font-family: 'Libre Baskerville', serif;
+      font-weight: normal;
+    }
   }
-  span.second {
-    //font-size: 32px;
+}
+
+
+
+#red-icons-on-black {
+  .icons {
+    //background-color: #fff;
+    #gradient > .vertical(#222, darken(#111, 5%));
+    padding: 10px 0;
+    //#gradient > .vertical(#222, darken(#111, 5%));
+    img {
+      height: 39px;
+      margin-top: 10px;
+    }
+    .span2 {
+      text-align: center;
+    }
+    h2{  
+      font-weight: normal;
+      font-size: 16px;
+      margin-top: 0;
+      color: #fff;
+      color: @red;
+    }
+    .circle-bg {
+      width: 60px;
+      height: 60px;
+      background-color: #fff;
+      background-color: @red; 
+      border-radius: 115px;
+      margin: 0 auto;
+    }
   }
- 
+  .philosophy {
+    #gradient > .vertical(#f7f7f7, #fff);
+      padding-bottom: 50px;
+    .container {
+    }
+    h1 {
+      text-align: center;
+      font-family: LinuxLibertine, arial;
+      font-weight: normal;
+    }
+    .rb {
+      height: 200px;
+      float: left;
+      margin-right: 20px;
+    }
+    p {
+      margin: 0 auto;
+      line-height: 1.7;
+      font-size: 18px;
+      font-family: 'Libre Baskerville', serif;
+      font-weight: normal;
+    }
+  }
 }
 
-#icons .icon {
-  //border-radius: 100px;
-  //background: @red;
-  //background: #282B30;
-  //display: inline-block;
+#red-icon-bar {
+  .icons {
+    #gradient > .vertical(@red, darken(@red, 5%));
+    padding: 10px 0;
+    //#gradient > .vertical(#222, darken(#111, 5%));
+    img {
+      height: 39px;
+      margin-top: 10px;
+    }
+    .span2 {
+      text-align: center;
+    }
+    h2{  
+      font-weight: normal;
+      font-size: 16px;
+      margin-top: 0;
+      color: #fff;
+      //color: @red;
+    }
+    .circle-bg {
+      width: 60px;
+      height: 60px;
+      background-color: #fff;
+      background-color: @red; 
+      border-radius: 115px;
+      margin: 0 auto;
+    }
+  }
+  .philosophy {
+    #gradient > .vertical(#f7f7f7, #fff);
+      padding-bottom: 50px;
+    .container {
+    }
+    h1 {
+      text-align: center;
+      font-family: LinuxLibertine, arial;
+      font-weight: normal;
+    }
+    .rb {
+      height: 200px;
+      float: left;
+      margin-right: 20px;
+    }
+    p {
+      margin: 0 auto;
+      line-height: 1.7;
+      font-size: 18px;
+      font-family: 'Libre Baskerville', serif;
+      font-weight: normal;
+    }
+  }
 }
 
-#icons .icon img {
-  height: 115px;
-  padding-top: 20px;
-  //display: inline-block;
+#icons-in-navbar {
+  .navbar-inner {
+    //#gradient > .vertical(@red, darken(@red, 5%));
+  }
+  .icons {
+    padding: 10px 0;
+    li {
+      text-align: center;
+      margin: 0 15px;
+    }
+    li img {
+      height: 29px;
+    }
+    .span2 {
+      text-align: center;
+    }
+    h2{  
+      font-weight: normal;
+      font-size: 14px;
+      margin-top: 0;
+      margin-bottom: 0;
+      color: #fff;
+    }
+    .circle-bg {
+      width: 60px;
+      height: 60px;
+      background-color: #fff;
+      background-color: @red; 
+      border-radius: 115px;
+      margin: 0 auto;
+    }
+  }
+  .philosophy {
+    #gradient > .vertical(#f7f7f7, #fff);
+      padding-bottom: 50px;
+    .container {
+    }
+    h1 {
+      text-align: center;
+      font-family: LinuxLibertine, arial;
+      font-weight: normal;
+    }
+    .rb {
+      height: 200px;
+      float: left;
+      margin-right: 20px;
+    }
+    p {
+      margin: 0 auto;
+      line-height: 1.7;
+      font-size: 18px;
+      font-family: 'Libre Baskerville', serif;
+      font-weight: normal;
+    }
+  }
 }
 
-#icons ul {
-  list-style: none;
-  .clearfix;
-  margin-top: 20px;
-}
 
-#icons li {
-  float: left;
-  margin: 0 20px;
-  text-align: center;
-  width: 189px;
-  //color: @red;
-}
 
-#icons .circle-bg {
-  width: 163px;
-  height: 163px;
-  background-color: #fff;
-  //background-color: @red; 
-  border-radius: 115px;
-  margin: 0 auto;
-  .box-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
-}
-
-#icons h2{  
-  font-weight: normal;
-  font-size: 22px;
-  color: @red;
-  //color: #fff;
-  //color: #111;
-  font-family: Nexa-Bold, arial;
-}
-
-#icons li span {
-  display: inline-block;
-  margin-top: 15px;
-}
-
-#icons li b {
-  font-size: 20px;
-}
 
 /* ==========================================================================
-   New 
+   Home 
    ========================================================================== */
-#new {
-  background: #fff;
+
+#home .icons {
+  background-color: #111;
+  padding: 20px 0;
+  //#gradient > .vertical(#222, darken(#111, 5%));
+}
+
+#home .icons .span2 {
+  text-align: center;
+}
+
+#home .icons img {
+  height: 39px;
+}
+
+#home .icons h2{  
+  font-weight: normal;
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  //color: @red;
+  color: #fff;
+  //color: #111;
+  //font-family: arial, sans-serif;
+}
+
+
+#home .philosophy {
+  //margin: 50px 0;
+  #gradient > .vertical(#f7f7f7, #fff);
+  //background-image: url(/img/RB-icon.png) no-repeat center center; 
+    padding-bottom: 50px;
   .container {
-    position: relative;
+    //padding-bottom: 50px;
+    //background: url(/img/RB-icon.png) no-repeat center center; 
+  }
+  h1 {
+    text-align: center;
+    font-family: LinuxLibertine, arial;
+    font-weight: normal;
+  }
+  .rb {
+    height: 200px;
+    float: left;
+    margin-right: 20px;
+
+  }
+  p {
+    margin: 0 auto;
+    line-height: 1.7;
+    //padding: 20px;
+    font-size: 18px;
+    font-family: 'Libre Baskerville', serif;
+    font-weight: normal;
   }
 }
 
-#new .headline {
+
+/* ==========================================================================
+   Machines 
+   ========================================================================== */
+#machines {
+  background: #fff;
+}
+
+#machines .headline {
   margin: 50px 0 50px 0;
 }
 
-#new h1 {
+#machines .headline h1 {
+  position: relative;
   text-align: center;
+  font-family: LinuxLibertine, arial;
+  font-weight: normal;
   //text-shadow: 2px 2px 0px #fff;
   //colr:#ec1c2d; 
   //color: #111;
   //color: @red;
   font-size: 36px;
   margin-top: 30px;
+  line-height: 1;
+  .quote {
+    margin-top: -28px;
+  }
   b {
     font-family: georgia, serif;
     font-size: 100px;
-    position: absolute;
+    //position: absolute;
+    display: inline-block;
+    //background-color: #e3e2df;
+    line-height: .1;
+    height: 54px;
   }
   b.l {
-    left: 35px;
-    top: 17px;
+    margin-right: 10px;
   }
   b.r {
-    top: 62px;
+    margin-left: 10px;
+    height: 35px;
+    line-height: .7;
+    display: none;
   }
 }
 
-#new h3 {
+#machines .products h2 {
+  text-align: center;
+  margin: 30px 0 20px;
+  font-size: 40px;
+  font-weight: normal;
+  //font-family: 'Libre Baskerville', serif;
+  //font-family: Nexa-Bold, arial;
+
+  //font-family: SinaNova, arial;
+  font-family: Quicksand-Book, arial;
+  //font-family: Asap, arial;
+  //font-family: LinuxLibertine;
+
+
+}
+
+#machines .headline h3 {
+  text-align: center;
+  font-weight: normal;
+}
+
+#machines .products {
+  background: url(/img/bg.png) repeat top left; 
+  padding-bottom: 20px;
+  .divider {
+    background: url(/img/bg-module-top-shadow.png) no-repeat top center; 
+    //display: block;
+    //margin: 0 auto;
+  }
+}
+
+#machines .thumbnails .thumbnail {
+  padding: 20px;
+  padding-top: 30px;
+  background-color: #fff;
+  img {
+    height: 200px;
+  }
+}
+
+#machines .thumbnails h3{
   text-align: center;
 }
 
-.thumbnails .thumbnail {
-  height: 684px;
-}
+#machines .philosophy {
+  //margin: 50px 0;
+  #gradient > .vertical(#f7f7f7, #fff);
+  //background-image: url(/img/RB-icon.png) no-repeat center center; 
+    padding-bottom: 50px;
+  .container {
+    //padding-bottom: 50px;
+    //background: url(/img/RB-icon.png) no-repeat center center; 
+  }
+  h1 {
+    text-align: center;
+    font-family: LinuxLibertine, arial;
+    font-weight: normal;
+  }
+  .rb {
+    height: 200px;
+    float: left;
+    margin-right: 20px;
 
-.thumbnails h3{
-  padding: 0 20px;
-}
-.thumbnails p {
-  padding: 0 20px;
-}
-
-.philosophy {
-  margin: 50px 0;
-  #gradient > .vertical(#fff, #f7f7f7);
-  padding-bottom: 50px;
+  }
   p {
-    width: 900px;
     margin: 0 auto;
     line-height: 1.7;
     //padding: 20px;

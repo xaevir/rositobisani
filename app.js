@@ -62,7 +62,7 @@ app.get('/*', function(req, res, next) {
 
 
 app.get('/', function(req, res) {
-  var locals = {title: 'Homepage'}
+  var locals = {title: 'Rosito Bisani'}
   if (req.xhr) {
     res.render('home', locals, function(err, html){
       res.send({title: locals.title, body: html});
@@ -72,20 +72,57 @@ app.get('/', function(req, res) {
   }
 });
 
-app.get(/^\/v-./, function(req, res) {
+app.get('/red-icons-on-black', function(req, res) {
+  var locals = {title: 'Rosito Bisani'}
+  res.render('red-icons-on-black', locals);
+});
+
+app.get('/red-icon-bar', function(req, res) {
+  var locals = {title: 'Rosito Bisani'}
+  res.render('red-icon-bar', locals);
+});
+
+app.get('/icons-in-navbar', function(req, res) {
+  var locals = {title: 'Rosito Bisani'}
+  res.render('icons-in-navbar', locals);
+});
+
+
+
+app.get('/silver-bar', function(req, res) {
+  var locals = {title: 'Rosito Bisani'}
+  res.render('silver-bar', locals);
+});
+
+
+
+
+app.get('/icons-left', function(req, res) {
   var locals = {title: 'Home'}
   if (req.xhr) {
-    res.render('home', locals, function(err, html){
+    res.render('icons-left', locals, function(err, html){
       res.send({title: locals.title, body: html});
     });
   } else {
-    res.render('home_full', locals);
+    res.render('icons-left_full', locals);
+  }
+});
+
+app.get('/machines', function(req, res) {
+  var locals = {title: 'Home'}
+  if (req.xhr) {
+    res.render('machines', locals, function(err, html){
+      res.send({title: locals.title, body: html});
+    });
+  } else {
+    res.render('machines_full', locals);
   }
 });
 
 
 
-app.get('/icons', function(req, res) {
+
+/*app.get('/icons', function(req, res) {
   var locals = {title: 'Icons'}
   if (req.xhr) {
     res.render('icons', locals, function(err, html){
@@ -95,18 +132,7 @@ app.get('/icons', function(req, res) {
     res.render('icons_full', locals);
   }
 });
-
-app.get('/new', function(req, res) {
-  var locals = {title: 'New'}
-  if (req.xhr) {
-    res.render('new', locals, function(err, html){
-      res.send({title: locals.title, body: html});
-    });
-  } else {
-    res.render('new_full', locals);
-  }
-});
-
+*/
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

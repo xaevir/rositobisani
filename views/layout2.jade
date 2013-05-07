@@ -20,8 +20,8 @@ html(lang="en")
       script(data-main='js/main-built', src='/js/libs/require.js')
     else 
       script(data-main='js/main', src='/js/libs/require.js')
-  body
-    include nav
+  body#icons-in-navbar
+    include nav2
     #notification
     #app
       block content

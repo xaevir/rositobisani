@@ -24,20 +24,19 @@ define(function(require) {
 
     initialize: function() {
       _.bindAll(this) 
-      var navView = new NavView({el: $('.navbar')} )
+      //var navView = new NavView({el: $('.navbar')} )
     },
 
     routes: {
-      "": "home",
-      "v-red-white-border": "red_white_border",
-      "v-red-no-border": "red_no_border",
-      "v-red-border-gray": "red_border_gray",
-      "v-white": "white",
-      "icons": "icons",
-      "new": "new_page",
+      //"": "home",
+      //"v-red-white-border": "red_white_border",
+      //"v-red-no-border": "red_no_border",
+      //"v-red-border-gray": "red_border_gray",
+      //"v-white": "white",
+      //"icons": "icons",
     },
 
-    originalLogo: '/img/logo-white-gray-border.png',
+    //originalLogo: '/img/logo-white-gray-border.png',
 
     reset: function(route, section) {
       route = route.replace('route:', '');
@@ -50,36 +49,31 @@ define(function(require) {
     },
 
     home: function() {
-      this.homeTpl;
-      this.homeTitle;
+      this.newTpl;
+      this.newTitle;
 
       $('#myCarousel').carousel('cycle')
-      $('body').addClass('home-page')
-      $('.logo').attr('src', this.originalLogo)
 
       // currently loaded page as sent by non xhr request
       if ($('#home').length) {
         return
       }
       // page already loaded by another click
-      else if (this.homeTpl) {
-        setPageContent(this.homeTpl, this.homeTitle)
+      else if (this.newTpl) {
+        setPageContent(this.newTpl, this.newTitle)
+        $('#myCarousel').carousel('cycle')
         return
       }
       else {
         var self = this
         $.get('/', function(obj) {
-          self.homeTpl = obj.body
-          self.homeTitle = obj.title
-          setPageContent(self.homeTpl, self.homeTitle)
+          self.newTpl = obj.body
+          self.newTitle = obj.title
+          setPageContent(self.newTpl, self.newTitle)
+          $('#myCarousel').carousel('cycle')
         })
       }
     },
-
-    reset_home: function(){
-      $('body').removeClass('home-page')
-    },
-
 
     mainSetup: function(func) {
       this.homeTpl;
@@ -95,10 +89,11 @@ define(function(require) {
       }
       else {
         var self = this
-        $.get('/', function(obj) {
+        $.get('/v-something', function(obj) {
           self.homeTpl = obj.body
           self.homeTitle = obj.title
           setPageContent(self.homeTpl, self.homeTitle)
+          return func()
         })
       }
     },
@@ -116,50 +111,6 @@ define(function(require) {
       $('.navbar').removeClass('navbar-inverse')
       $('.logo').attr('src', this.originalLogo)
     },
-
-    red_no_border: function() {
-      this.mainSetup(function(){
-        $('body').addClass('black-page')
-        $('.navbar').addClass('navbar-inverse')
-        $('.logo').attr('src', '/img/logo-red-no-border.png')
-      })
-    },
-
-    reset_red_no_border: function(){
-      $('body').removeClass('black-page')
-      $('.navbar').removeClass('navbar-inverse')
-      $('.logo').attr('src', this.originalLogo)
-    },
-
-    red_border_gray: function() {
-      this.mainSetup(function(){
-        $('body').addClass('black-page')
-        $('.navbar').addClass('navbar-inverse')
-        $('.logo').attr('src', '/img/logo-red-gray-border.png')
-      })
-    },
-
-    reset_red_border_gray: function(){
-      $('body').removeClass('black-page')
-      $('.navbar').removeClass('navbar-inverse')
-      $('.logo').attr('src', this.originalLogo)
-    },
-
-
-    white: function() {
-      this.mainSetup(function(){
-        $('body').addClass('black-page')
-        $('.navbar').addClass('navbar-inverse')
-        $('.logo').attr('src', '/img/logo-white.png')
-      })
-    },
-
-    reset_white: function(){
-      $('body').removeClass('black-page')
-      $('.navbar').removeClass('navbar-inverse')
-      $('.logo').attr('src', this.originalLogo)
-    },
-
 
     icons: function() {
       this.iconsTpl;
@@ -191,42 +142,6 @@ define(function(require) {
     reset_icons: function(){
       $('body').removeClass('icons-page')
     },
-
-
-    new_page: function() {
-      this.newPageTpl;
-      this.newPageTitle;
-
-      $('#myCarousel').carousel('cycle')
-      $('.logo').attr('src', this.originalLogo)
-      $('body').addClass('new-page')
-
-      // currently loaded page as sent by non xhr request
-      if ($('#new-page').length) {
-        return
-      }
-      // page already loaded by another click
-      else if (this.newPageTpl) {
-        setPageContent(this.newPageTpl, this.newPageTitle)
-        return
-      }
-      else {
-        var self = this
-        $.get('/new', function(obj) {
-          self.newPageTpl = obj.body
-          self.newPageTitle = obj.title
-          setPageContent(self.newPageTpl, self.newPageTitle)
-        })
-      }
-    },
-
-
-    reset_new_page: function(){
-      $('body').removeClass('new-page')
-    },
-
-
-
 
     contact: function() {
       var view = new ContactView({el: $('.contact')} )
