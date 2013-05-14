@@ -1,6 +1,8 @@
 doctype 5
 html(lang="en")
   head
+    script
+      var user = !{user} 
     meta(charset='utf-8')
     if locals.title
       title #{title} - Rosito Bisani 
@@ -17,9 +19,10 @@ html(lang="en")
       script(src='/js/libs/respond.js')
 
     if locals.env === 'production' 
-      script(data-main='js/main-built', src='/js/libs/require.js')
+      script(data-main='/js/main-built', src='/js/libs/require.js')
     else 
-      script(data-main='js/main', src='/js/libs/require.js')
+      script(data-main='/js/main', src='/js/libs/require.js')
+
   body
     include nav
     #notification

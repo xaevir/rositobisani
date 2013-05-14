@@ -58,14 +58,22 @@ h1, h2, h3 {
   line-height: 1.3;
 }
 
-
-body {
-  //background-color: #f8f8f8;
-  //padding-top: 70px;
-  //background-color: #EFEFEF;
-  //background: url(/img/bg.png) repeat top left; 
+html {
+  // to sticky footer to bottom 
+  margin:0;
+  padding:0;
+  height:100%;
 }
 
+body {
+  // to sticky footer to bottom 
+  min-height:100%;
+  position:relative;
+}
+
+#app {
+  padding-bottom: 70px;
+}
 
 #alert {
   position: fixed;
@@ -101,7 +109,9 @@ body {
   }
 }
 
-
+form .btn {
+  display: block;
+}
 
 /* ==========================================================================
    Contact Page 
@@ -218,7 +228,33 @@ form {
   font-size: 18px;
   color: #fff;
   text-shadow: none;
+}
+.navbar .contact-numbers {
+  list-style: none;
+  color: #fff;
+  //background: url(/img/telephone-icon.png) no-repeat center left; 
+  padding-left: 32px;
+  margin-top: 14px;
+}
 
+.navbar .user-menu {
+  margin-top: 15px;
+  margin-left: 30px;
+}
+
+.user-menu .btn {
+  float: left;
+}
+
+.navbar .user-menu li a {
+  padding: 10px;
+  font-size: 13px;
+  color: #111;
+  //text-shadow: none;
+}
+
+.navbar .caret {
+  //border-top: 4px solid #000000 !important;
 }
 
 /* ==========================================================================
@@ -239,82 +275,17 @@ form {
   .opacity(50);
 }
 
-
-
-
-#icons-left section {
-  text-align: center;
-  margin-top: 20px;
-}
-
-#icons-left section h1 {
-  font-family: SinaNova, arial;
-  font-family: Quicksand-Book, arial;
-  font-family: Nexa-Bold, arial;
-  font-family: Asap, arial;
-  font-family: LinuxLibertine;
-  font-weight: normal;
-  font-size: 44px;
-}
-
-#icons-left hr {
-  height: 1px;
-  background-color: #fff;
-}
-
-#icons-left .container {
-  //width: 1170px;
-}
-#icons-left .about p {
-  line-height: 1.7;
-  padding: 20px;
-  padding-top: 0;
-  padding-bottom: 5px;
-  font-size: 18px;
-  font-family: 'Libre Baskerville', serif;
-  font-weight: normal;
-}
-
-#icons-left .row {
-  margin-top: 20px;
-}
-
-#icons-left .box {
-  .clearfix;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  .border-radius-for-pie(5px);
-  padding: 20px;
-  margin-bottom: 15px;
-  h2 {
-    font-size: 24px;     
-    text-align: center;
-  }
-  img {
-    height: 100px;   
-    float: left;
-    margin-right: 10px;
-  }
-}
-
-#icons-left .box.within {
-  width: 200px;
-  float: right;
-  border: none;
-  margin: 20px;
-  background-color: #eee;
-  h3 {
-    font-size: 18px;
-  }
-}
-
 /* ==========================================================================
    Footer 
    ========================================================================== */
 footer {
-  //background-color: #444;
   background-color: #111;
-  margin-top: 30px;
+  //background-color: #444;
+  // stick footer to bottom
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:50px;   /* Height of the footer */
 }
 
 footer .container {
@@ -349,39 +320,59 @@ footer .logo a{
 
 .section2 {
   //background: url(/img/bg.png) repeat top left; 
+  margin-top: 20px;
   padding-bottom: 20px;
   h2 {
-    font-family: LinuxLibertine, arial;
+    //font-family: LinuxLibertine, arial;
     //font-family: 'Libre Baskerville', serif;
-    font-family: Quicksand-Book, arial;
-    font-family: Nexa-Bold, arial;
+    //font-family: Quicksand-Book, arial;
+    //font-family: Nexa-Bold, arial;
     ///font-family: Nexa-Bold, arial;
-    color: #666;
-    color: @red;
-    font-weight: normal;
+    //color: #666;
+    //color: @red;
+    color: #000;
+    //font-weight: normal;
     line-height: 1;
     .clearfix;
   }
-  .testimonials {
-    p{
-      //font-family: Quicksand-Book, arial;
-      //font-family: LinuxLibertine, arial;
-    }
-  }
   .current-events {
+    //background: #f7f7f7;
+    //background: #ccc;
+    border: 3px solid #000;
+    //background: #ccc;
+    background: #111;
+    //#gradient > .vertical(#f7f7f7, #ddd);
+    //border: 5px solid #eee;
+    //border-top: 1px solid #ccc;
+    //border-bottom: 1px solid #ccc;
+    //background: @red;
+    margin-top: 15px;
+    //color: #fff;
+    //width: 300px;
+    ///border: 3px solid #333;
+    //border-radius: 600px;
+    //background-color: #333;
+    position: relative;
+    color: #fff;
     h2 {
-      //font-family: SinaNova, arial;
-      //font-family: Nexa-Bold, arial;
+      //color: #fff;
+      //text-align: center;
+      color: #fff;
     }
-    p {
-      //font-family: SinaNova, arial;
-      //font-family: Asap, arial;
+    h4 {
+      margin-top: 20px;
+      color: #fff;
     }
+    a {
+      //color: lightblue; 
+      //text-decoration: underline;
+    }
+    a:hover {
+      color: #fff; 
+    }
+
   }
   .header {
-    //#gradient > .vertical(@red, darken(@red, 5%));
-    //#gradient > .vertical(#222, #111);
-    //#gradient > .vertical(#fff, #f2f2f2);
     padding: 20px;
     padding-bottom: 0;
   }
@@ -397,18 +388,8 @@ footer .logo a{
     //font-family: Asap, arial;
     //font-family: LinuxLibertine, arial;
   }
-  .divider {
-    //background: url(/img/bg-module-top-shadow.png) no-repeat top center; 
-  }
   .span6 {
     margin-top: 20px;
-    .content {
-      //padding: 0px; 
-      background: #fff;
-      //border: 1px solid #eee;
-      //.border-radius(@baseBorderRadius);
-      //.box-shadow(0 1px 3px rgba(0,0,0,.055));
-    }
   }
   .news-icon {
     width: 75px;
@@ -420,308 +401,53 @@ footer .logo a{
     float: left;
     margin-right: 20px;
   }
+  .facebook-icon {
+    width: 25px;
+  }
+  .circle-icon {
+    width: 300px;
+    position: absolute;
+    z-index: -1;
+  }
   .quotes {
-    //margin-top: -16px;
     font-family: georgia;
     font-size: 30px;
     float: left;
     display: block;
-  }
-  .quotes-r {
-    font-family: georgia;
-    font-size: 30px;
-    //float: left;
-    //display: block;
+    line-height: .6; 
   }
   .testimonials {
-    p {
+    blockquote {
+      font-size: 15px;
+      //font-family: LinuxLibertine;
+      //font-family: 'Libre Baskerville', serif;
+      //font-family: Nexa-Bold !important;
+      //font-family: Quicksand-Book, arial;
       margin-bottom: 30px;
+      line-height: 1.3;
+    }
+    h2 {
+      line-height: 1;
+      //font-family: LinuxLibertine !important;
+      //font-family: Nexa-Bold, arial;
+      //font-family: Quicksand-Book !important;
+      //font-family: Nexa-Bold !important;
+      font-weight: bold;
+    }
+    .quote-from {
+      font-family: arial;
     }
     .header {
       margin-bottom: 25px;
     }
+    .span6 .span4 {
+      .clearfix;
+    }
+  }
+  .testimonials.second {
+    margin-top: 28px;
   }
 }
-
-
-
-#icons-in-navbar .section2 {
-  background: url(/img/bg.png) repeat top left; 
-  padding-bottom: 20px;
-  .divider {
-    background: url(/img/bg-module-top-shadow.png) no-repeat top center; 
-  }
-  .span6 {
-    margin-top: 20px;
-    .content {
-      padding: 0;
-      background: #fff;
-      border: 1px solid #ddd;
-      border: none;
-      .border-radius(@baseBorderRadius);
-      .box-shadow(0 1px 3px rgba(0,0,0,.055));
-      .box-shadow(0 0px 0px rgba(0,0,0,.055));
-    }
-  }
-  .header {
-    #gradient > .vertical(@red, darken(@red, 5%));
-    //#gradient > .vertical(#222, #111);
-    //#gradient > .vertical(#fff, #f2f2f2);
-  }
-  .body {
-    padding: 20px;
-  }
-  h2 {
-    font-family: LinuxLibertine, arial; font-weight: normal;
-    margin: 0;
-    color: #fff;
-    padding: 20px;
-  }
-  .testimonials {
-    p{
-      font-size: 16px;
-      font-family: Quicksand-Book, arial;
-      //font-family: SinaNova, arial;
-    }
-  }
-  .current-events {
-    p {
-      //font-family: SinaNova, arial;
-      font-family: LinuxLibertine, arial;
-      //font-family: Asap, arial;
-    }
-  }
-  p {
-    //font-family: 'Libre Baskerville', serif;
-    //font-family: Nexa-Bold, arial;
-    //font-family: SinaNova, arial;
-    //font-family: Quicksand-Book, arial;
-    //font-family: Asap, arial;
-    //font-family: LinuxLibertine, arial;
-  }
-
-}
-
-
-#silver-bar {
-  .icons {
-    //background-color: #fff;
-    padding: 10px 0;
-    #gradient > .vertical(#eee, #bbb);
-    img {
-      height: 39px;
-      margin-top: 10px;
-    }
-    .span2 {
-      text-align: center;
-    }
-    h2{  
-      font-weight: normal;
-      font-size: 16px;
-      margin-top: 0;
-      color: #fff;
-      color: @red;
-    }
-    .circle-bg {
-      width: 60px;
-      height: 60px;
-      background-color: #fff;
-      background-color: @red; 
-      border-radius: 115px;
-      margin: 0 auto;
-    }
-  }
-  .philosophy {
-    #gradient > .vertical(#f7f7f7, #fff);
-      padding-bottom: 50px;
-    .container {
-    }
-    h1 {
-      text-align: center;
-      font-family: LinuxLibertine, arial;
-      font-weight: normal;
-    }
-    .rb {
-      height: 200px;
-      float: left;
-      margin-right: 20px;
-    }
-    p {
-      margin: 0 auto;
-      line-height: 1.7;
-      font-size: 18px;
-      font-family: 'Libre Baskerville', serif;
-      font-weight: normal;
-    }
-  }
-}
-
-
-
-#red-icons-on-black {
-  .icons {
-    //background-color: #fff;
-    #gradient > .vertical(#222, darken(#111, 5%));
-    padding: 10px 0;
-    //#gradient > .vertical(#222, darken(#111, 5%));
-    img {
-      height: 39px;
-      margin-top: 10px;
-    }
-    .span2 {
-      text-align: center;
-    }
-    h2{  
-      font-weight: normal;
-      font-size: 16px;
-      margin-top: 0;
-      color: #fff;
-      color: @red;
-    }
-    .circle-bg {
-      width: 60px;
-      height: 60px;
-      background-color: #fff;
-      background-color: @red; 
-      border-radius: 115px;
-      margin: 0 auto;
-    }
-  }
-  .philosophy {
-    #gradient > .vertical(#f7f7f7, #fff);
-      padding-bottom: 50px;
-    .container {
-    }
-    h1 {
-      text-align: center;
-      font-family: LinuxLibertine, arial;
-      font-weight: normal;
-    }
-    .rb {
-      height: 200px;
-      float: left;
-      margin-right: 20px;
-    }
-    p {
-      margin: 0 auto;
-      line-height: 1.7;
-      font-size: 18px;
-      font-family: 'Libre Baskerville', serif;
-      font-weight: normal;
-    }
-  }
-}
-
-#red-icon-bar {
-  .icons {
-    #gradient > .vertical(@red, darken(@red, 5%));
-    padding: 10px 0;
-    //#gradient > .vertical(#222, darken(#111, 5%));
-    img {
-      height: 39px;
-      margin-top: 10px;
-    }
-    .span2 {
-      text-align: center;
-    }
-    h2{  
-      font-weight: normal;
-      font-size: 16px;
-      margin-top: 0;
-      color: #fff;
-      //color: @red;
-    }
-    .circle-bg {
-      width: 60px;
-      height: 60px;
-      background-color: #fff;
-      background-color: @red; 
-      border-radius: 115px;
-      margin: 0 auto;
-    }
-  }
-  .philosophy {
-    #gradient > .vertical(#f7f7f7, #fff);
-      padding-bottom: 50px;
-    .container {
-    }
-    h1 {
-      text-align: center;
-      font-family: LinuxLibertine, arial;
-      font-weight: normal;
-    }
-    .rb {
-      height: 200px;
-      float: left;
-      margin-right: 20px;
-    }
-    p {
-      margin: 0 auto;
-      line-height: 1.7;
-      font-size: 18px;
-      font-family: 'Libre Baskerville', serif;
-      font-weight: normal;
-    }
-  }
-}
-
-#icons-in-navbar {
-  .navbar-inner {
-    //#gradient > .vertical(@red, darken(@red, 5%));
-  }
-  .icons {
-    padding: 10px 0;
-    li {
-      text-align: center;
-      margin: 0 15px;
-    }
-    li img {
-      height: 29px;
-    }
-    .span2 {
-      text-align: center;
-    }
-    h2{  
-      font-weight: normal;
-      font-size: 14px;
-      margin-top: 0;
-      margin-bottom: 0;
-      color: #fff;
-    }
-    .circle-bg {
-      width: 60px;
-      height: 60px;
-      background-color: #fff;
-      background-color: @red; 
-      border-radius: 115px;
-      margin: 0 auto;
-    }
-  }
-  .philosophy {
-    #gradient > .vertical(#f7f7f7, #fff);
-      padding-bottom: 50px;
-    .container {
-    }
-    h1 {
-      text-align: center;
-      font-family: LinuxLibertine, arial;
-      font-weight: normal;
-    }
-    .rb {
-      height: 200px;
-      float: left;
-      margin-right: 20px;
-    }
-    p {
-      margin: 0 auto;
-      line-height: 1.7;
-      font-size: 18px;
-      font-family: 'Libre Baskerville', serif;
-      font-weight: normal;
-    }
-  }
-}
-
 
 
 
@@ -766,8 +492,8 @@ footer .logo a{
   }
   h1 {
     text-align: center;
-    font-family: LinuxLibertine, arial;
-    font-weight: normal;
+    //font-family: LinuxLibertine, arial;
+    //font-weight: normal;
   }
   .rb {
     height: 200px;
@@ -905,3 +631,38 @@ footer .logo a{
     font-weight: normal;
   }
 }
+
+/* ==========================================================================
+   form-signin 
+   ========================================================================== */
+
+body.login, body.signup {
+  background: #f5f5f5;
+}
+
+.form-signin {
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+  margin-top: 50px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+}
+

@@ -1,0 +1,31 @@
+<div class="thumbnail-wrapper">
+  {{#image}} 
+    <img src="/product-images/{{thumb}}"/> 
+  {{/image}}
+  {{#pdf}}
+    <img src="/product-pdfs/{{thumb}}"/> 
+  {{/pdf}} 
+</div>
+<ul class="actions nav nav-pills">
+  <li>
+    <a class="remove" href="#">delete</a>
+  </li>
+  {{#image}} 
+  <li class="mainImage">
+    <a class="setMainImage" href="#">set main</a>
+  </li>
+  {{/image}}
+  {{#pdf}} 
+  <li class="pdfCaption">
+    {{#caption_set}}
+      <div class="caption-text display pretend-thumb">{{caption}}</div>
+    {{/caption_set}}
+    {{^caption_set}}
+        <a class="editCaption display" href="#">caption</a>
+        <div class="caption-destroy display"></div>
+    {{/caption_set}}
+    <div class="edit">
+      <input class="caption-input" type="text" value="">
+    </div>
+  </li>
+  {{/pdf}} 

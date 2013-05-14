@@ -1,7 +1,18 @@
 define(function(require) {
 
-  var ContactView = require('views/contact')
-  var NavView = require('views/nav')
+var SignupView = require('views/users/signup').signup
+  , LoginView = require('views/users/login').login
+  , ContactView = require('views/contact')
+  , NavView = require('views/navbar/navbar')
+  , User = require('models/user')
+  , NewUser = require('models/newUser')
+  , Products = require('collections/products') 
+  , Product = require('models/product') 
+  , ProductsView = require('views/products/products')
+  , ProductView = require('views/products/product')
+  , ProductEditView = require('views/products/product-edit')
+  , ContextualMenuView = require('views/products/contextual-menu')
+
 
   function setPageContent(content, title) {
     $('#app').html(content);
@@ -20,23 +31,39 @@ define(function(require) {
     });
   };
 
+  var alreadyLoggedIn = function(callback) { 
+    if (this.user.isLoggedIn()) 
+      return this.navigate('/', true)
+    callback.apply(this, Array.prototype.slice.call(arguments,1)); 
+  }
+
+  var restrict = function(callback) { 
+    if (!this.user.isLoggedIn()) 
+      return this.navigate('/login', true)
+    callback.apply(this, Array.prototype.slice.call(arguments,1)); 
+  }
+
   var Router = Backbone.Router.extend({
 
     initialize: function() {
       _.bindAll(this) 
+      this.user = new User(window.user) 
+      window.dispatcher.on('session:logout', this.logout, this)
+      var navView = new NavView({user: this.user}).render()
+      //navBar.render()
       //var navView = new NavView({el: $('.navbar')} )
     },
 
     routes: {
-      //"": "home",
-      //"v-red-white-border": "red_white_border",
-      //"v-red-no-border": "red_no_border",
-      //"v-red-border-gray": "red_border_gray",
-      //"v-white": "white",
-      //"icons": "icons",
+        '':                             'home'
+      , 'login':                        'login'
+      , 'signup':                       'signup'
+      , 'products':                     'products'
+      , 'products/:slug/edit':          'productEdit'
+      , 'products/:slug/delete':        'productDelete'
+      , 'products/new'  :               'newProduct'
+      , 'products/:slug':               'product'
     },
-
-    //originalLogo: '/img/logo-white-gray-border.png',
 
     reset: function(route, section) {
       route = route.replace('route:', '');
@@ -47,107 +74,152 @@ define(function(require) {
         }
       this.prev_route = route
     },
-
+    
     home: function() {
-      this.newTpl;
-      this.newTitle;
-
-      $('#myCarousel').carousel('cycle')
-
-      // currently loaded page as sent by non xhr request
-      if ($('#home').length) {
-        return
-      }
-      // page already loaded by another click
-      else if (this.newTpl) {
-        setPageContent(this.newTpl, this.newTitle)
+      $.get('/', function(obj) {
+        $('#app').html(obj.body);
+         document.title = obj.title
         $('#myCarousel').carousel('cycle')
-        return
-      }
-      else {
-        var self = this
-        $.get('/', function(obj) {
-          self.newTpl = obj.body
-          self.newTitle = obj.title
-          setPageContent(self.newTpl, self.newTitle)
-          $('#myCarousel').carousel('cycle')
-        })
-      }
-    },
-
-    mainSetup: function(func) {
-      this.homeTpl;
-      this.homeTitle;
-
-      $('#myCarousel').carousel('cycle')
-      if ($('#home').length) {
-        return func()
-      }
-      else if (this.homeTpl) {
-        setPageContent(this.homeTpl, this.homeTitle)
-        return func()
-      }
-      else {
-        var self = this
-        $.get('/v-something', function(obj) {
-          self.homeTpl = obj.body
-          self.homeTitle = obj.title
-          setPageContent(self.homeTpl, self.homeTitle)
-          return func()
-        })
-      }
-    },
-
-    red_white_border: function() {
-      this.mainSetup(function(){
-        $('body').addClass('black-page')
-        $('.navbar').addClass('navbar-inverse')
-        $('.logo').attr('src', '/img/logo-red-white-border.png')
       })
-    },
-
-    reset_red_white_border: function(){
-      $('body').removeClass('black-page')
-      $('.navbar').removeClass('navbar-inverse')
-      $('.logo').attr('src', this.originalLogo)
-    },
-
-    icons: function() {
-      this.iconsTpl;
-      this.iconsTitle;
-
-      $('#myCarousel').carousel('cycle')
-
-      $('body').addClass('icons-page')
-
-      // currently loaded page as sent by non xhr request
-      if ($('#icons').length) {
-        return
-      }
-      // page already loaded by another click
-      else if (this.iconsTpl) {
-        setPageContent(this.iconsTpl, this.iconsTitle)
-        return
-      }
-      else {
-        var self = this
-        $.get('/icons', function(obj) {
-          self.iconsTpl = obj.body
-          self.iconsTitle = obj.title
-          setPageContent(self.iconsTpl, self.iconsTitle)
-        })
-      }
-    },
-
-    reset_icons: function(){
-      $('body').removeClass('icons-page')
-    },
+    }, 
 
     contact: function() {
       var view = new ContactView({el: $('.contact')} )
       $('#app').html(view.render().el)
       document.title = 'Contact'
     },
+
+    login:  _.wrap(function(){
+      var view = new LoginView({user: this.user}).render()
+      $('body').addClass('login')
+      $('#app').html(view.el)
+      document.title = 'Login'
+    }, alreadyLoggedIn),
+
+    reset_login: function(){
+      $('body').removeClass('login')
+    },
+
+    signup: _.wrap(function(){ 
+        this.signupView = new SignupView({model: new NewUser(), user: this.user})
+        this.signupView.render();
+        $('body').addClass('signup')
+        $('#app').html(this.signupView.el)
+        document.title = 'Sign Up'
+      }, alreadyLoggedIn
+    ),
+
+    reset_signup: function(){
+      $('body').removeClass('signup')
+    },
+
+    logout: function(){
+      console.log('router.logout.on->session:logout')
+      $.ajax({
+        type: "DELETE",
+        url: "/user",
+        success: function(){
+          this.user.clear(); 
+          var router = new Backbone.Router();
+          router.navigate('login', {trigger: true})
+        }
+      });
+    },
+
+    newProduct: _.wrap(function(){
+        var product = new Product()
+        var productEditView = new ProductEditView({model: product})
+        $('#app').html(productEditView.render().el)
+        document.title = 'New Product'
+      }, restrict),
+
+    productEdit: _.wrap(function(slug){
+      var product = new Product({slug:slug})
+      product.fetch({success: function(model, res){
+        var productEditView = new ProductEditView({model: model})
+        $('#app').html(productEditView.render().el)
+        document.title = 'Edit Product'
+      }})
+    }, restrict),
+
+    productDelete: _.wrap(function(slug){
+      $.ajax({
+        type: "DELETE",
+        url: "/products/" + slug,
+        success: function(res){
+          var successAlert = new AlertView({
+            message: '<strong>' + res.data.name + ' removed</strong>',
+            type: 'info'
+          })
+          successAlert.fadeOut()
+          var router = new Backbone.Router();
+          router.navigate('products', {trigger: true})
+        }
+      });
+    }, restrict),
+
+    products: function(){ 
+      var products = new Products()
+      var self = this
+      products.fetch({success: function(collection, res){
+        this.productsView = new ProductsView({collection: collection})  
+        var template = this.productsView.render().el
+        $('#app').html(template)
+        this.subnavView = new SubnavView()
+        $('#jumboheader').after(this.subnavView.render().el)
+        this.subnavView.setOffsetTop()
+        //self.subnavView = new SubnavView()
+        //self.pageHeaderView = new PageHeaderView({header: header})
+        //self.pageHeaderView.render()
+        document.title = 'Products' 
+      }})
+    },  
+
+    'reset_products': function(){
+      if (this.pageHeaderView)
+        this.pageHeaderView.remove()
+      if (this.subnavView)
+        this.subnavView.remove()
+    },
+
+    contextualMenu: function(model){
+      if (window.user.isLoggedIn()){ 
+        this.contextualMenuView = new ContextualMenuView({model: model})
+        var template = this.contextualMenuView.render().el
+        $('.nav.main').after(template)
+      }
+    },
+
+    product: function(slug){
+      var product = new Product({slug: slug})
+      var self = this
+      //if scrolled down when clicking on product from products page
+      // then the top navbar was being cut off on click of the specific product 
+      $('html, body').scrollTop(0)
+      product.fetch({success: function(model, res){
+        var productView = new ProductView({model: model})
+        $('#app').html(productView.render().el)
+        document.title = model.get('name')+' - '+model.get('category').name
+        self.contextualMenu(model) 
+
+        var header = model.get('category').name
+        if (model.get('subcategory').name)
+          header += ' / ' +model.get('subcategory').name
+
+        self.pageHeaderView = new PageHeaderView({header: header}) 
+        self.pageHeaderView.render()
+
+      }})
+    },
+
+    reset_product: function(){
+      if (this.contextualMenuView)
+        this.contextualMenuView.remove()
+      if (this.pageHeaderView)    
+        this.pageHeaderView.remove()
+    },
+
+
 
   });
 

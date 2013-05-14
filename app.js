@@ -6,10 +6,23 @@
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , products = require('./routes/products')
+  , uploadFiles = require('./routes/uploadFiles')
   , http = require('http')
   , path = require('path')
   , nodemailer = require("nodemailer")
   , smtpTransport = nodemailer.createTransport("SMTP", {host: "localhost"})
+  , mongo = require('mongoskin')
+  , RedisStore = require('connect-redis')(express)
+  , bcrypt = require('bcrypt')
+
+// setup Backbone models    
+Backbone = require('backbone')
+_ = require('underscore')
+var Validation = require('./public/js/libs/backbone.validation.js')
+_.extend(Backbone.Model.prototype, Backbone.Validation.mixin);
+var NewUser = require('./public/js/models/newUser')
+
 
 var app = express();
 
@@ -20,6 +33,8 @@ app.set('view engine', 'jade');
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+app.use(express.cookieParser());
+app.use(express.session({ secret: "batman", store: new RedisStore }));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -31,6 +46,7 @@ app.configure(function(){
 // development only
 app.configure('development', function(){
   app.use(express.errorHandler());
+  db = mongo.db("localhost/dev_rosito?auto_reconnect=true", {safe: true})
   app.locals({
     env: 'development',
   });
@@ -38,10 +54,32 @@ app.configure('development', function(){
 
 // production only
 app.configure('production', function(){
+  db = mongo.db("localhost/rosito?auto_reconnect=true", {safe: true})
   app.locals({
     env: 'production',
   });
 });
+
+// check session
+function userData(session){
+  var data = {user: {}}
+  if (session.user) {
+    data.user = {
+      username: session.user.username, 
+      _id:  session.user._id
+    }
+  }
+  return data
+}
+
+// only allow if logged in
+function restrict(req, res, next) {
+  if (req.session.user) {
+    next();
+  } else {
+    res.redirect('/login');
+  }
+}
 
 // redirect from www
 app.get('/*', function(req, res, next) {
@@ -53,13 +91,19 @@ app.get('/*', function(req, res, next) {
 });
 
 // force xhr
-//app.get('/*', function(req, res, next) { 
-  //if ((/\.(gif|jpg|png|css|js|html)$/i).test(req.url)) 
-    //next()
-  //if (req.xhr) {
-    //res.render('layout', {})
-//})
-
+app.get('/*', function(req, res, next) { 
+  if (!(req.xhr)) {
+    if ((/\.(gif|jpg|png|css|js|html|mustache)$/i).test(req.url)) 
+      return next()
+    var locals = {}
+    locals.user = req.session.user ? JSON.stringify(req.session.user) : JSON.stringify({})
+    if (app.settings.env == 'development') 
+      locals.development = true 
+    res.render('layout', locals)
+  } else {
+    next()
+  }
+})
 
 app.get('/', function(req, res) {
   var locals = {title: 'Rosito Bisani'}
@@ -72,67 +116,116 @@ app.get('/', function(req, res) {
   }
 });
 
-app.get('/red-icons-on-black', function(req, res) {
-  var locals = {title: 'Rosito Bisani'}
-  res.render('red-icons-on-black', locals);
-});
+app.get('/user', function(req, res){
+  res.send(req.session.user) 
+})
 
-app.get('/red-icon-bar', function(req, res) {
-  var locals = {title: 'Rosito Bisani'}
-  res.render('red-icon-bar', locals);
-});
+function setUserSession(req, user){
+  var userOmittedData = {
+    _id: user._id,
+    username: user.username,
+    slug: user.slug,
+    role: user.role
+  }    
+  req.session.user = userOmittedData
+  return userOmittedData
+}
 
-app.get('/icons-in-navbar', function(req, res) {
-  var locals = {title: 'Rosito Bisani'}
-  res.render('icons-in-navbar', locals);
-});
+app.post('/session', function(req, res) {
 
-
-
-app.get('/silver-bar', function(req, res) {
-  var locals = {title: 'Rosito Bisani'}
-  res.render('silver-bar', locals);
-});
-
-
-
-
-app.get('/icons-left', function(req, res) {
-  var locals = {title: 'Home'}
-  if (req.xhr) {
-    res.render('icons-left', locals, function(err, html){
-      res.send({title: locals.title, body: html});
-    });
-  } else {
-    res.render('icons-left_full', locals);
+  function isEmailorUsername(){
+    var key
+    var spec = {}
+    try {
+      check(req.body.login).isEmail()
+      key = 'email'
+    } catch(e) {
+      key = 'username'
+    }
+    spec[key] = req.body.login  
+    return spec
   }
-});
 
-app.get('/machines', function(req, res) {
-  var locals = {title: 'Home'}
-  if (req.xhr) {
-    res.render('machines', locals, function(err, html){
-      res.send({title: locals.title, body: html});
-    });
-  } else {
-    res.render('machines_full', locals);
+  var spec = isEmailorUsername(req.body.login)  
+
+  db.collection('users').findOne(spec, function(err, user){
+    if (!user)
+      return res.send({success: false, message: 'user not found'});
+    bcrypt.compare(req.body.password, user.password, function(err, match) {
+      if (!match) 
+        return res.send({success: false, message: 'user not found'});
+      var userData = setUserSession(req, user)
+      res.send(userData)
+    })
+  })
+})
+
+app.del('/user', function(req, res) {
+  req.session.destroy(function(){
+    res.send({success: true, 
+              message: 'user logged out'
+    })
+  })
+})
+
+
+app.get('/signup', function(req, res) { });
+
+app.post('/user', function(req, res){ 
+  var user = new NewUser(req.body)
+  var errors = user.validate()
+  if (errors) 
+    res.send({success: false, errors: errors})
+  else {
+    user.setPassword(function(){
+      db.collection('users').insert(user.toJSON(), function(err, result){
+        var userData = setUserSession(req, result[0])
+        res.send(userData);
+      })
+    })
   }
-});
+})
+
+function isUniqueUsername(username, fn) {
+  var username = username.toLowerCase()
+  username = username.replace(/^@/, '')  //twitter @
+  db.collection('users').findOne({username: username}, function(err, user){
+    if (user)
+      fn(false)
+    else 
+      fn(true)
+  })
+}
+module.exports.isUniqueUsername = isUniqueUsername
+
+app.get("/is-unique-username", function(req, res) {
+  var username = req.query.username
+  isUniqueUsername(username, function(isUnique){
+    res.send(isUnique)
+  })
+})
+
+app.get("/check-email", function(req, res){
+  if (req.query.email == '')  return res.send(true)
+  var email = req.query.email.toLowerCase()
+  db.collection('users').findOne({email: email}, function(err, user){
+    return user
+      ? res.send(false)
+      : res.send(true);
+  })
+})
+
+/* Products */
+app.get('/products', products.list);
+app.post('/products', restrict, products.create);
+app.put('/products/:slug', restrict, products.update);
+app.get('/products/:slug', products.listOne);
 
 
+/* Upload Files */
+app.post('/upload/:product_id', restrict, uploadFiles.create)
 
 
-/*app.get('/icons', function(req, res) {
-  var locals = {title: 'Icons'}
-  if (req.xhr) {
-    res.render('icons', locals, function(err, html){
-      res.send({title: locals.title, body: html});
-    });
-  } else {
-    res.render('icons_full', locals);
-  }
-});
-*/
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
