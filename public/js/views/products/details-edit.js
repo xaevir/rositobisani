@@ -47,15 +47,23 @@ return Backbone.View.extend({
       //return this.navigate('/', true)
     e.preventDefault()
     var params = this.$('form').serializeObject();
-    var catLabel = this.$('option[value="' + params.category + '"]').html()
-    params.category = {slug: params.category, name: catLabel}
 
-    //setting name even tho the form value is empty 
-    if (params.subcategory)
+    // set the category only if its present
+    if (params.category) {
+      // get the name from the html  
+      var catLabel = this.$('option[value="' + params.category + '"]').html()
+      params.category = {slug: params.category, name: catLabel}
+    }
+
+    // set the category only if its present
+    if (params.subcategory) {
+      // get the name from the html  
       var subcatLabel = this.$('option[value="' + params.subcategory + '"]').html()
-    else 
-      var subcatLabel = ''
-    params.subcategory = {slug: params.subcategory, name: subcatLabel}
+      params.subcategory = {slug: params.subcategory, name: subcatLabel}
+    }
+    //else 
+    //  var subcatLabel = ''
+    //params.subcategory = {slug: params.subcategory, name: subcatLabel}
 
     this.model.save(params);
   },

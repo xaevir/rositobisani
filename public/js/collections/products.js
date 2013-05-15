@@ -11,12 +11,20 @@ define(function(require) {
       {slug: 'espresso-machines', name: 'Espresso Machines'}, 
       {slug: 'espresso-grinders', name: 'Espresso Grinders'}, 
       {slug: 'juicers', name: 'Juicers'}, 
-      {slug: 'panini-grills', name: 'Panini Grills'}
+      {slug: 'panini-grills', name: 'Panini Grills'},
+      {slug: 'gelato', name: 'Gelato'},
+      {slug: 'pizza-ovens', name: 'Pizza Ovens'},
+      {slug: 'pasta-machines', name: 'Pasta Machines'},
+      {slug: 'meat-slicers', name: 'Meat Slicers'},
+      {slug: 'hot-chocolate', name: 'Hot Chocolate'},
+      {slug: 'mixers', name: 'Mixers'},
      ],
     
     subcategories: [
-      {slug: 'bar-line', name: 'Bar Line'}, 
-      {slug: 'compact', name: 'Compact'}
+      {slug: 'royal', name: 'Royal'}, 
+      {slug: 'synesso', name: 'Synesso'},
+      {slug: 'reale', name: 'Reale'},
+      {slug: 'schaerer', name: 'Schaerer'}
     ] 
 
   })

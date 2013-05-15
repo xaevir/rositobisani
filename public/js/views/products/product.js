@@ -1,7 +1,6 @@
 define(function(require) {
 
-var AlertView = require('views/site/alert')
-  , tpl = require('text!templates/products/product.mustache')
+var tpl = require('text!templates/products/product.mustache')
 
 return Backbone.View.extend({
 

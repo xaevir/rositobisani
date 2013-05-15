@@ -93,7 +93,7 @@ app.get('/*', function(req, res, next) {
 // force xhr
 app.get('/*', function(req, res, next) { 
   if (!(req.xhr)) {
-    if ((/\.(gif|jpg|png|css|js|html|mustache)$/i).test(req.url)) 
+    if ((/\.(gif|jpg|png|css|js|html|mustache|pdf)$/i).test(req.url)) 
       return next()
     var locals = {}
     locals.user = req.session.user ? JSON.stringify(req.session.user) : JSON.stringify({})

@@ -34,7 +34,7 @@ return Backbone.Model.extend({
 
   validation: {
     name: {required: true},
-    description: {required: true},
+    //description: {required: true},
     category: {required: true},
   },
 

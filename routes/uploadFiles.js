@@ -19,9 +19,6 @@ function toSlugFile(filename){
   extension = split.extension.toLowerCase() 
   return name+'.'+extension
 }
-// hack delete the images in the tmp folder when done uploading
-
-
 
 exports.create = function(req, res) { 
   req.files.file.name = toSlugFile(req.files.file.name)
@@ -35,66 +32,83 @@ exports.create = function(req, res) {
   if (file.type == 'application/pdf') {
     var thumbName = nameNoExt+'_thumb_pdf.png'
     var mediumName = nameNoExt+'_medium_pdf.png'
-    var image_input = file.path + '[0]' 
-    //var input = file.path
-    var output = '/tmp/'+file.name+'.png'
     var mediumSize = '300x400>'
     var thumbnailSize = '175x155>'
     var pathOnServer = basePath+'product-pdfs/'
+    var returnData = {
+      name: file.name, 
+      type: file.type,
+      thumb: thumbName,
+    }
+    createThumb(file.path+'[0]', thumbnailSize, pathOnServer+thumbName, function(){
+      savePdf(file.path, pathOnServer+file.name, function(){
+        done(returnData, res)
+      })
+    })
+
   } else {
     var thumbName = nameNoExt+'_thumb.'+extension
     var mediumName = nameNoExt+'_medium.'+extension
-    //var input = file.path
-    var image_input = file.path
-    var output = '/tmp/'+file.name
     var mediumSize = '400x500>'
     var thumbnailSize = '175x155>'
     var pathOnServer = basePath+'product-images/'
-  }
-  
-
-  startWithMedium()
-
-  function startWithMedium(){
-    var options = [image_input, '-resize', mediumSize, '-quality', '100', pathOnServer + mediumName]
-    imagemagick.convert(options, function(err, metadata){
-      if(err) throw err;
-      console.log('image resized to 400x500 and saved')
-      createThumb() 
-    });
-  }
-
-  function createThumb(){
-    var options = [image_input, '-resize', thumbnailSize, '-quality', '100', pathOnServer + thumbName]
-    imagemagick.convert(options, function(err, metadata){
-      if(err) throw err;
-      console.log('image thumbnail created and saved')
-      removeTmp()
+    var returnData = {
+      name: file.name, 
+      type: file.type,
+      medium: mediumName,
+      thumb: thumbName,
+    }
+    createMedium(file.path, mediumSize, pathOnServer+mediumName, function(){
+      createThumb(file.path, thumbnailSize, pathOnServer+thumbName, function(){
+        removeTmp(file.path, function(){
+          done(returnData, res)
+        })
+      }) 
     })
-  }
-
-  function removeTmp(){
-    fs.unlink(image_input, function (err) {
-      if (err) throw err;
-      console.log('successfully deleted tmp');
-      done(file.name)
-    });
-  }
-
-  function done(name) {
-    console.log('image manipulation done and saved')
-    res.send({
-      success: true, 
-      message: file.type+' resized and saved',
-      data: {
-        name: name, 
-        type: file.type,
-        medium: mediumName,
-        thumb: thumbName,
-      }
-    })    
   }
 }
 
+function createMedium(input, size, output, func){
+  var options = [input, '-resize', size, '-quality', '100', output ]
+  imagemagick.convert(options, function(err, metadata){
+    if(err) throw err;
+    console.log('image resized to 400x500 and saved')
+    func()
+  });
+}
+
+function createThumb(input, size, output, func){
+  var options = [input, '-resize', size, '-quality', '100', output]
+  imagemagick.convert(options, function(err, metadata){
+    if(err) throw err;
+    console.log('image thumbnail created and saved')
+    func()
+  })
+}
+
+function savePdf(input, output, func){
+  fs.rename(input, output, function(err) {
+    if(err) throw err;
+    console.log('pdf saved')
+    func()
+  })
+}
+
+function removeTmp(file, func){
+  fs.unlink(file, function (err) {
+    if (err) throw err;
+    console.log('successfully deleted tmp');
+    func()
+  });
+}
+
+function done(returnData, res) {
+  console.log('image manipulation done and saved')
+  res.send({
+    success: true, 
+    message: returnData.type+' resized and saved',
+    data: returnData
+  }) 
+}
 
 

@@ -92,7 +92,7 @@ var SubcategoryView = Backbone.View.extend({
 
 return  Backbone.View.extend({
   
-  className: 'items',
+  className: 'items container',
 
   initialize: function() {
     _.bindAll(this) 
@@ -104,15 +104,25 @@ return  Backbone.View.extend({
         label: 'Espresso Machines',
         subcats: {
           _array: [
-            'bar-line',
-            'compact',
+            'royal',
+            'synesso',
+            'reale',
+            'schaerer',
           ], 
-          'bar-line': {
-            label: 'Bar Line', 
+          'royal': {
+            label: 'Royal', 
             products: []
           },
-          'compact': {
-            label: 'Compact',
+          'synesso': {
+            label: 'Synesso',
+            products: [] 
+          },
+          'reale': {
+            label: 'Reale',
+            products: [] 
+          },
+          'schaerer': {
+            label: 'Schaerer',
             products: [] 
           } 
         }
@@ -125,8 +135,32 @@ return  Backbone.View.extend({
         label: 'Juicers',
         products: []
       },
+      'gelato':  {
+        label: 'Gelato',
+        products: []
+      },
       'panini-grills': { 
         label: 'Panini Grills', 
+        products: []
+      },
+      'pizza-ovens': { 
+        label: 'Pizza Ovens', 
+        products: []
+      },
+      'pasta-machines': { 
+        label: 'Pasta Machines', 
+        products: []
+      },
+      'meat-slicers': { 
+        label: 'Meat Slicers', 
+        products: []
+      },
+      'hot-chocolate': { 
+        label: 'Hot Chocolate', 
+        products: []
+      },
+      'mixers': { 
+        label: 'Mixers', 
         products: []
       },
 
@@ -134,7 +168,13 @@ return  Backbone.View.extend({
         'espresso-machines', 
         'espresso-grinders',
         'juicers',
-        'panini-grills'
+        'panini-grills',
+        'gelato',
+        'pizza-ovens',
+        'pasta-machines',
+        'meat-slicers',
+        'hot-chocolate',
+        'mixers'
       ],
     } 
   },

@@ -12,6 +12,9 @@ var SignupView = require('views/users/signup').signup
   , ProductView = require('views/products/product')
   , ProductEditView = require('views/products/product-edit')
   , ContextualMenuView = require('views/products/contextual-menu')
+  , PageHeaderView = require('views/site/page-header')
+  , SubnavView = require('views/products/subnav')
+
 
 
   function setPageContent(content, title) {
@@ -183,7 +186,7 @@ var SignupView = require('views/users/signup').signup
     },
 
     contextualMenu: function(model){
-      if (window.user.isLoggedIn()){ 
+      if (this.user.isLoggedIn()){ 
         this.contextualMenuView = new ContextualMenuView({model: model})
         var template = this.contextualMenuView.render().el
         $('.nav.main').after(template)
