@@ -283,6 +283,10 @@ form {
   //border-top: 4px solid #000000 !important;
 }
 
+.navbar .btn-navbar {
+  padding: 14px 15px; 
+}
+
 /* ==========================================================================
    Carousel 
    ========================================================================== */
@@ -1008,5 +1012,45 @@ body.about {
   //width: 938px;
   //margin: 0 auto;
   //padding: 0 1px;
+}
+
+
+/* ==========================================================================
+   Responsive 
+   ========================================================================== */
+/* Large desktop */
+@media (min-width: 1200px) { }
+ 
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+  body {
+    // overide bootstrap 
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .container {
+    padding: 0 10px;
+  }
+  .icons .span2 {
+    float: left;
+    width: 100px;
+  }
+
+   // reset bootstrap 
+  .navbar-static-top {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+  .navbar .contact-numbers {
+    margin-top: 0;    
+  }
 }
 
