@@ -67,6 +67,7 @@ var SignupView = require('views/users/signup').signup
       , 'products/new'  :               'newProduct'
       , 'products/:slug':               'product'
       , 'contact':                      'contact'
+      , 'about':                        'about'
     },
 
     reset: function(route, section) {
@@ -95,6 +96,21 @@ var SignupView = require('views/users/signup').signup
         var html = view.render()
         //$('#app').html(html)
       })
+    },
+
+    about: function() {
+      $.get('/about', function(obj) {
+        $('body').addClass('about')
+        $('#app').html(obj.body);
+        document.title = obj.title
+        var view = new ContactView({el: $('.contact')} )
+        var html = view.render()
+        //$('#app').html(html)
+      })
+    },
+
+    reset_about: function(){
+      $('body').removeClass('about')
     },
 
     login:  _.wrap(function(){

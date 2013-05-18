@@ -120,13 +120,16 @@ app.get('/', function(req, res) {
 
 app.get('/contact', function(req, res) {
   var locals = {title: 'Contact'}
-  if (req.xhr) {
-    res.render('contact', locals, function(err, html){
-      res.send({title: locals.title, body: html});
-    });
-  } else {
-    //res.render('home_full', locals);
-  }
+  res.render('contact', locals, function(err, html){
+    res.send({title: locals.title, body: html});
+  });
+});
+
+app.get('/about', function(req, res) {
+  var locals = {title: 'About Us'}
+  res.render('about', locals, function(err, html){
+    res.send({title: locals.title, body: html});
+  });
 });
 
 
@@ -228,6 +231,41 @@ app.get("/check-email", function(req, res){
       : res.send(true);
   })
 })
+
+app.post('/contact', function(req, res, next) {
+  var html  = '<p>name: '+req.body.name+'</p>'
+      html += '<p>email: '+req.body.email+'</p>'
+      html += '<p>message: '+req.body.message+'</p>'
+  email(
+    {
+      subject: 'Website Contact Page', 
+      html: html 
+    })
+    res.send(req.body)
+})
+
+function email(opts) {
+  if (app.settings.env === 'development')
+    return console.log(opts.html)
+
+  var message = {
+      from: 'Website Contact Page <contact@rosito-bisani.com>',
+      // Comma separated list of recipients
+      to: 'bobby.chambers33@gmail.com',
+  }
+  message.subject = opts.subject
+  message.html = opts.html
+
+  smtpTransport.sendMail(message, function(error, response){
+    if(error)
+      console.log(error);
+    else
+      console.log("Email sent: " + response.message);
+    smtpTransport.close(); // shut down the connection pool, no more messages
+  })
+}
+
+
 
 /* Products */
 app.get('/products', products.list);
