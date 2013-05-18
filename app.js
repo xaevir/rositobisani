@@ -118,6 +118,18 @@ app.get('/', function(req, res) {
   }
 });
 
+app.get('/contact', function(req, res) {
+  var locals = {title: 'Contact'}
+  if (req.xhr) {
+    res.render('contact', locals, function(err, html){
+      res.send({title: locals.title, body: html});
+    });
+  } else {
+    //res.render('home_full', locals);
+  }
+});
+
+
 app.get('/user', function(req, res){
   res.send(req.session.user) 
 })

@@ -66,6 +66,7 @@ var SignupView = require('views/users/signup').signup
       , 'products/:slug/delete':        'productDelete'
       , 'products/new'  :               'newProduct'
       , 'products/:slug':               'product'
+      , 'contact':                      'contact'
     },
 
     reset: function(route, section) {
@@ -87,9 +88,13 @@ var SignupView = require('views/users/signup').signup
     }, 
 
     contact: function() {
-      var view = new ContactView({el: $('.contact')} )
-      $('#app').html(view.render().el)
-      document.title = 'Contact'
+      $.get('/contact', function(obj) {
+        $('#app').html(obj.body);
+        document.title = obj.title
+        var view = new ContactView({el: $('.contact')} )
+        var html = view.render()
+        //$('#app').html(html)
+      })
     },
 
     login:  _.wrap(function(){

@@ -8027,12 +8027,6 @@ form .btn {
   height: 150px;
   width: 300px;
 }
-#contact .body p {
-  font-size: 28px;
-}
-#contact .body b {
-  font-size: 24px;
-}
 form span.error {
   color: #b94a48;
   display: block;
@@ -8627,7 +8621,7 @@ body.signup {
 }
 .page-header {
   padding: 7px 14px;
-  margin: 0 0 18px;
+  margin: 15px 0 18px;
   border: 1px solid #DDD;
   background-color: #FBFBFB;
   background-color: #fbfbfb;
