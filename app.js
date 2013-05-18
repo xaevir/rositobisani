@@ -27,7 +27,7 @@ var NewUser = require('./public/js/models/newUser')
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 8070);
+//app.set('port', process.env.PORT || 8070);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.logger('dev'));
@@ -45,6 +45,7 @@ app.configure(function(){
 
 // development only
 app.configure('development', function(){
+  app.set('port', process.env.PORT || 8070);
   app.use(express.errorHandler());
   db = mongo.db("localhost/dev_rosito?auto_reconnect=true", {safe: true})
   app.locals({
@@ -54,6 +55,7 @@ app.configure('development', function(){
 
 // production only
 app.configure('production', function(){
+  app.set('port', process.env.PORT || 8100);
   db = mongo.db("localhost/rosito?auto_reconnect=true", {safe: true})
   app.locals({
     env: 'production',
