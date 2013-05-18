@@ -8246,6 +8246,25 @@ footer {
 }
 footer ul {
   list-style: none;
+  *zoom: 1;
+}
+footer ul:before,
+footer ul:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+footer ul:after {
+  clear: both;
+}
+footer ul:before,
+footer ul:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+footer ul:after {
+  clear: both;
 }
 footer li {
   float: left;
@@ -8888,6 +8907,10 @@ body.about {
   .navbar-static-top {
     margin-left: 0px;
     margin-right: 0px;
+  }
+  footer {
+    position: static;
+    height: auto;
   }
 }
 /* Landscape phone to portrait tablet */

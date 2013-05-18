@@ -324,6 +324,7 @@ footer .container {
 
 footer ul {
   list-style: none;
+  .clearfix;
 }
 
 footer li {
@@ -1044,6 +1045,11 @@ body.about {
   .navbar-static-top {
     margin-left: 0px;
     margin-right: 0px;
+  }
+  footer {
+    // reset sticky footer
+    position: static;
+    height: auto;   
   }
 }
  
