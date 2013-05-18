@@ -20,6 +20,9 @@ function toSlugFile(filename){
   return name+'.'+extension
 }
 
+
+var basePath = '/home/bobby/Dropbox/http/rositobisani/public/'
+
 exports.create = function(req, res) { 
   req.files.file.name = toSlugFile(req.files.file.name)
   var file = req.files.file
@@ -27,7 +30,7 @@ exports.create = function(req, res) {
   var match = regex.exec(file.name);
   var nameNoExt = match[1]
   var extension = match[2]
-  var basePath = '/home/bobby/Dropbox/http/rositobisani/public/'
+  //var basePath = '/home/bobby/Dropbox/http/rositobisani/public/'
 
   if (file.type == 'application/pdf') {
     var thumbName = nameNoExt+'_thumb_pdf.png'
@@ -111,4 +114,38 @@ function done(returnData, res) {
   }) 
 }
 
+exports.remove = function(req, res) { 
+  db.collection('products').find({'files.name': req.params.slug}).toArray(function(err, products){
+    if(products.length > 1) 
+      return doneRemoving(res, req.params.slug)
+    if (req.body.type == 'application/pdf') {
+      removeFile(basePath+'product-pdfs/'+ req.body.thumb, req.body.thumb, function(){
+        removeFile(basePath+'product-pdfs/'+ req.body.name, req.body.name, function(){
+          doneRemoving(res, req.params.slug)
+        })
+      })
+    } else {
+      removeFile(basePath+'product-images/'+ req.body.medium, req.body.medium, function(){
+        removeFile(basePath+'product-images/'+ req.body.thumb, req.body.thumb, function(){
+          doneRemoving(res, req.params.slug)
+        })
+      })
+    }
+  })
+}
 
+function removeFile(file, name, func){
+  fs.unlink(file, function (err) {
+    if (err) throw err;
+    console.log('successfully deleted '+ name);
+    func()
+  });
+}
+
+function doneRemoving(res, name) {
+  res.send({
+    success: true, 
+    message: 'file removed', 
+    data: {name: name }
+  })
+}

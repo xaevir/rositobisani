@@ -46,6 +46,7 @@ var ItemView = Backbone.View.extend({
   },
 
   setMainImage: function() {
+    // TODO  set main image attr on file model which is the submodel so can be deleted later
     this.model.collection.parent.set({'mainImage': this.model.toJSON()})
     this.model.collection.parent.save()
     new AlertView({message: '<strong>Main image selected</strong>', type: 'info'})
@@ -53,6 +54,7 @@ var ItemView = Backbone.View.extend({
   },
 
   remove: function(e) {
+    // TODO remove the main image attr
     var params = {}
     params.contentType = "application/json"
     params.data = JSON.stringify(this.model.toJSON())

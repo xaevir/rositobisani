@@ -7,7 +7,7 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , products = require('./routes/products')
-  , uploadFiles = require('./routes/uploadFiles')
+  , uploadedFiles = require('./routes/uploadedFiles')
   , http = require('http')
   , path = require('path')
   , nodemailer = require("nodemailer")
@@ -223,8 +223,8 @@ app.get('/products/:slug', products.listOne);
 
 
 /* Upload Files */
-app.post('/upload/:product_id', restrict, uploadFiles.create)
-
+app.post('/upload/:product_id', restrict, uploadedFiles.create)
+app.del('/files/:slug', restrict, uploadedFiles.remove)
 
 
 http.createServer(app).listen(app.get('port'), function(){

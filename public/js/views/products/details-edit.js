@@ -61,9 +61,12 @@ return Backbone.View.extend({
       var subcatLabel = this.$('option[value="' + params.subcategory + '"]').html()
       params.subcategory = {slug: params.subcategory, name: subcatLabel}
     }
-    //else 
-    //  var subcatLabel = ''
-    //params.subcategory = {slug: params.subcategory, name: subcatLabel}
+
+    // hack put this in model validation later
+    // taking out bc the model is not resetting on new model in router
+    //if (params.category.name == 'Espresso Machines') {
+    //  this.model.validation.subcategory = {required: true}
+    //}
 
     this.model.save(params);
   },

@@ -4,7 +4,7 @@ function toSlug(text, options){
 }
 
 exports.list = function(req, res) { 
-  db.collection('products').find().toArray(function(err, products) {
+  db.collection('products').find().sort({order: 1}).toArray(function(err, products) {
     res.send(products);
   })
 }

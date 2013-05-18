@@ -106,23 +106,18 @@ return  Backbone.View.extend({
           _array: [
             'royal',
             'synesso',
-            'reale',
             'schaerer',
           ], 
           'royal': {
-            label: 'Royal', 
+            label: 'Royal',
             products: []
           },
           'synesso': {
             label: 'Synesso',
             products: [] 
           },
-          'reale': {
-            label: 'Reale',
-            products: [] 
-          },
           'schaerer': {
-            label: 'Schaerer',
+            label: 'Schaerer Fully Automatic',
             products: [] 
           } 
         }
@@ -167,14 +162,14 @@ return  Backbone.View.extend({
       _array: [
         'espresso-machines', 
         'espresso-grinders',
-        'juicers',
-        'panini-grills',
-        'gelato',
         'pizza-ovens',
         'pasta-machines',
+        'gelato',
+        'juicers',
+        'mixers',
+        'panini-grills',
         'meat-slicers',
         'hot-chocolate',
-        'mixers'
       ],
     } 
   },
@@ -221,7 +216,7 @@ return  Backbone.View.extend({
   },
 
   preRender: function(){
-    $(this.el).append('<h1 id="jumboheader">Our Specialty Caf&eacute; Equipment</h1>')
+    $(this.el).append('<h1 id="jumboheader">Specialty Foodservice Equipment</h1>')
   }
 
 })

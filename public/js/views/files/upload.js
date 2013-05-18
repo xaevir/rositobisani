@@ -51,16 +51,6 @@ return Backbone.View.extend({
     $(this.el).html(tpl);
     return this; 
   },
-
-  /*notice: function(msg, type){
-    var successAlert = new AlertView({
-      message: '<strong>'+msg+'</strong>',
-      type: type 
-    })
-    successAlert.fadeOut()
-  },*/
-
-
 });
 
 });
