@@ -106,7 +106,7 @@ return  Backbone.View.extend({
           _array: [
             'royal',
             'synesso',
-            'schaerer',
+            'schaerer'
           ], 
           'royal': {
             label: 'Royal',
@@ -169,8 +169,8 @@ return  Backbone.View.extend({
         'mixers',
         'panini-grills',
         'meat-slicers',
-        'hot-chocolate',
-      ],
+        'hot-chocolate'
+      ]
     } 
   },
 
