@@ -53,6 +53,7 @@ var SignupView = require('views/users/signup').signup
       this.user = new User(window.user) 
       window.dispatcher.on('session:logout', this.logout, this)
       var navView = new NavView({user: this.user}).render()
+      $.ajaxSetup({ cache: false });
       //navBar.render()
       //var navView = new NavView({el: $('.navbar')} )
     },
