@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -251,7 +250,7 @@ function email(opts) {
   var message = {
       from: 'Website Contact Page <contact@rosito-bisani.com>',
       // Comma separated list of recipients
-      to: 'bobby.chambers33@gmail.com, xaevir@gmail.com',
+      to: 'bobby.chambers33@gmail.com, rxavier33@yail.com',
   }
   message.subject = opts.subject
   message.html = opts.html
