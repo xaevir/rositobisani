@@ -44,6 +44,8 @@ app.configure(function(){
 
 // development only
 app.configure('development', function(){
+  mediaBasePath = '/home/bobby/Dropbox/http/rositobisani/public/'
+  uploadedFiles = uploadedFiles(mediaBasePath)
   app.set('port', process.env.PORT || 8070);
   app.use(express.errorHandler());
   db = mongo.db("localhost/dev_rosito?auto_reconnect=true", {safe: true})
@@ -54,6 +56,8 @@ app.configure('development', function(){
 
 // production only
 app.configure('production', function(){
+  mediaBasePath = '/srv/http/rositobisani/public/'
+  uploadedFiles = uploadedFiles(mediaBasePath)
   app.set('port', process.env.PORT || 8100);
   db = mongo.db("localhost/rosito?auto_reconnect=true", {safe: true})
   app.locals({
