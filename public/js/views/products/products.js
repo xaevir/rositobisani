@@ -93,6 +93,7 @@ var SubcategoryView = Backbone.View.extend({
 return  Backbone.View.extend({
   
   className: 'items container',
+  id: 'products',
 
   initialize: function() {
     _.bindAll(this) 
@@ -131,7 +132,7 @@ return  Backbone.View.extend({
         products: []
       },
       'gelato':  {
-        label: 'Gelato',
+        label: 'Gelato Machines',
         products: []
       },
       'panini-grills': { 

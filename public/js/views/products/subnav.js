@@ -19,7 +19,12 @@ return Backbone.View.extend({
     $('.subnav li').removeClass('active');
     el.addClass('active');
     var target = $(anchor).data("target");
-    var position = $('#'+target).offset().top - 50
+    //hack in. dont know why it works
+    if (this.isFixed)
+      var heightOfScrollbar = 50
+    else
+      var heightOfScrollbar = 125 
+    var position = $('#'+target).offset().top - heightOfScrollbar
     $('html, body').animate({
       'scrollTop': position 
     }, 700)

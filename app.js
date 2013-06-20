@@ -86,6 +86,16 @@ function restrict(req, res, next) {
   }
 }
 
+// restrict to xhr
+function xhrOnly(req, res, next) {
+  if (!(req.xhr)) {
+    res.render('layout', locals)
+  } else {
+    next()
+  }
+}
+
+
 // redirect from www
 app.get('/*', function(req, res, next) {
   if (req.headers.host.match(/^www/) !== null ) {
@@ -95,23 +105,17 @@ app.get('/*', function(req, res, next) {
   else next();
 });
 
-// force xhr
+// set user and globals
 app.get('/*', function(req, res, next) { 
-  if (!(req.xhr)) {
-    if ((/\.(gif|jpg|png|css|js|html|mustache|pdf)$/i).test(req.url)) 
-      return next()
-    var locals = {}
-    locals.user = req.session.user ? JSON.stringify(req.session.user) : JSON.stringify({})
-    if (app.settings.env == 'development') 
-      locals.development = true 
-    res.render('layout', locals)
-  } else {
-    next()
-  }
+  locals = {}
+  locals.user = req.session.user ? JSON.stringify(req.session.user) : JSON.stringify({})
+  if (app.settings.env == 'development') 
+    locals.development = true 
+  next()
 })
 
 app.get('/', function(req, res) {
-  var locals = {title: 'Rosito Bisani'}
+  locals.title = ''
   if (req.xhr) {
     res.render('home', locals, function(err, html){
       res.send({title: locals.title, body: html});
@@ -122,19 +126,31 @@ app.get('/', function(req, res) {
 });
 
 app.get('/contact', function(req, res) {
-  var locals = {title: 'Contact'}
-  res.render('contact', locals, function(err, html){
-    res.send({title: locals.title, body: html});
-  });
+  locals.title = 'Contact'
+  if (req.xhr) {
+    res.render('contact', locals, function(err, html){
+      res.send({title: locals.title, body: html});
+    });
+  } else {
+    res.render('contact_full', locals);
+  }
 });
 
 app.get('/about', function(req, res) {
-  var locals = {title: 'About Us'}
-  res.render('about', locals, function(err, html){
-    res.send({title: locals.title, body: html});
-  });
+  locals.title = 'About Us'
+  if (req.xhr) {
+    res.render('about', locals, function(err, html){
+      res.send({title: locals.title, body: html});
+    });
+  } else {
+    res.render('about_full', locals);
+  }
 });
 
+app.get('/home-espresso-machine', function(req, res) {
+  locals.title = 'Reale Home Espresso Machine'
+  res.render('landing/home-espresso-machine-full', locals);
+});
 
 app.get('/user', function(req, res){
   res.send(req.session.user) 
@@ -272,10 +288,10 @@ function email(opts) {
 
 
 /* Products */
-app.get('/products', products.list);
+app.get('/products', xhrOnly, products.list);
 app.post('/products', restrict, products.create);
 app.put('/products/:slug', restrict, products.update);
-app.get('/products/:slug', products.listOne);
+app.get('/products/:slug', xhrOnly, products.listOne);
 
 
 /* Upload Files */

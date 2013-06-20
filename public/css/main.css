@@ -8408,7 +8408,6 @@ footer .logo a {
    ========================================================================== */
 #home .icons {
   background-color: #111;
-  padding: 20px 0;
 }
 #home .icons .span2 {
   text-align: center;
@@ -8416,12 +8415,21 @@ footer .logo a {
 #home .icons img {
   height: 39px;
 }
-#home .icons h2 {
+#home .icons .title {
   font-weight: normal;
   font-size: 16px;
   margin-top: 0;
   margin-bottom: 0;
+  display: block;
   color: #fff;
+}
+#home .icons a {
+  display: block;
+  padding: 20px 0;
+}
+#home .icons a:hover {
+  text-decoration: none;
+  background: #666;
 }
 #home .philosophy {
   background-color: #fafafa;

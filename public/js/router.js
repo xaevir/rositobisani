@@ -14,25 +14,12 @@ var SignupView = require('views/users/signup').signup
   , ContextualMenuView = require('views/products/contextual-menu')
   , PageHeaderView = require('views/site/page-header')
   , SubnavView = require('views/products/subnav')
-
-
+  , StopClickView = require('views/site/stopClick')
 
   function setPageContent(content, title) {
     $('#app').html(content);
     document.title = title;
   }
-
-  var rp = Backbone.Router.prototype
-  var _route = rp.route;
-  rp.route = function(route, name) {
-    var callback = this[name]
-    return _route.call(this, route, name, function() {
-      //this.trigger.apply(this, ['beforeroute:' + name].concat(_.toArray(arguments)));
-      this.reset(name)
-      if (typeof callback !== 'undefined')
-        callback.apply(this, arguments);
-    });
-  };
 
   var alreadyLoggedIn = function(callback) { 
     if (this.user.isLoggedIn()) 
@@ -54,8 +41,6 @@ var SignupView = require('views/users/signup').signup
       window.dispatcher.on('session:logout', this.logout, this)
       var navView = new NavView({user: this.user}).render()
       $.ajaxSetup({ cache: false });
-      //navBar.render()
-      //var navView = new NavView({el: $('.navbar')} )
     },
 
     routes: {
@@ -72,36 +57,52 @@ var SignupView = require('views/users/signup').signup
     },
 
     reset: function(route, section) {
-      route = route.replace('route:', '');
+      var routeStripped = route.replace('route:', '');
       if(this.prev_route)
         if(_.has(this, 'reset_'+this.prev_route)){
           var path = 'reset_'+this.prev_route 
           this[path]()
         }
-      this.prev_route = route
+      this.prev_route = routeStripped
     },
     
     home: function() {
+      if ($('#home').length) {
+        $('#myCarousel').carousel('cycle')
+        var view = new StopClickView({el: $('.icons')} )
+        return
+      }
       $.get('/', function(obj) {
         $('#app').html(obj.body);
          document.title = obj.title
         $('#myCarousel').carousel('cycle')
+        var view = new StopClickView({el: $('.icons')} )
       })
     }, 
 
     contact: function() {
-      $.get('/contact', function(obj) {
-        $('#app').html(obj.body);
-        document.title = obj.title
-        var view = new ContactView({el: $('.contact')} )
-        var html = view.render()
-        //$('#app').html(html)
-      })
+      if ($('#contact').length) {
+        this.contactForm() 
+      } else {
+        var self = this
+        $.get('/contact', function(obj) {
+          $('#app').html(obj.body);
+          document.title = obj.title
+          self.contactForm()
+        })
+      }
+    },
+    
+    contactForm: function() {
+      var view = new ContactView({el: $('.contact')} )
+      var html = view.render()
     },
 
     about: function() {
+      $('body').addClass('about')
+      if ($('#about').length) 
+        return
       $.get('/about', function(obj) {
-        $('body').addClass('about')
         $('#app').html(obj.body);
         document.title = obj.title
         var view = new ContactView({el: $('.contact')} )
@@ -199,7 +200,7 @@ var SignupView = require('views/users/signup').signup
         document.title = 'Products' 
       }})
     },  
-
+    
     'reset_products': function(){
       if (this.pageHeaderView)
         this.pageHeaderView.remove()
@@ -243,10 +244,19 @@ var SignupView = require('views/users/signup').signup
       if (this.pageHeaderView)    
         this.pageHeaderView.remove()
     },
-
-
-
   });
+
+  var _route = Router.prototype.route;
+  Router.prototype.route = function(route, name) {
+    var callback = this[name]
+    return _route.call(this, route, name, function() {
+      //this.trigger.apply(this, ['beforeroute:' + name].concat(_.toArray(arguments)));
+      this.reset(name)
+      if (typeof callback !== 'undefined')
+        callback.apply(this, arguments);
+    });
+  };
+
 
   return Router;
 });

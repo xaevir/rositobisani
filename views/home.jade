@@ -4,24 +4,29 @@ include carousel
     .container
       .row
         .span2
-          img(src="/img/pizza-oven-icon.png")
-          h2 Pizza Ovens
+          a(href="/products", data-target="pizza-ovens")
+            img(src="/img/pizza-oven-icon.png")
+            span.title Pizza Ovens
         .span2
-          img(src="/img/pasta-icon.png")
-          h2 Pasta Equipment
+          a(href="/products", data-target="pasta-machines")
+            img(src="/img/pasta-icon.png")
+            span.title Pasta Equipment
         .span2
-          img(src="/img/gelato-icon.png") 
-          h2 Gelato Machines
-          //p Odio non porttitor venenatis, tortor ligula luctus sem, et aliquet erat velit a arcu.
+          a(href="/products", data-target="gelato")
+            img(src="/img/gelato-icon.png") 
+            span.title Gelato Machines
         .span2
-          img(src="/img/espresso-machine-icon.png") 
-          h2 Espresso Machines
+          a(href="/products", data-target="espresso-machines")
+            img(src="/img/espresso-machine-icon.png") 
+            span.title Espresso Machines
         .span2
-          img(src="/img/juicers-icon.png")
-          h2  Juicers
+          a(href="/products", data-target="juicers")
+            img(src="/img/juicers-icon.png")
+            span.title  Juicers
         .span2
-          img(src="/img/wrench-icon.png")
-          h2  Service &amp; Support
+          a(href="#")
+            img(src="/img/wrench-icon.png")
+            span.title  Service &amp; Support
   include section2
   .philosophy
     .container

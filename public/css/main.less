@@ -488,7 +488,7 @@ footer .logo a{
 
 #home .icons {
   background-color: #111;
-  padding: 20px 0;
+  //padding: 20px 0;
   //#gradient > .vertical(#222, darken(#111, 5%));
 }
 
@@ -500,17 +500,26 @@ footer .logo a{
   height: 39px;
 }
 
-#home .icons h2{  
+#home .icons .title {  
   font-weight: normal;
   font-size: 16px;
   margin-top: 0;
   margin-bottom: 0;
+  display: block;
   //color: @red;
   color: #fff;
   //color: #111;
   //font-family: arial, sans-serif;
 }
 
+#home .icons a {
+  display: block;
+  padding: 20px 0;
+  &:hover {
+    text-decoration: none;
+    background: #666;
+  }
+}
 
 #home .philosophy {
   //margin: 50px 0;
