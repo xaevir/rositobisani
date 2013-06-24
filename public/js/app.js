@@ -1,9 +1,9 @@
 define(function(require) {
 
-  var Router = require('router')
+  var Router = require('routers/router')
   , User = require('models/user')
   , NavBar = require('views/navbar/navbar')    
-  , RouterLanding = require('router-landing')
+  , RouterLanding = require('routers/routerLanding')
 
 
   var initialize = function() {

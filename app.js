@@ -148,9 +148,17 @@ app.get('/about', function(req, res) {
 });
 
 app.get('/home-espresso-machine', function(req, res) {
-  locals.title = 'Reale Home Espresso Machine'
-  res.render('landing/home-espresso-machine-full', locals);
+  locals.title = 'Best Home Espresso Machine'
+  if (req.xhr) {
+    res.render('landing/home-espresso-machine', locals, function(err, html){
+      res.send({title: locals.title, body: html});
+    });
+  } else {
+    res.render('landing/home-espresso-machine-full', locals);
+  }
 });
+
+
 
 app.get('/user', function(req, res){
   res.send(req.session.user) 
