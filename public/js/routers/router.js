@@ -34,7 +34,7 @@ var BaseRouter = require('routers/baseRouter')
     callback.apply(this, Array.prototype.slice.call(arguments,1)); 
   }
 
-  var Router = Backbone.Router.extendEach(BaseRouter,{ 
+  var Router = Backbone.Router.extend({ 
 
     initialize: function() {
       _.bindAll(this) 
@@ -55,12 +55,40 @@ var BaseRouter = require('routers/baseRouter')
       , 'products/:slug':               'product'
       , 'contact':                      'contact'
       , 'about':                        'about'
+      , 'privacy-policy':               'privacyPolicy'
     },
 
-    
+    reset: function(route)  {
+      var routeStripped = route.replace('route:', '');
+      if(this.prev_route)
+        if(_.has(this, 'reset_'+this.prev_route)){
+          var path = 'reset_'+this.prev_route 
+          this[path]()
+        }
+      this.prev_route = routeStripped
+    },
+
+    route: function(route, name) {
+      var callback = this[name]
+      var _route = Backbone.Router.prototype.route
+      return _route.call(this, route, name, function() {
+        //_.bind(this.reset, BaseRouter);
+        this.reset(name)
+        if (typeof callback !== 'undefined')
+          callback.apply(this, arguments);
+      });
+    },
+  
     home: function() {
       if ($('#home').length) {
-        $('#myCarousel').carousel('cycle')
+        $('#myCarousel').carousel({
+          interval: 3000
+        })
+        // for screen larger than 1600 width 
+        var winWidth = $(window).width()
+        if(winWidth >1600 )
+          $('#myCarousel img').css('width', winWidth) 
+
         var view = new StopClickView({el: $('.icons')} )
         return
       }
@@ -91,7 +119,7 @@ var BaseRouter = require('routers/baseRouter')
     },
 
     about: function() {
-      $('body').addClass('about')
+      $('body').addClass('narrowPage')
       if ($('#about').length) 
         return
       $.get('/about', function(obj) {
@@ -104,7 +132,21 @@ var BaseRouter = require('routers/baseRouter')
     },
 
     reset_about: function(){
-      $('body').removeClass('about')
+      $('body').removeClass('narrowPage')
+    },
+
+    privacyPolicy: function() {
+      $('body').addClass('narrowPage')
+      if ($('#privacyPolicy').length) 
+        return
+      $.get('/privacy-policy', function(obj) {
+        $('#app').html(obj.body);
+        document.title = obj.title
+      })
+    },
+
+    reset_privacyPolicy: function(){
+      $('body').removeClass('narrowPage')
     },
 
     login:  _.wrap(function(){

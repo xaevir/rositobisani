@@ -8,9 +8,9 @@ define(function(require) {
 
   var initialize = function() {
     window.dispatcher = _.clone(Backbone.Events)
-  
+   
+
     var router = new Router()
-    var routerLanding = new RouterLanding()
 
     Backbone.history.start({pushState: true})
   }

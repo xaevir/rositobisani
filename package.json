@@ -14,5 +14,7 @@
     , "mongoskin": "latest"
     , "backbone": "latest"
     , "underscore": "latest"
+    , "mocha": "latest"
+    , "testem": "latest"
   }
 }

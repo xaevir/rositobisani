@@ -158,6 +158,16 @@ app.get('/home-espresso-machine', function(req, res) {
   }
 });
 
+app.get('/privacy-policy', function(req, res) {
+  locals.title = 'Privacy Policy'
+  if (req.xhr) {
+    res.render('privacyPolicy', locals, function(err, html){
+      res.send({title: locals.title, body: html});
+    });
+  } else {
+    res.render('privacyPolicy_full', locals);
+  }
+});
 
 
 app.get('/user', function(req, res){

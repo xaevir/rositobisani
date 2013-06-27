@@ -1,37 +1,26 @@
 define(function(require) {
 
   var HomeEspressoMachineView = require('views/landing/home-espresso-machine')
-    , BaseRouter = require('routers/baseRouter')
+    , Router = require('routers/router')
 
+  Router.prototype.routes['home-espresso-machine'] = 'homeEspressoMachine';
 
-  var RouterLanding = Backbone.Router.extendEach(BaseRouter, {
+  Router.prototype.homeEspressoMachine = function() {
+    if ($('#home-espresso-machine').length) {
+      var view = new HomeEspressoMachineView({el: $('.lead-gen')} )
+      var html = view.render()
+      return
+    }
+    $.get('/home-espresso-machine', function(obj) {
+      $('#app').html(obj.body);
+      document.title = obj.title
+      var view = new HomeEspressoMachineView({el: $('.lead-gen')} )
+      var html = view.render()
+    })
+  } 
 
-    initialize: function() {
-      _.bindAll(this) 
-    },
+  Router.prototype.reset_homeEspressoMachine =  function(){
+    $('body').removeClass('home-espresso-machine')
+  }
 
-    routes : { 
-      'home-espresso-machine':  'homeEspressoMachine'
-    },
-
-    homeEspressoMachine: function() {
-      if ($('#home-espresso-machine').length) {
-        var view = new HomeEspressoMachineView({el: $('.lead-gen')} )
-        var html = view.render()
-        return
-      }
-      $.get('/home-espresso-machine', function(obj) {
-        $('#app').html(obj.body);
-        document.title = obj.title
-        var view = new HomeEspressoMachineView({el: $('.lead-gen')} )
-        var html = view.render()
-      })
-    }, 
-
-    reset_homeEspressoMachine: function(){
-      $('body').removeClass('home-espresso-machine')
-    },
-  });  
-
-  return RouterLanding;
 });
