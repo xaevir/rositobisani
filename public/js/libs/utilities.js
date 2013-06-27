@@ -36,18 +36,65 @@ _.extend(Backbone.Validation.callbacks, {
   }
 })
 
-function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
-    var vars = query.split("&");
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split("=");
-        if (pair[0] == variable) {
-            return unescape(pair[1]);
-        }
+
+/*
+Backbone.Router.prototype.route = function(route, name, callback) {
+  if (!_.isRegExp(route)) route = this._routeToRegExp(route);
+  if (_.isFunction(name)) {
+    callback = name;
+    name = '';
+  }
+  if (!callback) callback = this[name];
+  var router = this;
+  Backbone.history.route(route, function(fragment) {
+    var args = router._extractParameters(route, fragment);
+    callback && callback.apply(router, args);
+    router.trigger.apply(router, ['route:' + name].concat(args));
+    router.trigger('route', name, args);
+    Backbone.history.trigger('route', router, name, args);
+  });
+  return this;
+}
+*/
+/*
+var _route = Backbone.Router.prototype.route
+Backbone.Router.prototype.route = function(route, name, callback) {
+  var callback = this[name]
+  return _route.call(this, route, name, function() {
+    //_.bind(this.reset, BaseRouter);
+    //this.preroute.call(BaseRouter, name)
+    if (typeof callback !== 'undefined')
+      callback.apply(this, arguments);
+  });
+}
+*/
+/*
+Backbone.history.preroute = function(fragment, handler.callback)  {
+  if(this.prevRoute)
+    if(_.has(this, 'reset_'+this.prev_route)){
+      var path = 'reset_'+this.prev_route 
+      this[path]()
     }
-    return false;
+  this.prevRoute = fragment
+  this.prevCallback = handler.callback
 }
 
+
+// Attempt to load the current URL fragment. If a route succeeds with a
+// match, returns `true`. If no defined routes matches the fragment,
+// returns `false`.
+Backbone.History.prototype.loadUrl = function(fragmentOverride) {
+  var fragment = this.fragment = this.getFragment(fragmentOverride);
+  var matched = _.any(this.handlers, function(handler) {
+    if (handler.route.test(fragment)) {
+      this.preroute(fragment, handler.callback)  
+      handler.callback(fragment);
+      return true;
+    }
+  });
+  return matched;
+}
+*/
 
 
  

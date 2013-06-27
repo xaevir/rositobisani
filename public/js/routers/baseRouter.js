@@ -1,7 +1,9 @@
 define(function(require) {
 
+
   var BaseRouter = {
-    reset: function(route, section) {
+
+    reset: function(route)  {
       var routeStripped = route.replace('route:', '');
       if(this.prev_route)
         if(_.has(this, 'reset_'+this.prev_route)){
@@ -14,12 +16,13 @@ define(function(require) {
       var callback = this[name]
       var _route = Backbone.Router.prototype.route
       return _route.call(this, route, name, function() {
-        //this.trigger.apply(this, ['beforeroute:' + name].concat(_.toArray(arguments)));
+        //_.bind(this.reset, BaseRouter);
         this.reset(name)
         if (typeof callback !== 'undefined')
           callback.apply(this, arguments);
       });
     }
   }
+
   return BaseRouter;
 });

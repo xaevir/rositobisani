@@ -22,8 +22,11 @@ html(lang="en")
       script(data-main='/js/main-built', src='/js/libs/require.js')
     else 
       script(data-main='/js/main', src='/js/libs/require.js')
-  body
-    include nav
+    style
+      .home-espresso-machine .nav.main {display: none}
+      .home-espresso-machine .contact-numbers {display: none}
+  body.home-espresso-machine
+    include ../nav
     #notification
     #app
       block content
