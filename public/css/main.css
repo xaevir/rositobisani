@@ -8901,6 +8901,12 @@ body.signup {
 @media (min-width: 768px) and (max-width: 979px) {
   
 }
+@media (max-width: 1069px) {
+  .nav-pills > li > a {
+    padding-right: 9px;
+    padding-left: 9px;
+  }
+}
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
   body {
