@@ -304,6 +304,7 @@ function email(opts) {
 }
 
 
+app.get('/login', xhrOnly);
 
 /* Products */
 app.get('/products', xhrOnly, products.list);
