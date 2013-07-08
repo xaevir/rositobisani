@@ -4,6 +4,15 @@ var fs = require('fs')
 module.exports = function (app, mediaPath) {
   var module = {};
 
+
+  module.uploadForm = function(req, res) { 
+    var dir = process.cwd()
+    req.app.set('views', dir + '/public/js/fileUpload');
+    res.render('layout');
+    req.app.set('views', dir + '/views');
+  }
+
+
   function toSlug(text, options){
     return text.replace(/[^a-zA-z0-9_]+/g, '-')
   }

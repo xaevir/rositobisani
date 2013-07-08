@@ -2,8 +2,8 @@ define(function(require) {
 
 var AlertView = require('views/site/alert')         
   , ProductDetailsEdit = require('views/products/details-edit') 
-  , UploadView = require('views/files/upload')
-  , ThumbsView = require('views/files/thumbs')
+  , UploadView = require('fileUpload/views/uploadForm')
+  , ThumbsView = require('fileUpload/views/thumbs')
 
 return Backbone.View.extend({
 

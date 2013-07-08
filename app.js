@@ -6,6 +6,8 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , products = require('./routes/products')
+  , cats = require('./routes/cats')
+  , manuals = require('./routes/manuals')
   , uploadedFiles = require('./routes/uploadedFiles')
   , http = require('http')
   , path = require('path')
@@ -45,7 +47,7 @@ app.configure(function(){
 // development only
 app.configure('development', function(){
   mediaBasePath = '/home/bobby/Dropbox/http/rositobisani/public/'
-  uploadedFiles = uploadedFiles(mediaBasePath)
+  uploadedFiles = uploadedFiles(app, mediaBasePath, __dirname + '/public/js/fileUpload')
   app.set('port', process.env.PORT || 8070);
   app.use(express.errorHandler());
   db = mongo.db("localhost/dev_rosito?auto_reconnect=true", {safe: true})
@@ -306,6 +308,27 @@ function email(opts) {
 
 app.get('/login', xhrOnly);
 
+function addAppVar(req, res, next) {
+  req.app = app; 
+  next();
+}
+
+/* Manuals */
+app.get('/manuals-test', manuals.test);
+app.get('/manuals', manuals.list);
+//app.post('/products', restrict, products.create);
+//app.put('/products/:slug', restrict, products.update);
+//app.get('/products/:slug', xhrOnly, products.listOne);
+
+
+/* Cats */
+app.get('/cats-test', addAppVar, cats.test);
+//app.get('/categories', xhrOnly, cats.list);
+//app.post('/categories', restrict, cats.create);
+//app.put('/categories/:slug', restrict, cats.update);
+//app.get('/categories/:slug', xhrOnly, cats.listOne);
+
+
 /* Products */
 app.get('/products', xhrOnly, products.list);
 app.post('/products', restrict, products.create);
@@ -314,6 +337,7 @@ app.get('/products/:slug', xhrOnly, products.listOne);
 
 
 /* Upload Files */
+app.get('/uploadForm', addAppVar, uploadedFiles.uploadForm)
 app.post('/upload/:product_id', restrict, uploadedFiles.create)
 app.del('/files/:slug', restrict, uploadedFiles.remove)
 

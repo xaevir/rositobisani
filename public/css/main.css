@@ -7890,6 +7890,12 @@ a.badge:focus {
     overflow: visible !important;
   }
 }
+form span.error {
+  color: #b94a48;
+  display: block;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
 @font-face {
   font-family: 'Quicksand-Light';
   src: url("/fonts/Quicksand/Quicksand_Light-webfont.eot");
@@ -8027,12 +8033,6 @@ form .btn {
 #contact textarea {
   height: 150px;
   width: 300px;
-}
-form span.error {
-  color: #b94a48;
-  display: block;
-  margin-top: -10px;
-  margin-bottom: 10px;
 }
 #myModal {
   position: fixed;

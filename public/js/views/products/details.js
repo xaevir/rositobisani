@@ -3,7 +3,6 @@ define(function(require) {
 var tpl = require('text!templates/products/product-details.mustache')
   , AlertView = require('views/site/alert')
   , Product = require('models/product')
-//  , File = require('views/products/file')
 
 _.extend(Backbone.Validation.callbacks, {
   valid: function(view, attr, selector) {

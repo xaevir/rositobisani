@@ -36,9 +36,9 @@ var BaseRouter = require('routers/baseRouter')
 
   var Router = Backbone.Router.extend({ 
 
-    initialize: function() {
+    initialize: function(user) {
       _.bindAll(this) 
-      this.user = new User(window.user) 
+      this.user = user 
       window.dispatcher.on('session:logout', this.logout, this)
       var navView = new NavView({user: this.user}).render()
       $.ajaxSetup({ cache: false });

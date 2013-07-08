@@ -8,10 +8,13 @@ define(function(require) {
       name: {
         required: true,
       },
-      email: {
+
+      email: [{
         required: true,
+      },{
         pattern: 'email',
-      },
+        msg: 'Please enter a valid email'
+      }],
       message: {
         required: true,
       },

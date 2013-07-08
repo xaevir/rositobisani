@@ -4,13 +4,16 @@ define(function(require) {
   , User = require('models/user')
   , NavBar = require('views/navbar/navbar')    
   , RouterLanding = require('routers/routerLanding')
+  , RouterManuals = require('manuals/router')
 
 
   var initialize = function() {
     window.dispatcher = _.clone(Backbone.Events)
    
 
-    var router = new Router()
+    var user = new User(window.user) 
+    var router = new Router(user)
+    var router = new RouterManuals(user)
 
     Backbone.history.start({pushState: true})
   }

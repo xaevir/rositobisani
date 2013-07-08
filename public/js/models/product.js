@@ -1,6 +1,6 @@
 define(function(require) {
 
-var Files = require('collections/files')
+var Files = require('fileUpload/collections/files')
 
 return Backbone.Model.extend({
 

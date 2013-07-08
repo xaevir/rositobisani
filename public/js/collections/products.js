@@ -8,7 +8,14 @@ define(function(require) {
     url : 'products',
 
     categories :  [
-      {slug: 'espresso-machines', name: 'Espresso Machines'}, 
+      {slug: 'espresso-machines', name: 'Espresso Machines',
+        subcategories: [
+          {slug: 'royal', name: 'Royal'}, 
+          {slug: 'synesso', name: 'Synesso'},
+          {slug: 'reale', name: 'Reale'},
+          {slug: 'schaerer', name: 'Schaerer'}
+        ] 
+      }, 
       {slug: 'espresso-grinders', name: 'Espresso Grinders'}, 
       {slug: 'juicers', name: 'Juicers'}, 
       {slug: 'panini-grills', name: 'Panini Grills'},
