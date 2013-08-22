@@ -52,6 +52,7 @@ var BaseRouter = require('routers/baseRouter')
       , 'products/:slug/edit':          'productEdit'
       , 'products/:slug/delete':        'productDelete'
       , 'products/new'  :               'newProduct'
+//      , 'products/Reale':               'reale'
       , 'products/:slug':               'product'
       , 'contact':                      'contact'
       , 'about':                        'about'
@@ -278,9 +279,29 @@ var BaseRouter = require('routers/baseRouter')
       if (this.pageHeaderView)    
         this.pageHeaderView.remove()
     },
+
+    /*reale: function(){
+      var self = this
+      $('html, body').scrollTop(0)
+      $.get('/products/Reale', function(obj) {
+        var model = new Product(obj.model)
+        $('#app').html(obj.body);
+
+        document.title = model.get('name')+' - '+model.get('category').name
+        self.contextualMenu(model) 
+
+        var header = model.get('category').name
+        if (model.get('subcategory').name)
+          header += ' / ' +model.get('subcategory').name
+        self.pageHeaderView = new PageHeaderView({header: header}) 
+        self.pageHeaderView.render()
+      })
+    },
+    */
+
   });
 
-
+ 
 
   return Router;
 });

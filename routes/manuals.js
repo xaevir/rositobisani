@@ -10,7 +10,6 @@ exports.test = function(req, res) {
   req.app.set('views', dir + '/views');
 } 
 
-
 exports.list = function(req, res) { 
   db.collection('manuals').find().toArray(function(err, manuals) {
     res.send(manuals);
@@ -35,7 +34,7 @@ exports.update = function(req, res) {
   })
 }
 
-exports.listOne = function(req, res) {
+exports.getOne = function(req, res) {
   db.collection('products').findOne({slug: req.params.slug}, function(err, product){
     res.send(product);
   })

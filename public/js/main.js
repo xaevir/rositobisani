@@ -6,36 +6,83 @@ require.config({
     }
   },
   */
+  hbs: {
+    disableI18n: true,        
+    disableHelpers: true,     
+    helperPathCallback:       // Callback to determine the path to look for helpers
+      function (name) {       // ('/template/helpers/'+name by default)
+        return 'cs!' + name;
+      },
+  },
   paths: {
-    jQuery: 'libs/jquery',
-    Underscore: 'libs/underscore',
-    Backbone: 'libs/backbone',
+    //for hbs
+    hbs: 'libs/require-handlebars-plugin/hbs',
+    Handlebars : 'libs/require-handlebars-plugin/Handlebars',
+
+    json2: 'libs/json2',
+    jquery: 'libs/jquery',
+    underscore: 'libs/underscore',
+    backbone: 'libs/backbone',
+    marionette : 'libs/backbone.marionette',
     Hogan: 'libs/hogan',
-    'Backbone.Validation': 'libs/backbone.validation',
+    'backbone.validation': 'libs/backbone.validation',
     text: 'libs/text',
-    templates: '/templates',
+    templates: '../templates',
     transition: 'libs/bootstrap/js/bootstrap-transition',
     carousel:   'libs/bootstrap/js/bootstrap-carousel',
     collapse: 'libs/bootstrap/js/bootstrap-collapse',
     dropdown: 'libs/bootstrap/js/bootstrap-dropdown',
     utilities: 'libs/utilities',
     'iframe-transport' : 'libs/jquery.iframe-transport',
+    appMarionette: 'app_marionette',
+    spin: 'libs/spin',
+    'spin.jquery': 'libs/spin.jquery'
   },
 
   shim: {
-    'iframe-transport': ['jQuery'],
-    'Backbone': ['Underscore', 'jQuery'],
-    //'jQuery': { exports: ['$'] },
-    'Backbone.Validation': ['Backbone'],
-    'transition': ['jQuery'],
-    'collapse' : ['jQuery'],
-    'dropdown' : ['jQuery'],
-    'carousel': ['transition'],
-    'utilities': ['jQuery', 'Backbone', 'Backbone.Validation'],
-    'app': ['Backbone', 'carousel', 'Backbone.Validation', 'utilities', 'collapse', 'Hogan', 'dropdown', 'iframe-transport']
-  }
+    'iframe-transport': ['jquery'],
+    'backbone': ['underscore', 'jquery'],
+    'backbone.validation': ['backbone'],
+    transition: ['jquery'],
+    collapse : ['jquery'],
+    dropdown : ['jquery'],
+    carousel: ['transition'],
+    utilities: ['jquery', 'backbone', 'backbone.validation'],
+    marionette : ['jquery', 'underscore', 'backbone'],
+    app: [
+      'json2',
+      'backbone', 
+      'carousel', 
+      'backbone.validation', 
+      'utilities', 
+      'collapse', 
+      'Hogan', 
+      'dropdown', 
+      'iframe-transport'
+    ],
+    appMarionette: [
+      'marionette',
+      'hbs', 
+      'spin',
+      'spin.jquery'
+    ]
+  },
+
 });
 
-require(['app'], function(app) {
-  app.initialize();
+require([
+  'app', 
+  'appMarionette', 
+  'require',
+  ], function(app, appMarionette, require) {
+    app.initialize();
+    require([
+      'apps/manuals/manuals_app', 
+      'apps/categories/categories_app', 
+      'entities/categories', 
+      'entities/manuals', 
+      //'apps/common/loading',
+    ], function(){
+      appMarionette.start();
+    })
 });

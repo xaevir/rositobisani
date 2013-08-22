@@ -6,7 +6,7 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , products = require('./routes/products')
-  , cats = require('./routes/cats')
+  , categories = require('./routes/categories')
   , manuals = require('./routes/manuals')
   , uploadedFiles = require('./routes/uploadedFiles')
   , http = require('http')
@@ -225,7 +225,6 @@ app.del('/user', function(req, res) {
 })
 
 
-app.get('/signup', function(req, res) { });
 
 app.post('/user', function(req, res){ 
   var user = new NewUser(req.body)
@@ -307,6 +306,8 @@ function email(opts) {
 
 
 app.get('/login', xhrOnly);
+app.get('/signup', xhrOnly);
+
 
 function addAppVar(req, res, next) {
   req.app = app; 
@@ -315,15 +316,19 @@ function addAppVar(req, res, next) {
 
 /* Manuals */
 app.get('/manuals-test', manuals.test);
-app.get('/manuals', manuals.list);
+app.get('/manuals', xhrOnly, manuals.list);
+app.get('/manuals/edit', xhrOnly);
+app.get('/admin/manuals', xhrOnly);
+app.get('/admin/manual/:id/edit', xhrOnly);
+//app.get('/manuals', manuals.list);
 //app.post('/products', restrict, products.create);
 //app.put('/products/:slug', restrict, products.update);
 //app.get('/products/:slug', xhrOnly, products.listOne);
 
 
 /* Cats */
-app.get('/cats-test', addAppVar, cats.test);
-//app.get('/categories', xhrOnly, cats.list);
+//app.get('/cats-test', addAppVar, cats.test);
+app.get('/categories', xhrOnly, categories.list);
 //app.post('/categories', restrict, cats.create);
 //app.put('/categories/:slug', restrict, cats.update);
 //app.get('/categories/:slug', xhrOnly, cats.listOne);
@@ -333,6 +338,7 @@ app.get('/cats-test', addAppVar, cats.test);
 app.get('/products', xhrOnly, products.list);
 app.post('/products', restrict, products.create);
 app.put('/products/:slug', restrict, products.update);
+//app.get('/products/Reale', xhrOnly, products.reale);
 app.get('/products/:slug', xhrOnly, products.listOne);
 
 

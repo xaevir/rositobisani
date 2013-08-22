@@ -33,3 +33,11 @@ exports.listOne = function(req, res) {
   })
 }
 
+exports.reale = function(req, res) {
+  db.collection('products').findOne({slug: 'Reale'}, function(err, product){
+    res.render('reale', product, function(err, html){
+      res.send({title: 'Reale baby', body: html, model: product});
+    });
+
+  })
+}
