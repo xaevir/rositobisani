@@ -8204,14 +8204,13 @@ form .btn {
 }
 .navbar .nav li a {
   padding: 28px 20px 24px;
-  font-size: 18px;
+  font-size: 14px;
   color: #fff;
   text-shadow: none;
 }
 .navbar .contact-numbers {
   list-style: none;
   color: #fff;
-  padding-left: 32px;
   margin-top: 14px;
 }
 .navbar .user-menu-inner {
