@@ -17,7 +17,11 @@ html(lang="en")
       script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
       script(src='/js/libs/respond.js')
 
-    script(data-main='/js/main-built', src='/js/libs/require.js')
+    if locals.env === 'production' 
+      script(data-main='/js/main-built', src='/js/libs/require.js')
+      link(href='http://fonts.googleapis.com/css?family=Libre+Baskerville', rel='stylesheet', type='text/css')
+    else 
+      script(data-main='/js/main', src='/js/libs/require.js')
   body
     include nav
     #alert-region
