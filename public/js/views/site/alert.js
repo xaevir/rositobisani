@@ -36,7 +36,7 @@ alerts.alert = Backbone.View.extend({
       message: this.message, 
     })
     $(this.el).html(template)
-    $('#notification').html(this.el)
+    $('#dialog-region').html(this.el)
     $(this.el).animate({ top: '50'})
     if(this.shouldFadeOut)
       this.fadeOut() 

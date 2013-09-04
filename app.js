@@ -315,15 +315,15 @@ function addAppVar(req, res, next) {
 }
 
 /* Manuals */
-app.get('/manuals-test', manuals.test);
 app.get('/manuals', xhrOnly, manuals.list);
-app.get('/manuals/edit', xhrOnly);
-app.get('/admin/manuals', xhrOnly);
-app.get('/admin/manual/:id/edit', xhrOnly);
-//app.get('/manuals', manuals.list);
-//app.post('/products', restrict, products.create);
-//app.put('/products/:slug', restrict, products.update);
-//app.get('/products/:slug', xhrOnly, products.listOne);
+app.get('/manuals/sorted', xhrOnly, manuals.sortedList);
+app.get('/manuals/:id', xhrOnly, manuals.getOne);
+app.get('/admin/manuals', restrict, xhrOnly);
+app.get('/admin/manuals/:id/edit', restrict, xhrOnly);
+app.get('/admin/manuals/category/:id', restrict, xhrOnly);
+app.put('/manuals/:id', restrict, manuals.update);
+app.post('/manuals/upload', restrict, manuals.upload);
+app.del('/manuals/:id', restrict, manuals.remove)
 
 
 /* Cats */

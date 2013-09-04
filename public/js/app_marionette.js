@@ -8,6 +8,8 @@ define([
     //headerRegion: "#header-region",
     //mainRegion: "#main-region",
     mainRegion: "#app",
+    dialogRegion: "#dialog-region",
+    alertRegion: "#alert-region",
     //dialogRegion: Marionette.Region.Dialog.extend({ el: "#dialog-region" })
   });
 

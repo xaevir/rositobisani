@@ -1,12 +1,12 @@
 <span class="thumbnail-wrapper">
-  <img alt="{{name}}" src="/manuals/{{thumb}}"/>
+  <img alt="{{title}}" src="/img/manuals/{{thumb}}"/>
 </span>
-<span class="title">{{name}}</span>
+<h4>{{title}}</h4>
 <div class="actions">
-  <button class="btn btn-small js-edit">
+  <a href="/admin/manuals/{{_id}}/edit" class="btn btn-small js-edit">
     <i class="icon-pencil"></i>
     Edit
-  </button>
+  </a>
   <button class="btn btn-small js-delete">
     <i class="icon-remove"></i>
     Delete

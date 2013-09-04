@@ -1,57 +1,84 @@
 define([ 
-  'hbs!apps/manuals/templates/item',
-  'hbs!apps/manuals/templates/layout',
-], function(itemTpl, layoutTpl){
- 
-  var View = {}
-  View.Manual = Backbone.Marionette.ItemView.extend({
-    tagName: "li",
+  'hbs!apps/manuals/templates/list_item',
+  'hbs!apps/manuals/templates/list_layout',
+  'hbs!apps/manuals/templates/list_header',
+  'hbs!apps/manuals/templates/list_subheader',
+], function(itemTpl, layoutTpl, headerTpl, subHeaderTpl){
+
+  var Model = Backbone.Model.extend({})
+
+  var TreeCollection = Backbone.Collection.extend({
+    model: Model
+  })
+
+
+  var ManualView = Backbone.Marionette.ItemView.extend({
+
     template: itemTpl,
 
-    events: {
-      "click": "highlightName",
-      "click td a.js-show": "showClicked",
-      "click button.js-delete": "deleteClicked"
-    },
+    tagName: "li",
+    
+  });
 
-    highlightName: function(e){
-      this.$el.toggleClass('warning');
-    },
+  var SubHeaderView = Backbone.Marionette.CompositeView.extend({
 
-    showClicked: function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      this.trigger("contact:show", this.model);
-    },
+    template: subHeaderTpl,
+   
+    itemViewContainer: ".item-rows",
 
-    deleteClicked: function(e){
-      e.stopPropagation();
-      this.trigger("contact:delete", this.model);
-    },
+    className: 'subheader',
 
-    remove: function(){
-      this.$el.fadeOut(function(){
-        $(this).remove();
-      });
+    itemView: ManualView,
+
+    initialize: function(){
+      var manuals = this.model.get('manuals');
+      if (manuals){
+        this.collection = new TreeCollection(manuals) 
+        this.model.set('hasManuals', true);
+      }
+    },
+  });
+
+
+  var CategoryView = Backbone.Marionette.CompositeView.extend({
+
+    template: headerTpl,
+
+    className: "section",
+
+    initialize: function(){
+      var childrenSubHeads = this.model.get('children');
+      if (childrenSubHeads) {
+        this.collection = new TreeCollection(childrenSubHeads) 
+        this.itemView = SubHeaderView
+        this.model.set('hasSubHeaders', true)
+        this.model.set('hasManuals', true)
+      }
+      else {
+        var manuals = this.model.get('manuals');
+        if (manuals) {
+          this.collection = new TreeCollection(manuals)
+          this.itemView = ManualView
+          this.itemViewContainer = ".item-rows"
+          this.model.set('hasManuals', true)
+          this.model.set('hasSubHeaders', false)
+        }
+      }
     }
-  })
-  
-  View.Manuals = Backbone.Marionette.CollectionView.extend({
-    tagName: "ul",
-    className: 'item-rows',
-    //template: tplList, 
-    itemView: View.Manual,
-    //itemViewContainer: "tbody"
-  })
+
+  });
+
+  var CategoriesView = Backbone.Marionette.CompositeView.extend({
+    id: 'manuals',
+
+    template: layoutTpl,
+
+    itemView: CategoryView,
+
+    itemViewContainer: ".body",
+
+  });
 
 
-  View.Layout = Marionette.Layout.extend({
-    template: layoutTpl, 
-    regions: {
-      categoriesRegion: '#categories-region',
-      manualsRegion: '#manuals-region'
-    }
-  })
-  
-  return View
+  return CategoriesView
 });

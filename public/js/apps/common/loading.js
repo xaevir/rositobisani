@@ -1,5 +1,5 @@
 define([ 
-  'hbs!apps/common/loadingTpl',
+  'hbs!apps/common/loading_tpl',
   'appMarionette',
 ], function(tpl){
   return Marionette.ItemView.extend({

@@ -6,19 +6,27 @@ define([
 
     template: editFormTpl,
 
+    initialize: function(){
+      // _.bindAll(this); 
+      //this.title = 'Edit ' + this.model.get('name')
+    },
+
     events: {
       'click button.js-submit': 'submitClicked'
     },
 
-    initialize: function(options){
-      _.bindAll(this); 
-      //this.model.on('sync', this.notice, this) 
-    },
-
-    submitClicked: function() {
+    submitClicked: function(e) {
+      e.preventDefault()
       var params = this.$('form').serializeObject();
       this.trigger('form:submit', params)
     },
-  
+ 
+    onShow: function() {
+      this.$el.dialog({
+        modal: true,
+        //title: view.title,
+        width: "auto"
+      })
+    }
   });
 });

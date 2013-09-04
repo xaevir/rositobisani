@@ -3,48 +3,42 @@ define([
   'apps/manuals/admin/admin_controller',
   'apps/manuals/editable_list/editable_list_controller',
   'apps/manuals/edit/edit_controller',
-], function(App, AdminController, EditableListController, EditController ){
+  'apps/manuals/list/list_controller',
+], function(App, AdminController, EditableListController, EditController, ListController ){
 
   App.Router = Marionette.AppRouter.extend({
     appRoutes: {
-      //"manuals": "listManuals",
-      "admin/manuals": "adminManuals",
-      "admin/manual/:id/edit": "editManual"
+      "manuals": "listManuals",
+      "admin/manuals": "adminComposite",
+      "admin/manuals/:id/edit": "editManual",
+      "admin/manuals/category/:id": "adminComposite"
     }
   });
 
   var API = {
-    //listManuals: function(view){
-    //  ListController.listManuals(view);
-    //},
 
-    adminManuals: function(){
-      AdminController.admin();
+    listManuals: function(){
+      ListController.listManuals()
+    },
+  
+    adminComposite: function(id){
+      AdminController.composite(id);
     },
 
     editManual: function(id) {
-      EditController(id)
-    }
+      AdminController.composite('', id);
+      //EditController(id)
+    },
+
   };
 
-  //App.on("manuals:list", function(view){
-  //  App.navigate("manuals");
-  //  API.listManuals(view);
-  //});
-
-  App.on("manuals:editableList", function(view){
-    EditableListController(view)
-  });
+  App.on('manual:category:selected', function(id){
+    App.navigate("admin/manuals/category/" + id);
+    EditableListController.listByCat(id)
+  })
 
   App.on("manual:edit", function(id){
-    App.navigate("admin/manual/" + id + "/edit");
-    EditController(manual)
-  });
-
-
-  App.on("admin", function(){
-    App.navigate("admin/manuals");
-    API.adminManuals();
+    App.navigate("admin/manuals/" + id + "/edit");
   });
 
   new App.Router({ controller: API });

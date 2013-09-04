@@ -4,31 +4,25 @@ define([
 
   var Manual = Backbone.Model.extend({
     idAttribute: "_id",
-    urlRoot: "manuals",
-    isNew: function(){
-      return this.get('filename') == null
-    },
-    url : function() {
-      var base = '/manuals/'
-      if (this.isNew()) return base;
-      return base + this.get('filename');
-    },
+    urlRoot: "/manuals",
     validation: {
       category: {required: true},
-      name: {required: true},
-      subcategory: {required: function(){
+      title: {required: true},
+      file: {required: true},
+      /*subcategory: {required: function(){
         var currentCat = this.get('category')
         var hasSubCats = _.find(this.cats, function(cat){ 
           return cat.name == currentCat && cat.subcategories
         });
         if (hasSubCats) return true
       }},
+      */
     },
   });
 
   var API = {
     getOne: function(id){
-      var manual = new Manual({id: id});
+      var manual = new Manual({_id: id});
       var defer = $.Deferred();
       manual.fetch({
         success: function(data){

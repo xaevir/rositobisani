@@ -3,31 +3,44 @@ define([
   'apps/common/loading',
   'apps/manuals/edit/edit_view',
   'apps/manuals/show/show_view',
-], function(App, Loading, EditView, ShowView ){
+  'apps/common/alert',
+], function(App, Loading, EditView, ShowView, AlertView){
 
   return function(id) {
-    var loadingView = new Loading();
-    App.mainRegion.show(loadingView);
 
-    var fetchingManual = App.request("manual:entity", id) 
+    var loadingView = new Loading();
+    App.dialogRegion.show(loadingView);
+
+    var fetchingManual = App.request("manual:entity", id) // in case url is random id
+
     $.when(fetchingManual).done(function(manual){
+
       var view;
+
       if(manual !== undefined){
+
         view = new EditView({
           model: manual
         })
+
         Backbone.Validation.bind(view);
+
         view.on("form:submit", function(data){
           if(manual.save(data)){
-            alert("saved, now go back screen")
-            //ContactManager.trigger("contact:show", contact.get('id'));
+             
+            App.dialogRegion.close() //this should be in view?
+
+            var alertView = new AlertView()
+            App.alertRegion.show(alertView);
+          
+            App.trigger('manual:model:updated', manual) 
           }
         });
       }
       else {
         view = new ShowView.MissingManual() 
       }
-      App.mainRegion.show(view);
+      App.dialogRegion.show(view);
     })
   }
 });

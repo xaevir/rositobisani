@@ -2,9 +2,9 @@ define(function(require) {
 
 var tpl  = '<div class="content">'
     tpl += '  <a class="close" href="#">&times;</a>'
-    tpl += '  <div class="inner">'
+    //tpl += '  <div class="inner">'
     tpl += '    <%= body %>'
-    tpl += '  </div>' 
+    //tpl += '  </div>' 
     tpl += '</div>'
 
 return Backbone.View.extend({
@@ -16,7 +16,7 @@ return Backbone.View.extend({
   initialize: function(options){
     _.bindAll(this) 
     this.body = options.body 
-    this.globalEvent()
+    //this.globalEvent()
     this.render()
   },
 
@@ -35,10 +35,10 @@ return Backbone.View.extend({
     template = this.template({body: this.body})
     $(this.el).html(template)
     $('body').append('<div class="modal-backdrop" />')
-    $('#notification').html(this.el)
+    $('#dialog-region').html(this.el)
     $(this.el).animate({ top: '100'})
-    if(this.shouldFadeOut)
-      this.fadeOut() 
+    //if(this.shouldFadeOut)
+      //this.fadeOut() 
     return this
   },
 

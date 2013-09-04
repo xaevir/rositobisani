@@ -1,3 +1,4 @@
+@import "../js/libs/jquery-ui-custom-theme/jquery-ui-1.10.0.custom.css";
 /*!
  * Bootstrap v2.3.1
  *
@@ -7896,6 +7897,9 @@ form span.error {
   margin-top: -10px;
   margin-bottom: 10px;
 }
+form.form-inline span.error {
+  margin-top: 0px;
+}
 @font-face {
   font-family: 'Quicksand-Light';
   src: url("/fonts/Quicksand/Quicksand_Light-webfont.eot");
@@ -8018,6 +8022,17 @@ body {
 #alert .error .close {
   color: #E73E36;
 }
+.center-dialog {
+  position: fixed;
+  left: 50%;
+  z-index: 1060;
+  text-align: center;
+}
+.center-dialog .inner {
+  position: relative;
+  left: -50%;
+  padding: 10px;
+}
 form .btn {
   display: block;
 }
@@ -8138,7 +8153,8 @@ form .btn {
 }
 #contact .page-header,
 #about .page-header,
-#privacyPolicy .page-header {
+#privacyPolicy .page-header,
+#manuals .page-header {
   margin-top: 15px;
 }
 /* ==========================================================================
@@ -8706,6 +8722,9 @@ body.signup {
   height: 56px;
   overflow: hidden;
 }
+#manuals .item-rows h1 {
+  font-size: 38.5px;
+}
 .thumbs {
   list-style: none;
 }
@@ -8935,21 +8954,46 @@ body.signup {
     margin-top: 0;
   }
 }
-/* Manuals */
-.item-rows {
-  margin-top: 10px;
-}
-.item-rows h1 {
-  font-size: 54px;
+#manuals h2 {
+  font-size: 30px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
   margin: 20px 0 0 0;
   line-height: 1.2;
 }
-.item-rows ul {
+#manuals h3 {
+  color: #666;
+  font-size: 24px;
+  margin-bottom: 25px;
+  margin-top: 15px;
+  line-height: 1.2;
+}
+#manuals .item-rows {
+  margin-top: 10px;
   overflow: auto;
   list-style: none;
   margin-top: 35px;
+  *zoom: 1;
 }
-.item-rows li {
+#manuals .item-rows:before,
+#manuals .item-rows:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+#manuals .item-rows:after {
+  clear: both;
+}
+#manuals .item-rows:before,
+#manuals .item-rows:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+#manuals .item-rows:after {
+  clear: both;
+}
+#manuals .item-rows li {
   float: left;
   width: 175px;
   margin: 0 20px;
@@ -8960,14 +9004,15 @@ body.signup {
   position: relative;
   padding-top: 5px;
 }
-.item-rows .title {
+#manuals .item-rows h4 {
   font-size: 18px;
   font-weight: bold;
   margin: .3em;
   display: block;
   height: 56px;
   overflow: hidden;
+  line-height: 1.1;
 }
-.item-rows .actions {
+#manuals .item-rows .actions {
   margin: 10px 0;
 }
