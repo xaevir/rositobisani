@@ -329,6 +329,7 @@ app.del('/manuals/:id', restrict, manuals.remove)
 /* Cats */
 //app.get('/cats-test', addAppVar, cats.test);
 app.get('/categories', xhrOnly, categories.list);
+app.get('/categories/:id', xhrOnly, categories.getOne);
 //app.post('/categories', restrict, cats.create);
 //app.put('/categories/:slug', restrict, cats.update);
 //app.get('/categories/:slug', xhrOnly, cats.listOne);

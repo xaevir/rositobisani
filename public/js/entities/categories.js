@@ -7,7 +7,10 @@ define([
 
   var Children = Backbone.Collection.extend({ model: Child });
 
-  var Category = Backbone.Model.extend({ idAttribute: "_id", });
+  var Category = Backbone.Model.extend({ 
+    idAttribute: "_id", 
+    urlRoot: "/categories",
+    });
 
   var Categories = Backbone.Collection.extend({
     model: Category,
@@ -32,12 +35,32 @@ define([
         });
       });
       return promise;
-    }
+    },
+    getOne: function(id){
+      var category = new Category({_id: id});
+      var defer = $.Deferred();
+      category.fetch({
+        success: function(data){
+          defer.resolve(category);
+        },
+        error: function(data){
+          defer.resolve(undefined);
+        }
+      });
+      var promise = defer.promise();
+      return promise;
+    },
+
   }
 
   App.reqres.setHandler("category:entities", function(){
     return API.getCategoryEntities();
   });
+
+  App.reqres.setHandler("category:entity", function(id){
+    return API.getOne(id);
+  });
+
 
   //return Categories;
 });

@@ -18,14 +18,21 @@ define([
 
       this.regionView.show(new Loading())
 
-      var promise = this.getAllManuals() 
+      var fetchingManuals = this.getAllManuals() 
 
-      $.when(promise).done(function(value) {
-        this.setupViewEvents()
+      var fetchingCategory = App.request("category:entity", this.catId);
 
-        this.collection.filter(this.catId);
+      var self = this
+  
+      $.when(fetchingManuals, fetchingCategory).done(function(manuals, category) {
 
-        this.regionView.show(this.manualsListLayout);
+        self.categoryModel = category
+        
+        self.setupViewEvents()
+
+        self.collection.filter(self.catId);
+
+        self.regionView.show(self.manualsListLayout);
       })
     },
 
@@ -78,12 +85,12 @@ define([
               }
             }
           })
-          deferred.resolveWith(self, self.collection);
+          deferred.resolve(self.collection);
         })
       }
       else {
         setTimeout(function(){
-          deferred.resolveWith(self, self.collection);
+          deferred.resolve(self.collection);
         }, 0);
       }
 
@@ -96,7 +103,9 @@ define([
 
       this.manualsListLayout = new EditableListView.Layout()
 
-      this.manualsListPanel = new EditableListView.Panel()
+      this.manualsListPanel = new EditableListView.Panel({
+        model: this.categoryModel 
+      })
 
       this.manualsListView = new EditableListView.Manuals({
         collection: this.collection 

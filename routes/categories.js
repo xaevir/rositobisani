@@ -35,3 +35,10 @@ exports.list = function(req, res) {
     res.send(parents);
   })
 }
+
+exports.getOne = function(req, res) {
+  db.collection('categories').findOne({_id: db.ObjectID(req.params.id)}, function(err, category){
+    res.send(category);
+  })
+}
+
