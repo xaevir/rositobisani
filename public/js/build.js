@@ -1,7 +1,9 @@
 ({
   baseUrl: ".",
-  mainConfigFile: 'main.js',
-  name: "main",
-  out: "main-built.js"
+  name: "libs/almond",
+  include: "main",
+  mainConfigFile: "main.js",
+  out: "main-built.js",
+  findNestedDependencies: true
 })
 
