@@ -9003,6 +9003,12 @@ body.signup {
   position: relative;
   padding-top: 5px;
 }
+#manuals .item-rows li .thumbnail-wrapper {
+  height: 155px;
+  width: 175px;
+  text-align: center;
+  display: block;
+}
 #manuals .item-rows h4 {
   font-size: 18px;
   font-weight: bold;
