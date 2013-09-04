@@ -1,6 +1,7 @@
 define([ 
   'hbs!apps/common/loading_tpl',
   'appMarionette',
+  'spin.jquery'
 ], function(tpl){
   return Marionette.ItemView.extend({
     template: tpl,
@@ -14,10 +15,10 @@ define([
 
     onShow: function(){
       var opts = {
-        lines: 13, // The number of lines to draw
-        length: 20, // The length of each line
-        width: 10, // The line thickness
-        radius: 30, // The radius of the inner circle
+        lines: 10, // The number of lines to draw
+        length: 8, // The length of each line
+        width: 4, // The line thickness
+        radius: 8, // The radius of the inner circle
         corners: 1, // Corner roundness (0..1)
         rotate: 0, // The rotation offset
         direction: 1, // 1: clockwise, -1: counterclockwise
@@ -28,10 +29,10 @@ define([
         hwaccel: false, // Whether to use hardware acceleration
         className: 'spinner', // The CSS class to assign to the spinner
         zIndex: 2e9, // The z-index (defaults to 2000000000)
-        top: '30px', // Top position relative to parent in px
-        left: 'auto' // Left position relative to parent in px
+        top: '0', // Top position relative to parent in px
+        left: '0' // Left position relative to parent in px
       };
-      $('#spinner').spin(opts);
+      $('.spinner').spin(opts);
     }
   });
 });

@@ -51,6 +51,7 @@ require.config({
     'jquery-ui': ['jquery'],
     utilities: ['jquery', 'backbone', 'backbone.validation'],
     marionette : ['jquery', 'underscore', 'backbone'],
+    'spin.jquery': ['jquery', 'spin'],
     app: [
       'json2',
       'backbone', 
@@ -66,7 +67,6 @@ require.config({
     appMarionette: [
       'marionette',
       'hbs', 
-      'spin',
       'spin.jquery'
     ]
   },

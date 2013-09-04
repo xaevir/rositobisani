@@ -7,7 +7,7 @@ define([
     listManuals: function(view){
       var loadingView = new Loading();
       App.mainRegion.show(loadingView);
-        
+return              
       var fetchingManuals = App.request("manual:entities:sorted");
       
       $.when(fetchingManuals).done(function(manuals){
