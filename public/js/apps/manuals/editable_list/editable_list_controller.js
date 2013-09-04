@@ -30,7 +30,7 @@ define([
         
         self.setupViewEvents()
 
-        self.collection.filter(self.catId);
+        self.filteredCollection.filter(self.catId);
 
         self.regionView.show(self.manualsListLayout);
       })
@@ -47,7 +47,7 @@ define([
       $.when(promise).done(function(value) {
         this.setupViewEvents()
 
-        this.model = this.collection.get(this.manualId)
+        this.model = this.filteredCollection.get(this.manualId)
 
         this.catId = this.model.get('category')
         
@@ -60,7 +60,7 @@ define([
             App.dialogRegion.show(new ShowView.MissingManual())
         })
 
-        this.collection.filter(self.catId);
+        this.filteredCollection.filter(self.catId);
 
         this.regionView.show(this.manualsListView);
       })
@@ -71,12 +71,13 @@ define([
 
       var self = this
     
-      if (!this.collection) {
+      if (!this.rawCollection) {
         
         var fetchingManuals = App.request("manual:entities");
 
         $.when(fetchingManuals).done(function(manuals){
-          self.collection = FilteredCollection({
+          self.rawCollection = manuals
+          self.filteredCollection = FilteredCollection({
             collection: manuals,
             filterFunction: function(filterCriterion){
               return function(manual){
@@ -85,12 +86,12 @@ define([
               }
             }
           })
-          deferred.resolve(self.collection);
+          deferred.resolve(self.filteredCollection);
         })
       }
       else {
         setTimeout(function(){
-          deferred.resolve(self.collection);
+          deferred.resolve(self.filteredCollection);
         }, 0);
       }
 
@@ -108,7 +109,7 @@ define([
       })
 
       this.manualsListView = new EditableListView.Manuals({
-        collection: this.collection 
+        collection: this.filteredCollection 
       });
 
       var self = this
@@ -129,7 +130,7 @@ define([
         Backbone.Validation.bind(newManualView);
 
         newManualView.on('form:success', function(newManual){
-          self.collection.add(newManual) 
+          self.rawCollection.add(newManual) 
           App.dialogRegion.close() //this should be in view?
 
           self.manualsListView.children.findByModel(newManual).flash('alert-success') 
