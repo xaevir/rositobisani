@@ -1121,10 +1121,16 @@ body.login, body.signup {
       margin: 0 20px;
       margin-bottom: 15px;
       display: inline;
-      border: 1px solid #ccc;
       text-align: center;
       position: relative;
-      padding-top: 5px;
+      a {
+        padding-top: 5px;
+        border: 1px solid #ccc;
+        display: block;
+        &:hover {
+          border: 1px solid #5FBDFF;
+        }
+      }
       .thumbnail-wrapper {
         height: 155px; 
         width: 175px;
