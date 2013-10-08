@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'GaramondLTBookRegular';
+    src: url('garamond-book.eot');
+    src: url('garamond-book.eot') format('embedded-opentype'),
+         url('garamond-book.woff') format('woff'),
+         url('garamond-book.ttf') format('truetype'),
+         url('garamond-book.svg#GaramondLTBookRegular') format('svg');
+}
