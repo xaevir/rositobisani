@@ -1,0 +1,69 @@
+#reale
+  .header
+    .container
+      h1
+        span The first &ldquo;Personal&rdquo; commercial espresso machine
+      h2(style="clear: left")
+        span The <b>Reale</b> is a re-engineered commercial machine for home use
+      img#reale-img(src="/img/reale.png")
+  .container
+    .row
+      .span8
+        ul.nav.nav-tabs
+          li.active: a(href="#", data-target="#features") Features
+          li: a(href="#", data-target="#specs") Specs
+          li: a(href="#", data-target="#reviews") Reviews
+          li: a(href="#", data-target="#warranty") Warranty
+          li: a(href="#", data-target="#faq") FAQ
+          li: a(href="#", data-target="#support") Support
+        .tab-content
+          .tab-pane.active#features
+            include features
+          .tab-pane#specs
+            h1 Specs
+          .tab-pane#reviews
+            h1 Reviews
+          .tab-pane#warranty
+            h1 Warranty
+          .tab-pane#faq
+            h1 F.A.Q.
+          .tab-pane#support
+            h1 Support
+        .coffeegeek
+          p.quote
+            <img class="quote-left" src="/img/big-quote-left.png"/>
+            ...simple, beautiful, and makes excellent espresso
+            <img class="quote-right" src="/img/big-quote-right.png"/>
+          .author
+            p.line-one.
+              Says... <img style="float-right" id="coffeegeek.png" src="/img/coffeegeek.png"/>
+            p.line-two.
+              the premier espresso machine review site
+        .reale-engineers
+          p.quote.
+            ...the Reale has the exact taste and benefits of our commercial machines
+            because its designed from a commercial machine
+          .author
+            p.line-two.
+              ...our engineers only know commercial machines so when we were asked to create our first
+              home unit, we made it with the same quality parts as our commercial machines.
+      .span4
+        .buy-box
+          .line-one
+            a(href="#") Free Shipping
+            a.pull-right(href="#") No Sales Tax
+          .price-line.
+            <span class="product-name">Reale Espresso Machine</span> <span class="price">1,549.99</span>
+          dl.rating-container
+            dd.rating-ratio
+              div
+                span.rating-stars.rating-stars-off &#9733;&#9733;&#9733;&#9733;&#9733;
+                span.rating-stars.rating-stars-on &#9733;&#9733;&#9733;&#9733;&#9733;
+            dd.rating-ratio-count
+               a(href="#") 4 Reviews
+          .buy-btn
+            a.btn.btn-success.btn-large Buy
+          ul.product-incentives
+            li.pull-left <i class="icon-ok-sign"></i> <a href="#">30 Day Guarantee</a></li>
+            li.pull-right <i class="icon-lock"></i> <a href="#">Safe and Secure</a></li>
+
