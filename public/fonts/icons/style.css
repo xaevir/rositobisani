@@ -2,33 +2,14 @@
 	font-family: 'icomoon';
 	src:url('fonts/icomoon.eot');
 	src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
-		url('fonts/icomoon.woff') format('woff'),
 		url('fonts/icomoon.ttf') format('truetype'),
+		url('fonts/icomoon.woff') format('woff'),
 		url('fonts/icomoon.svg#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
-/* Use the following CSS code if you want to use data attributes for inserting your icons */
-[data-icon]:before {
-	font-family: 'icomoon';
-	content: attr(data-icon);
-	speak: none;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-/* Use the following CSS code if you want to have a class per icon */
-/*
-Instead of a list of all class selectors,
-you can use the generic selector below, but it's slower:
 [class*="fonticon-"] {
-*/
-.fonticon-tools, .fonticon-espresso-machine, .fonticon-gelato, .fonticon-pizza-oven, .fonticon-pasta, .fonticon-juicer, .fonticon-water-dropplet, .fonticon-thermometer, .fonticon-milk-pitcher, .fonticon-facebook, .fonticon-rb-filled, .fonticon-rb-circle {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -36,41 +17,54 @@ you can use the generic selector below, but it's slower:
 	font-variant: normal;
 	text-transform: none;
 	line-height: 1;
+
+	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.fonticon-water-dropplet:before {
+	content: "\e600";
 }
 .fonticon-tools:before {
-	content: "\e000";
-}
-.fonticon-espresso-machine:before {
-	content: "\e001";
-}
-.fonticon-gelato:before {
-	content: "\e002";
-}
-.fonticon-pizza-oven:before {
-	content: "\e003";
-}
-.fonticon-pasta:before {
-	content: "\e004";
-}
-.fonticon-juicer:before {
-	content: "\e005";
-}
-.fonticon-water-dropplet:before {
-	content: "\e006";
+	content: "\e601";
 }
 .fonticon-thermometer:before {
-	content: "\e007";
+	content: "\e602";
+}
+
+.fonticon-rb-icon:before {
+	content: "\e604";
+}
+.fonticon-pizza-oven:before {
+	content: "\e605";
+}
+.fonticon-pasta:before {
+	content: "\e606";
 }
 .fonticon-milk-pitcher:before {
-	content: "\e008";
+	content: "\e607";
+}
+.fonticon-juicer:before {
+	content: "\e608";
+}
+.fonticon-gelato:before {
+	content: "\e609";
+}
+.fonticon-espresso-machine:before {
+	content: "\e60a";
+}
+.fonticon-reale-logo:before {
+	content: "\e60b";
 }
 .fonticon-facebook:before {
-	content: "\e009";
+	content: "\e60c";
 }
-.fonticon-rb-filled:before {
-	content: "\e00b";
+.fonticon-specialty-foodservice-equipment:before {
+	content: "\e60d";
 }
-.fonticon-rb-circle:before {
-	content: "\e00a";
+
+.fonticon-rosito-bisani:before {
+	content: "\e603";
 }
+

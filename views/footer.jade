@@ -1,9 +1,9 @@
 footer 
   .container
+    .footer-logo
+      a(href="/")
+        span.fonticon-rosito-bisani
     ul
-      li.logo
-        a(href="/")
-          img(src="/img/logo-white.png")
       li
         a(href="/") Home
       li
@@ -16,8 +16,8 @@ footer
         a(href="/contact") Contact
       li
         a(href="/privacy-policy") Privacy Policy 
-      li.pull-right.copyright
-        | All rights reserved. 
-        - var year = new Date().getFullYear()
-        | Copyright &copy; #{year} Rosito Bisani Imports, Inc. 
+    .copyright
+      | All rights reserved. 
+      - var year = new Date().getFullYear()
+      | Copyright &copy; #{year} Rosito Bisani Imports, Inc. 
 

@@ -1,6 +1,6 @@
 
 function toSlug(text, options){
-  return text.replace(/[^a-zA-z0-9_]+/g, '-')
+  return text.replace(/[^a-zA-z0-9_]+/g, '-').toLowerCase()
 }
 
 exports.list = function(req, res) { 
@@ -33,6 +33,48 @@ exports.listOne = function(req, res) {
   })
 }
 
+exports.sortedList = function(req, res) { 
+
+  db.collection('products').find().sort({order:1}).toArray(function(err, products) {
+    db.collection('categories').find().sort({order:1}).toArray(function(err, categories) {
+      _.each(products, function(product){ 
+        var catBelongsIn = _.find(categories, function(category){
+          if (product.subcategory)
+            return product.subcategory.slug == category.slug
+          else 
+            return product.category.slug == category.slug
+        })
+        if (typeof catBelongsIn.products === "undefined")
+          catBelongsIn.products = []
+        catBelongsIn.products.push(product)
+      })
+
+      var parentCats = [] 
+      var childCats = []
+      _.each(categories, function(category){ 
+        if (category.parent) 
+          childCats.push(category)
+        else 
+          parentCats.push(category); 
+      });
+
+      _.each(childCats, function(child){ 
+        var activeParent = _.find(parentCats, function(parent){
+          return _.isEqual(child.parent, parent._id);
+        })
+        if (typeof activeParent.children === "undefined") 
+          activeParent.children = []
+        activeParent.children.push(child)
+      })
+
+      res.send(parentCats);
+    })
+  })
+}
+
+
+
+/*
 exports.reale = function(req, res) {
   db.collection('products').findOne({slug: 'Reale'}, function(err, product){
     res.render('reale', product, function(err, html){
@@ -41,3 +83,4 @@ exports.reale = function(req, res) {
 
   })
 }
+*/

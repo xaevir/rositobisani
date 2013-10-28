@@ -1,19 +1,5 @@
-@import "../js/libs/bootstrap/less/bootstrap.less";
-@import "../js/libs/bootstrap/less/responsive.less";
-@import "../js/libs/jquery-ui-custom-theme/jquery-ui-1.10.0.custom.css";
-@import "utility.less";
-// Fonts
-@import "fonts.less";
-
-[class^="icon-"]{
-  background-image: url(/js/libs/bootstrap/img/glyphicons-halflings.png);
-}
-.icon-white {
-  background-image: url(/js/libs/bootstrap/img/glyphicons-halflings-white.png);
-}
-
-.border-radius-for-pie(@radius: 5px) {
-  .border-radius(@radius);
+.border-radius-pie(@radius: 5px) {
+  border-radius: @radius;
   behavior: url(/js/libs/PIE.htc);
 }
 
@@ -26,6 +12,70 @@
     background: linear-gradient(@startColor, @endColor); /*future CSS3 browsers*/
     -pie-background: linear-gradient(@startColor, @endColor); /*PIE*/
 }
+.pie-box-shadow(@shadow) {
+  .box-shadow(@shadow);
+  behavior: url(/js/libs/PIE.htc);
+}
+
+// Colors
+@red: #ec1c2d;
+@mint-cream: #f4fffd;
+@light-yellow: #fdffe1;
+@light-cyan: #e5fffa;
+@light-cyan-drk: #dffff9;
+@azure: #ecfdfa;
+.colors {
+  color: #d7dae7;
+  color: #bbf9ee;
+  color: #d9dbb8;
+  color: #c0c1b4;
+  color: #fefff2;
+  color: #e5e7f0;
+  color: #f5f9bb;
+  color: #fff;
+  color: @light-cyan-drk;
+  color: @mint-cream;
+  color: @light-yellow;
+}
+
+// Fonts
+.scriptFonts {
+  font-family: thirstyScriptLight;
+  font-family: sinaNova;
+  font-family: caslon;
+  font-family: garamondBook;
+}
+
+.fonts {
+  font-family: quicksandBook;
+  font-family: quicksandBold;
+  font-family: quicksandLight;
+
+  font-family: nexaLight;
+  font-family: nexaBold;
+
+
+  font-family: montserrat;
+  font-family: montserratBold;
+
+  font-family: gothamRndMedium;
+  font-family: gothamRndBook;
+  font-family: gothamRndLight;
+
+  font-family: proximaNova;
+  font-family: proximaNovaLight;
+  font-family: proximaNovaBlack;
+
+  font-family: codeLight;
+  font-family: codeBold;
+
+  font-family: asap;
+  font-family: dosis;
+  font-family: lato;
+  font-family: openSans;
+  .scriptFonts();
+}
+
 
 
 /* ==========================================================================
@@ -52,6 +102,29 @@
 }
 
 
+/* Sticky footer styles
+-------------------------------------------------- */
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -134px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+footer {
+  height: 134px;
+}
+
 /* ==========================================================================
    Base tags 
    ========================================================================== */
@@ -61,21 +134,13 @@ h1, h2, h3 {
 }
 
 html {
-  // to sticky footer to bottom 
-  margin:0;
-  padding:0;
-  height:100%;
+  //margin:0;
+  //padding:0;
 }
 
 body {
   line-height: 1.3;
-  // to sticky footer to bottom 
-  min-height:100%;
-  position:relative;
-}
-
-#app {
-  padding-bottom: 70px;
+  font-family: proximaNova, arial, 'sans-serif';
 }
 
 #notification-region {
@@ -96,7 +161,7 @@ body {
     border: 1px solid #F0C36D;
     color: #222;
     .box-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
-    .border-radius-for-pie(5px);
+    .border-radius-pie(5px);
     font-size: 16px;
     //e chefont-weight: bold;
     padding: 10px;
@@ -134,30 +199,21 @@ body {
 form .btn {
   display: block;
 }
-
-/* ==========================================================================
-   Contact Page 
-   ========================================================================== */
-#contact {
-  .span4.well {
-    width: 360px; 
-  }
-  button { 
+form {
+  span.error {
+    color: #b94a48;;
     display: block;
-  }
-  textarea {
-    height: 150px;
-    width: 300px;
-  }
-  .body {
-    p {
-      //font-size: 28px;
-    }
-    b {
-      //font-size: 24px;
-    }
+    margin-top: -10px;
+    margin-bottom: 10px;
   }
 }
+form.form-inline {
+   span.error {
+    margin-top: 0px;
+  }
+ 
+}
+
 
 #myModal {
   #alert;
@@ -203,83 +259,150 @@ form .btn {
 }
 
 // product detail uses no margin
-#contact .page-header, 
-#about .page-header, 
-#privacyPolicy .page-header,
-#manuals .page-header {
+#privacyPolicy .page-header {
   margin-top: 15px;
+}
+
+/* ==========================================================================
+   breadcrumbs 
+   ========================================================================== */
+.breadcrumbs {
+  position: relative;
+  padding: 7px 14px;
+  margin: 0px 0 18px;
+  border-bottom: 1px solid #DDD;
+  background: #eee;
+  //background-color: #FBFBFB;
+  //#gradient > .vertical(#fff, #f5f5f5);
+  //.box-shadow(0 1px 5px rgba(0, 0, 0, 0.1));
+  //margin-top: -18px;
+  h3 {
+    font-weight: normal;
+    font-size: 16px;
+    margin-top: 0; 
+    margin-bottom: 0; 
+    ///text-shadow: 1px 1px #fff;
+  }
 }
 
 
 /* ==========================================================================
    Navbar 
    ========================================================================== */
-
 .navbar {
-  margin-bottom: 0;
-}
-
-@red: #ec1c2d;
-
-.navbar .navbar-inner {
-  .border-radius(0);
+  border-radius: 0;
   border: none;
-  border-bottom: 1px solid #fff;
-  #gradient > .vertical(@red, darken(@red, 5%));
-  //#gradient > .vertical(#f6f6f6, #d9d9d9);
-  .nav .active > a {
-    background-color: @red;
+  margin: 0;
+  .navbar-brand {
+    float: left;
+    padding: 0;
+    padding-top: 7px;
+    span {
+      display: block;
+    }
+    .fonticon-rosito-bisani {
+      font-size: 32px;
+      color: @red;
+    }
+    .fonticon-specialty-foodservice-equipment {
+      font-size: 7px;
+      color: #111;
+    }
   }
-  .nav > li > a {
-    &:hover {
-      background-color: @red;
+  .navbar-nav {
+    margin-left: 15px;
+    li a {
+      padding: 20px 10px;
+      font-size: 13px;
+      color: #656565;
+      text-transform: uppercase;
+      &:hover {
+        color: #111;
+        background-color: transparent;
+      }
+    }
+  }
+  .contact-numbers {
+    .clearfix;
+    color: #555;
+    margin-top: 15px;
+    font-size: 12px;
+    h4 {
+      font-size: 13px;
+      float: left;
+      margin: 0 10px 0 0;
+    }
+    ul {
+      list-style: none;
+      float: left;
+      margin: 0 15px 0 0;
+      text-align: center;
     }
   }
 }
+/*
+.navbar {
+  margin-bottom: 0;
+  .navbar-inner {
+    .border-radius(0);
+    border: none;
+    //border-bottom: 1px solid #fff;
+    //#gradient > .vertical(@red, darken(@red, 5%));
+    #gradient > .vertical(#fff, #fff);
+    //#gradient > .vertical(#000, #000);
+    //#gradient > .vertical(#f6f6f6, #d9d9d9);
+    position: relative;
+    z-index: 2;
+    //.box-shadow(0 1px 4px rgba(0, 0, 0, 0.1));
+    .box-shadow(0 0px 0px rgba(0, 0, 0, 0.1));
+  }
+  .brand {
+    margin: 0;
+    padding: 0;
+    text-shadow: none;
+    display: block;
+    font-size: 30px;
+    color: @red;
+    padding-top: 7px;
+    display: block;
+    span {
+      display: block;
+    }
+    .fonticon-rosito-bisani {
+      font-size: 32px;
+    }
+    .fonticon-specialty-foodservice-equipment {
+      font-size: 7px;
+      color: #111;
+    }
+  }
+  .nav {
+    margin: 0;
+    padding: 0;
+    margin-left: 15px;
+  }
+  .nav li a {
+    padding: 20px 10px;
+    font-size: 13px;
+    color: #656565;
+    text-transform: uppercase;
+  }
+  .nav li a:hover,
+  .nav > .active > a:hover {
+    color: #111;
+    //border-top: 4px solid #000;
+    //background: transparent;
+    //.box-shadow(0 0px 0px rgba(0, 0, 0, 0.00));
+  }
+  .nav .active > a {
+    color: #000;
+    border-top: 4px solid #000;
+    background: transparent;
+    .box-shadow(0 0px 0px rgba(0, 0, 0, 0.00));
+  }
 
-.navbar .container {
-  //width: 1170px;  
-  //position: relative;
-}
-
-.navbar .brand {
-  margin: 0;
-  padding: 0;
-}
-.navbar .rb {
-  position: absolute;
-  //width: 140px;
-  z-index: 2;
-  top: -24px;
-  right: 0;
-}
-
-.navbar .logo {
-  padding: 6px 0;
-  //width: 200px;
-  //margin-left: 125px;
-}
-.navbar .nav {
-  margin: 0;
-  padding: 0;
-  margin-left: 5px;
-}
-
-.navbar .nav li a {
-  padding: 28px 20px 24px;
-  font-size: 14px;
-  color: #fff;
-  text-shadow: none;
-}
-.navbar .contact-numbers {
-  list-style: none;
-  color: #fff;
-  //background: url(/img/telephone-icon.png) no-repeat center left; 
-  //padding-left: 32px;
-  margin-top: 14px;
-}
-
-.navbar .user-menu-inner {
+*/
+.user-menu-inner {
   margin-top: 15px;
   margin-left: 30px;
 }
@@ -295,10 +418,6 @@ form .btn {
   //text-shadow: none;
 }
 
-.navbar .caret {
-  //border-top: 4px solid #000000 !important;
-}
-
 .navbar .btn-navbar {
   padding: 14px 15px; 
 }
@@ -307,182 +426,207 @@ form .btn {
    Carousel 
    ========================================================================== */
 .carousel {
-  margin-bottom: 0;
 }
-
-.carousel-indicators {
-  li {
-    .border-radius-for-pie(5px);
-  }
-}
-
-.carousel-control {
-  .border-radius-for-pie(23px);
-  .opacity(50);
-}
-
 /* ==========================================================================
    Footer 
    ========================================================================== */
 footer {
-  background-color: #111;
-  //background-color: #444;
-  // stick footer to bottom
-  position:absolute;
-  bottom:0;
-  width:100%;
-  height:50px;   /* Height of the footer */
-}
-
-footer .container {
-  ///width: 1170px;
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box;
+  background-color: #333;
+  padding: 30px 0; 
 }
 
 footer ul {
   list-style: none;
   .clearfix;
+  float: right;
+  margin-top: 1em;
 }
 
 footer li {
-  float: left; 
+  float: left;
 }
 
-footer li a, footer .copyright {
-  display: block;
-  color: #ccc;
-  padding: 15px;
+footer .copyright {
+  color: #999;
+  color: #777e83;
+  font-size: 11px;
+  clear: both;
+  //text-align: center;
+  padding-top: 15px;
+  border-top: 1px solid #3a3e40;
 }
 
-footer .logo img {
-  width: 130px;
+footer li a {
+  color: #e2e3e4;
+  padding-right: 25px;
+  font-size: 15px;
+  font-family: proximaNova;
 }
 
-footer .logo a{
-  padding: 10px;
+footer .footer-logo {
+  a {
+    float: left;
+    color: #fff;
+    font-size: 34px;
+  }
 }
 
 /* ==========================================================================
-   Silver Bar 
+   Home 
    ========================================================================== */
 
-.section2 {
-  //background: url(/img/bg.png) repeat top left; 
-  margin-top: 20px;
-  padding-bottom: 20px;
-  h2 {
-    //font-family: LinuxLibertine, arial;
-    //font-family: 'Libre Baskerville', serif;
-    //font-family: Quicksand-Book, arial;
-    //font-family: Nexa-Bold, arial;
-    ///font-family: Nexa-Bold, arial;
-    //color: #666;
-    //color: @red;
-    color: #000;
-    //font-weight: normal;
-    line-height: 1;
-    .clearfix;
+#home {
+  #specialize {
+    font-weight: normal;
+    //font-family: garamond-book;
+    font-family: quicksandBook;
+    //text-align: center;
+    //margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 50px;
   }
-  .current-events {
-    //background: #f7f7f7;
-    //background: #ccc;
-    border: 3px solid #000;
-    //background: #ccc;
-    background: #111;
-    //#gradient > .vertical(#f7f7f7, #ddd);
-    //border: 5px solid #eee;
-    //border-top: 1px solid #ccc;
-    //border-bottom: 1px solid #ccc;
-    //background: @red;
-    margin-top: 15px;
-    //color: #fff;
-    //width: 300px;
-    ///border: 3px solid #333;
-    //border-radius: 600px;
-    //background-color: #333;
-    position: relative;
+}
+
+#home .icons {
+  background-color: @red;
+  padding: 0px 0; 
+  .row {
+    text-align: center;
+  }
+  .col-mid-2 {
+  }
+  .icon {
+    font-size: 45px;
     color: #fff;
-    h2 {
-      //color: #fff;
-      //text-align: center;
-      color: #fff;
+  }
+  .title {
+    font-weight: normal;
+    font-size: 16px;
+    //margin-top: 10px;
+    margin-bottom: 0;
+    display: block;
+    color: #fff;
+  }
+  a {
+    display: block;
+    padding: 15px 0 10px 0;
+    &:hover {
+      text-decoration: none;
+      background: #ff2b3d;
     }
-    h4 {
-      margin-top: 20px;
-      color: #fff;
+  }
+}
+
+.section2 {
+  .top {
+    padding-top: 15px;
+    background-color: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  #rb-icon {
+    height: 100px;
+    float: right;
+    margin-left: 10px;
+  }
+  .philosophy {
+    //background: url(/img/RB-icon-grayscale-no-circle.png) no-repeat center center; 
+    position: relative;
+
+    h1 {
+      //text-align: center;
+      font-weight: normal;
+      font-family: 'lato';
+      color: #3d4243;
+      font-size: 24px;
+    }
+    .rb-logo {
+      height: 75px;
+      margin: 0 auto;
+      display: block;
+    }
+    p {
+      line-height: 1.5;
+      //text-align: center;
+      font-size: 13px;
+      //background-size: 150px;
+      .show-hide-content {
+        display: none;
+      }
+    }
+  }
+
+  .current-events {
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 13px;
+    h1 {
+      font-family: quicksandBook;
+      font-weight: normal;
+      font-size: 24px;
+      font-family: 'lato';
+      color: #3d4243;
+
+    }
+    h3 {
+      font-size: 14px;
+      margin-bottom: 5px;
+      margin-top: 0;
+    }
+    .icon {
+      font-size: 25px;
+      vertical-align: middle;
+      display: block;
+      float: left;
+      margin-right: 5px;
     }
     a {
+      vertical-align: bottom;
       //color: lightblue; 
       //text-decoration: underline;
     }
     a:hover {
-      color: #fff; 
+      //color: #fff; 
     }
-
-  }
-  .header {
-    padding: 20px;
-    padding-bottom: 0;
-  }
-  .body {
-    padding: 20px;
-    padding-top: 0;
-  }
-  p {
-    //font-family: 'Libre Baskerville', serif;
-    //font-family: Nexa-Bold, arial;
-    //font-family: SinaNova, arial;
-    //font-family: Quicksand-Book, arial;
-    //font-family: Asap, arial;
-    //font-family: LinuxLibertine, arial;
-  }
-  .span6 {
-    margin-top: 20px;
-  }
-  .news-icon {
-    width: 75px;
-    margin-right: 20px;
-    float: left;
-  }
-  .chat-icon {
-    width: 100px;
-    float: left;
-    margin-right: 20px;
-  }
-  .facebook-icon {
-    width: 25px;
-  }
-  .circle-icon {
-    width: 300px;
-    position: absolute;
-    z-index: -1;
-  }
-  .quotes {
-    font-family: georgia;
-    font-size: 30px;
-    float: left;
-    display: block;
-    line-height: .6; 
   }
   .testimonials {
-    blockquote {
-      font-size: 15px;
-      //font-family: LinuxLibertine;
-      //font-family: 'Libre Baskerville', serif;
-      //font-family: Nexa-Bold !important;
-      //font-family: Quicksand-Book, arial;
-      margin-bottom: 30px;
-      line-height: 1.3;
-    }
+    width: 900px;
+    margin: 0 auto;
     h2 {
       line-height: 1;
-      //font-family: LinuxLibertine !important;
-      //font-family: Nexa-Bold, arial;
-      //font-family: Quicksand-Book !important;
-      //font-family: Nexa-Bold !important;
-      font-weight: bold;
+      font-family: garamondBbook;
+      font-weight: normal;
+      text-align: center;
+      font-size: 46px;
+      margin: 1em 0;
     }
-    .quote-from {
-      font-family: arial;
+    .quote {
+      font-size: 24px;
+      font-family: verdana;
+      margin-bottom: 30px;
+      line-height: 1.5;
+      text-align: center;
+      margin-bottom: 50px;
+      .quotes {
+        font-family: georgia;
+        font-size: 45px;
+        line-height: 0; 
+        position: relative;
+        top: .1em;
+      }
+      .author {
+        margin-top: 5px;
+        font-size: 18px;
+        .line-one {
+          //font-size: 14px;
+          font-style: italic;
+        }
+      }
+      .testimonial-icon {
+        display: block;
+        margin: 0 auto;
+      }
     }
     .header {
       margin-bottom: 25px;
@@ -493,198 +637,6 @@ footer .logo a{
   }
   .testimonials.second {
     margin-top: 28px;
-  }
-}
-
-
-
-/* ==========================================================================
-   Home 
-   ========================================================================== */
-
-#home .icons {
-  background-color: #111;
-  //padding: 20px 0;
-  //#gradient > .vertical(#222, darken(#111, 5%));
-}
-
-#home .icons .span2 {
-  text-align: center;
-}
-
-#home .icons img {
-  height: 39px;
-}
-
-#home .icons .title {  
-  font-weight: normal;
-  font-size: 16px;
-  margin-top: 0;
-  margin-bottom: 0;
-  display: block;
-  //color: @red;
-  color: #fff;
-  //color: #111;
-  //font-family: arial, sans-serif;
-}
-
-#home .icons a {
-  display: block;
-  padding: 20px 0;
-  &:hover {
-    text-decoration: none;
-    background: #666;
-  }
-}
-
-#home .philosophy {
-  //margin: 50px 0;
-  #gradient > .vertical(#f7f7f7, #fff);
-  //background-image: url(/img/RB-icon.png) no-repeat center center; 
-    padding-bottom: 50px;
-  .container {
-    //padding-bottom: 50px;
-    //background: url(/img/RB-icon.png) no-repeat center center; 
-  }
-  h1 {
-    text-align: center;
-    //font-family: LinuxLibertine, arial;
-    //font-weight: normal;
-  }
-  .rb {
-    height: 200px;
-    float: left;
-    margin-right: 20px;
-
-  }
-  p {
-    margin: 0 auto;
-    line-height: 1.7;
-    //padding: 20px;
-    font-size: 18px;
-    font-family: 'Libre Baskerville', serif;
-    font-weight: normal;
-  }
-}
-
-
-/* ==========================================================================
-   Machines 
-   ========================================================================== */
-#machines {
-  background: #fff;
-}
-
-#machines .headline {
-  margin: 50px 0 50px 0;
-}
-
-#machines .headline h1 {
-  position: relative;
-  text-align: center;
-  font-family: LinuxLibertine, arial;
-  font-weight: normal;
-  //text-shadow: 2px 2px 0px #fff;
-  //colr:#ec1c2d; 
-  //color: #111;
-  //color: @red;
-  font-size: 36px;
-  margin-top: 30px;
-  line-height: 1;
-  .quote {
-    margin-top: -28px;
-  }
-  b {
-    font-family: georgia, serif;
-    font-size: 100px;
-    //position: absolute;
-    display: inline-block;
-    //background-color: #e3e2df;
-    line-height: .1;
-    height: 54px;
-  }
-  b.l {
-    margin-right: 10px;
-  }
-  b.r {
-    margin-left: 10px;
-    height: 35px;
-    line-height: .7;
-    display: none;
-  }
-}
-
-#machines .products h2 {
-  text-align: center;
-  margin: 30px 0 20px;
-  font-size: 40px;
-  font-weight: normal;
-  //font-family: 'Libre Baskerville', serif;
-  //font-family: Nexa-Bold, arial;
-
-  //font-family: SinaNova, arial;
-  font-family: Quicksand-Book, arial;
-  //font-family: Asap, arial;
-  //font-family: LinuxLibertine;
-
-
-}
-
-#machines .headline h3 {
-  text-align: center;
-  font-weight: normal;
-}
-
-#machines .products {
-  background: url(/img/bg.png) repeat top left; 
-  padding-bottom: 20px;
-  .divider {
-    background: url(/img/bg-module-top-shadow.png) no-repeat top center; 
-    //display: block;
-    //margin: 0 auto;
-  }
-}
-
-#machines .thumbnails .thumbnail {
-  padding: 20px;
-  padding-top: 30px;
-  background-color: #fff;
-  img {
-    height: 200px;
-  }
-}
-
-#machines .thumbnails h3{
-  text-align: center;
-}
-
-#machines .philosophy {
-  //margin: 50px 0;
-  #gradient > .vertical(#f7f7f7, #fff);
-  //background-image: url(/img/RB-icon.png) no-repeat center center; 
-    padding-bottom: 50px;
-  .container {
-    //padding-bottom: 50px;
-    //background: url(/img/RB-icon.png) no-repeat center center; 
-  }
-  h1 {
-    text-align: center;
-    font-family: LinuxLibertine, arial;
-    font-weight: normal;
-  }
-  .rb {
-    height: 200px;
-    float: left;
-    margin-right: 20px;
-
-  }
-  p {
-    margin: 0 auto;
-    line-height: 1.7;
-    //padding: 20px;
-    font-size: 18px;
-    font-family: 'Libre Baskerville', serif;
-    font-weight: normal;
   }
 }
 
@@ -734,7 +686,7 @@ body.login, body.signup {
     margin-top: -32px;
     background-color: #fff;
     border: 1px solid #e5e5e5;
-    .border-radius-for-pie(5px);
+    .border-radius-pie(5px);
     .box-shadow(0 1px 2px rgba(0, 0, 0, 0.05));
   }
   p {
@@ -786,31 +738,119 @@ body.login, body.signup {
 	width:140px;
 }
 
-
-.items {  
-  margin-top: 10px;
+/* ==========================================================================
+   Manuals Page
+   ========================================================================== */
+#manuals {
   h1 {
     font-size: 54px;
-    margin: 20px 0 0 0;
+    font-family: lato;
+    font-weight: normal;
+    margin: 1em 0 .2em 0;
     line-height: 1.2;
+    font-family: 'quicksandBook';
+    font-weight: normal;
   }
-  .lead {
-    margin-bottom: 18px;
-    font-weight: 300;
+  h2 {
+    color:#666;
+    border-bottom: 1px solid #ccc;
+    font-size: 35px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    line-height: 1.2;
+    padding-bottom: .5em;
+    font-family: 'quicksandBook';
+    font-weight: normal;
   }
-  .section {
-    h1 {
-      font-size: 30px; 
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 10px;
+  h3 {
+    font-family: 'quicksandBook';
+    font-weight: normal;
+  }
+  .item-rows {  
+    margin-top: 10px;
+    overflow: auto;
+    list-style: none;
+    margin-top: 35px;
+    .clearfix;
+    li {
+      float: left;
+      width: 175px;
+      margin: 0 20px;
+      margin-bottom: 15px;
+      display: inline;
+      text-align: center;
+      position: relative;
+      a {
+        padding-top: 5px;
+        border: 1px solid #ccc;
+        display: block;
+        &:hover {
+          border: 1px solid #5FBDFF;
+        }
+      }
+      .thumbnail-wrapper {
+        height: 155px; 
+        width: 175px;
+        text-align: center;
+        display: block;
+      }
     }
+    h4 {
+      font-size: 18px;
+      font-weight: bold;
+      margin: .3em;
+      display: block;
+      height: 56px;
+      overflow: hidden;
+      line-height: 1.1;
+    }
+    .actions {
+      margin: 10px 0;
+    }
+  }
+}
+
+#products {
+  .items {
+    overflow: auto; //collapsing margins
+    > section {
+      margin-top: 30px;
+    }
+  }
+  h1 {
+    font-size: 54px;
+    font-family: lato;
+    font-weight: normal;
+    margin: 1em 0 .2em 0;
+    line-height: 1.2;
+    font-family: 'quicksandBook';
+    font-weight: normal;
+  }
+  section {
     h2 {
-      color:#666;
-      font-size: 24px;
-      margin-bottom: 25px;
+      //color:#666;
+      border-bottom: 1px solid #ccc;
+      font-size: 35px;
+      margin-bottom: 15px;
       margin-top: 15px;
       line-height: 1.2;
+      padding-bottom: .5em;
+      font-family: 'quicksandBook';
+      font-weight: normal;
     }
+    h3 {
+      font-family: 'quicksandBook';
+      font-weight: normal;
+    }
+    h4 {
+      font-size: 18px;
+      font-weight: normal;
+      margin: .3em;
+      display: block;
+      height: 56px;
+      overflow: hidden;
+    }
+
     ul {
       overflow: auto;
       list-style: none;
@@ -843,29 +883,11 @@ body.login, body.signup {
         padding: 3px;
       }
     }
-    .title {
-      font-size: 18px;
-      font-weight: bold;
-      margin: .3em;
-      display: block;
-      height: 56px;
-      overflow: hidden;
-    }
   }
 }
 
 
-#manuals {
-  .item-rows {  
-    //margin-top: 10px;
-    //.clearfix;
-    h1 {
-      font-size: 38.5px;
-      //margin: 20px 0 0 0;
-      //line-height: 1.2;
-    }
-  }
-}
+
 
 
 .thumbs {
@@ -939,43 +961,18 @@ body.login, body.signup {
 }
 
 /* Subnav */
-.subnav {
-  //width: 100%;
- // margin-top: -18px;
-  margin: 10px 0 50px 0; 
-  height: 36px;
-  background-color: #eeeeee; /* Old browsers */
-  background-repeat: repeat-x; /* Repeat the gradient */
-  background-image: -moz-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%); /* FF3.6+ */
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5f5f5), color-stop(100%,#eeeeee)); /* Chrome,Safari4+ */
-  background-image: -webkit-linear-gradient(top, #f5f5f5 0%,#eeeeee 100%); /* Chrome 10+,Safari 5.1+ */
-  background-image: -ms-linear-gradient(top, #f5f5f5 0%,#eeeeee 100%); /* IE10+ */
-  background-image: -o-linear-gradient(top, #f5f5f5 0%,#eeeeee 100%); /* Opera 11.10+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#eeeeee',GradientType=0 ); /* IE6-9 */
-  background-image: linear-gradient(top, #f5f5f5 0%,#eeeeee 100%); /* W3C */
-  border: 1px solid #e5e5e5;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
-}
-
-
-
 .subnav .nav {
   margin-bottom: 0;
 }
+
 .subnav .nav > li > a {
   margin: 0;
-  padding-top:    11px;
-  padding-bottom: 11px;
-  border-left: 1px solid #f5f5f5;
-  border-right: 1px solid #e5e5e5;
-  -webkit-border-radius: 0;
-     -moz-border-radius: 0;
-          border-radius: 0;
+  padding: 9px;
+  font-size: 15px;
 }
 .subnav .nav > .active > a,
 .subnav .nav > .active > a:hover {
+  background-color: #f7f7f7;
   padding-left: 13px;
   color: #777;
   background-color: #e9e9e9;
@@ -985,63 +982,54 @@ body.login, body.signup {
      -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,.05);
           box-shadow: inset 0 3px 5px rgba(0,0,0,.05);
 }
-.subnav .nav > .active > a .caret,
-.subnav .nav > .active > a:hover .caret {
-  border-top-color: #777;
-}
-.subnav .nav > li:first-child > a,
-.subnav .nav > li:first-child > a:hover {
+
+.subnav .nav > li:first-child > a {
   border-left: 0;
   padding-left: 12px;
-  -webkit-border-radius: 4px 0 0 4px;
-     -moz-border-radius: 4px 0 0 4px;
-          border-radius: 4px 0 0 4px;
 }
 .subnav .nav > li:last-child > a {
   border-right: 0;
 }
-.subnav .dropdown-menu {
-  -webkit-border-radius: 0 0 4px 4px;
-     -moz-border-radius: 0 0 4px 4px;
-          border-radius: 0 0 4px 4px;
-}
 
 /* Fixed subnav on scroll, but only for 980px and up (sorry IE!) */
 //@media (min-width: 980px) {
-  .subnav-fixed {
-    position: fixed;
-    margin-top: 0;
-    top: 0px;
-    left: 0;
-    right: 0;
-    z-index: 1030;
-    border-color: #d5d5d5;
-    border-width: 0 0 1px; /* drop the border on the fixed edges */
-    -webkit-border-radius: 0;
-       -moz-border-radius: 0;
-            border-radius: 0;
-    -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-       -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-            box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-  }
-  .subnav-fixed .nav {
-    //width: 938px;
-    margin: 0 auto;
-    padding: 0 1px;
-  }
-  .subnav .nav > li:first-child > a,
-  .subnav .nav > li:first-child > a:hover {
-    -webkit-border-radius: 0;
-       -moz-border-radius: 0;
-            border-radius: 0;
-  }
-//}
-.subnav .nav {
+.subnav-fixed {
+  background-color: #f5f5f5; 
+  border: 1px solid #ddd;
+  position: fixed;
+  margin-top: 0;
+  top: 0px;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  border-color: #d5d5d5;
+  border-width: 0 0 1px; /* drop the border on the fixed edges */
+  -webkit-border-radius: 0;
+     -moz-border-radius: 0;
+          border-radius: 0;
+  -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+     -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+          box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+}
+.subnav-fixed .nav {
   //width: 938px;
-  //margin: 0 auto;
-  //padding: 0 1px;
+  margin: 0 auto;
+  padding: 0 1px;
 }
 
+.subnav-fixed .nav > li > a {
+  border-left: 1px solid #f5f5f5;
+  border-right: 1px solid #e5e5e5;
+  -webkit-border-radius: 0;
+     -moz-border-radius: 0;
+          border-radius: 0;
+}
+.subnav .nav > li:first-child > a,
+.subnav .nav > li:first-child > a:hover {
+//  -webkit-border-radius: 0;
+//     -moz-border-radius: 0;
+//          border-radius: 0;
+}
 
 /* ==========================================================================
    Responsive 
@@ -1053,6 +1041,8 @@ body.login, body.signup {
 @media (min-width: 768px) and (max-width: 979px) {
 }
 
+@media (min-width: 1020px) { 
+}
 
 @media (max-width: 1069px) {
   .nav-pills > li > a {
@@ -1094,62 +1084,95 @@ body.login, body.signup {
   }
 }
 
-#manuals {
-  h2 {
-    font-size: 30px;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
-    margin: 20px 0 0 0;
-    line-height: 1.2;
-  }
-  h3 {
-    color:#666;
-    font-size: 24px;
-    margin-bottom: 25px;
-    margin-top: 15px;
-    line-height: 1.2;
-  }
-  .item-rows {  
-    margin-top: 10px;
-    overflow: auto;
-    list-style: none;
-    margin-top: 35px;
-    .clearfix;
-    li {
-      float: left;
-      width: 175px;
-      margin: 0 20px;
-      margin-bottom: 15px;
-      display: inline;
+
+
+/* ==========================================================================
+   Contact Page 
+   ========================================================================== */
+#contact {
+  .header {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    position: relative;
+    height: 400px;
+    img {
+      position: absolute;
+      z-index: -1;
+    }
+    .caption {
+      position: absolute;
+      bottom: 0;
       text-align: center;
-      position: relative;
-      a {
-        padding-top: 5px;
-        border: 1px solid #ccc;
-        display: block;
-        &:hover {
-          border: 1px solid #5FBDFF;
+      p {
+        font-size: 20px;
+        color: #fff;
+        span {
+          background: rgba(0, 0, 0, .5);
+          padding: 5px;
         }
       }
-      .thumbnail-wrapper {
-        height: 155px; 
-        width: 175px;
-        text-align: center;
-        display: block;
-      }
     }
-    h4 {
-      font-size: 18px;
-      font-weight: bold;
-      margin: .3em;
-      display: block;
-      height: 56px;
-      overflow: hidden;
-      line-height: 1.1;
-    }
-    .actions {
-      margin: 10px 0;
-    }
+  }
+  h1 {
+    font-size: 70px;
+    font-family: 'quicksandBook';
+    font-weight: normal;
+  }
+  .row {
+    //margin-top: 20px;
+  }
+  .span4.well {
+    //width: 360px; 
+  }
+  button { 
+    display: block;
+  }
+  textarea {
+    height: 150px;
+    width: 300px;
   }
 }
 
+/* ==========================================================================
+   About Page
+   ========================================================================== */
+
+#about {
+  h1 {
+    font-size: 70px;
+    font-family: 'quicksandBook';
+    font-weight: normal;
+  }
+  .content {
+    margin-top: 25px;
+  }
+  p {
+    font-size: 20px;
+    font-family: verdana;
+    line-height: 1.5;
+  }
+  #collage {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+/* ==========================================================================
+   Reviews Page
+   ========================================================================== */
+#reviews {
+  .rating-stars {
+    line-height: 1em;
+    height: 1em;
+    font-size: 24px;
+    display: block;
+    overflow: hidden;
+  }
+  .rating-stars-off {
+    color: #efefef;
+  }
+  .rating-stars-on {
+    color: #b0cb46;
+    margin-top: -1em;
+    width: 80%;
+  }
+}

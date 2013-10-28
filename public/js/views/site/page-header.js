@@ -2,7 +2,7 @@ define(function(require) {
 
 return Backbone.View.extend({
 
-  className: 'page-header',
+  className: 'breadcrumbs',
 
   template: function(catLabel){
     return '<h3 class="container">' + catLabel  + '</h3>'

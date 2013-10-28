@@ -23,7 +23,13 @@ define([
     setActiveLink: function(linkUrl){
       var links = App.request("nav:entities");
       var linkToSelect = links.find(function(link){ return link.get("url") === linkUrl; });
-      linkToSelect.select();
+      if(typeof linkToSelect === 'undefined') { // passing in param as empty to clear
+        if (this.previousSelected)
+         this.previousSelected.deselect() 
+       } else {
+        linkToSelect.select();
+        this.previousSelected = linkToSelect
+      }
       links.trigger("reset");
     }
   };

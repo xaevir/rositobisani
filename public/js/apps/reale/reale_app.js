@@ -5,19 +5,21 @@ define([
 
   App.Router = Marionette.AppRouter.extend({
     appRoutes: {
-      'products/reale': 'showReale'
+      'products/reale': 'showReale',
+      'products/reale/tabs/:tab': 'showReale'
     }
   });
 
   var API = {
-    showReale: function(){
-      ShowController.showReale()
+    showReale: function(tab){
+      ShowController.showReale(tab)
     },
   };
 
-//  App.on("manual:edit", function(id){
-//    App.navigate("admin/manuals/" + id + "/edit");
-//  });
+  App.on("reale:show", function(){
+    API.showReale()
+    App.navigate("products/reale");
+  });
 
   new App.Router({ controller: API });
 

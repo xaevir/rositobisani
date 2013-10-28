@@ -3,19 +3,14 @@ define(function(require) {
 var BaseRouter = require('routers/baseRouter')
   , SignupView = require('views/users/signup').signup
   , LoginView = require('views/users/login').login
-  , ContactView = require('views/contact')
   , NavView = require('views/navbar/navbar')
   , User = require('models/user')
   , NewUser = require('models/newUser')
-  , Products = require('collections/products') 
-  , Product = require('models/product') 
-  , ProductsView = require('views/products/products')
-  , ProductView = require('views/products/product')
+//  , Product = require('entities/product') 
+//  , ProductView = require('views/products/product')
   , ProductEditView = require('views/products/product-edit')
   , ContextualMenuView = require('views/products/contextual-menu')
   , PageHeaderView = require('views/site/page-header')
-  , SubnavView = require('views/products/subnav')
-  , StopClickView = require('views/site/stopClick')
 
   function setPageContent(content, title) {
     $('#app').html(content);
@@ -48,14 +43,10 @@ var BaseRouter = require('routers/baseRouter')
         '':                             'home'
       , 'login':                        'login'
       , 'signup':                       'signup'
-      , 'products':                     'products'
       , 'products/:slug/edit':          'productEdit'
       , 'products/:slug/delete':        'productDelete'
       , 'products/new'  :               'newProduct'
-//      , 'products/Reale':               'reale'
-      , 'products/:slug':               'product'
-      , 'contact':                      'contact'
-      , 'about':                        'about'
+//      , 'products/:slug':               'product'
       , 'privacy-policy':               'privacyPolicy'
     },
 
@@ -80,61 +71,39 @@ var BaseRouter = require('routers/baseRouter')
       });
     },
   
-    home: function() {
+    /*home: function() {
       if ($('#home').length) {
-        $('#myCarousel').carousel({
-          interval: 3000
-        })
-        // for screen larger than 1600 width 
-        var winWidth = $(window).width()
-        if(winWidth >1600 )
-          $('#myCarousel img').css('width', winWidth) 
-
-        var view = new StopClickView({el: $('.icons')} )
+        homeSetup()
         return
       }
       $.get('/', function(obj) {
         $('#app').html(obj.body);
-         document.title = obj.title
-        $('#myCarousel').carousel('cycle')
-        var view = new StopClickView({el: $('.icons')} )
-      })
-    }, 
-
-    contact: function() {
-      if ($('#contact').length) {
-        this.contactForm() 
-      } else {
-        var self = this
-        $.get('/contact', function(obj) {
-          $('#app').html(obj.body);
-          document.title = obj.title
-          self.contactForm()
-        })
-      }
-    },
-    
-    contactForm: function() {
-      var view = new ContactView({el: $('.contact')} )
-      var html = view.render()
-    },
-
-    about: function() {
-      $('body').addClass('narrowPage')
-      if ($('#about').length) 
-        return
-      $.get('/about', function(obj) {
-        $('#app').html(obj.body);
         document.title = obj.title
-        var view = new ContactView({el: $('.contact')} )
-        var html = view.render()
-        //$('#app').html(html)
+        homeSetup()
       })
-    },
 
-    reset_about: function(){
-      $('body').removeClass('narrowPage')
-    },
+      function homeSetup(){
+
+        $('#myCarousel').carousel({
+          interval: 3000
+        })
+
+        new StopClickView({el: $('.icons')} )
+
+        var winWidth = $(window).width() // for screen larger than 1600 width
+        if(winWidth >1600 )
+          $('#myCarousel img').css('width', winWidth) 
+
+        $( ".click-show-hide" ).click(function(e) {
+          e.preventDefault()
+          $( ".show-hide" ).toggle( "slow", function(e) {
+            // Animation complete.
+          });
+        });
+
+      }
+    }, 
+    */
 
     privacyPolicy: function() {
       $('body').addClass('narrowPage')
@@ -219,7 +188,7 @@ var BaseRouter = require('routers/baseRouter')
       });
     }, restrict),
 
-    products: function(){ 
+    /*products: function(){ 
       var products = new Products()
       var self = this
       products.fetch({success: function(collection, res){
@@ -235,6 +204,7 @@ var BaseRouter = require('routers/baseRouter')
         document.title = 'Products' 
       }})
     },  
+    */
     
     'reset_products': function(){
       if (this.pageHeaderView)
@@ -252,6 +222,7 @@ var BaseRouter = require('routers/baseRouter')
     },
 
     product: function(slug){
+      if (slug === 'reale') return
       var product = new Product({slug: slug})
       var self = this
       //if scrolled down when clicking on product from products page
@@ -279,26 +250,6 @@ var BaseRouter = require('routers/baseRouter')
       if (this.pageHeaderView)    
         this.pageHeaderView.remove()
     },
-
-    /*reale: function(){
-      var self = this
-      $('html, body').scrollTop(0)
-      $.get('/products/Reale', function(obj) {
-        var model = new Product(obj.model)
-        $('#app').html(obj.body);
-
-        document.title = model.get('name')+' - '+model.get('category').name
-        self.contextualMenu(model) 
-
-        var header = model.get('category').name
-        if (model.get('subcategory').name)
-          header += ' / ' +model.get('subcategory').name
-        self.pageHeaderView = new PageHeaderView({header: header}) 
-        self.pageHeaderView.render()
-      })
-    },
-    */
-
   });
 
  

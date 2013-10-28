@@ -19,6 +19,7 @@ define([
 
     listManuals: function(){
       ListController.listManuals()
+      App.execute("set:active:link", "manuals")
     },
   
     adminComposite: function(id){
@@ -40,6 +41,12 @@ define([
   App.on("manual:edit", function(id){
     App.navigate("admin/manuals/" + id + "/edit");
   });
+
+  App.on("manuals:list", function(id){
+    API.listManuals()
+    App.navigate("manuals");
+  });
+
 
   new App.Router({ controller: API });
 

@@ -24,7 +24,6 @@ define([
           },100);
         })
 
-
         App.mainRegion.show(layout);
 
       });

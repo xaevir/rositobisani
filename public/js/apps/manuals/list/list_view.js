@@ -44,7 +44,7 @@ define([
 
     template: headerTpl,
 
-    className: "section",
+    tagName: "section",
 
     initialize: function(){
       var childrenSubHeads = this.model.get('children');

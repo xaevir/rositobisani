@@ -8,7 +8,7 @@ define([
     composite: function(catId, editManualId){
       var loadingView = new Loading();
       App.mainRegion.show(loadingView);
-      
+
       var layoutView = new AdminView.Layout();
 
       layoutView.on('show', function(){

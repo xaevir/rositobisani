@@ -27,7 +27,6 @@ define([
     getSorted: function(){
       var manuals = new Manuals();
       var defer = $.Deferred();
-      $.get("/manuals/sorted");
 
       $.get('/manuals/sorted', function(data) {
         manuals.reset(data)

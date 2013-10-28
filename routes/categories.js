@@ -13,7 +13,7 @@ exports.test = function(req, res) {
 }
 
 exports.list = function(req, res) { 
-  db.collection('categories').find().toArray(function(err, categories) {
+  db.collection('categories').find().sort({order: 1}).toArray(function(err, categories) {
     var parents = [], 
         children = []
     _.each(categories, function(category){ 

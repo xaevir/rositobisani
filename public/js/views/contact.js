@@ -1,8 +1,8 @@
 define(function(require) {
 
 var tpl = require('text!templates/contact.html')
-  , Contact = require('models/contact') 
-  , ModalView = require('views/modal')         
+  , Contact = require('models/contact')
+  , ModalView = require('views/modal')
 
 return Backbone.View.extend({
 

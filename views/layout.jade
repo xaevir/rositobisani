@@ -4,6 +4,7 @@ html(lang="en")
     script
       var user = !{user} 
     meta(charset='utf-8')
+    meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
     if locals.title
       title #{title} - Rosito Bisani 
     else
@@ -16,16 +17,20 @@ html(lang="en")
     //if lt IE 9
       script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
       script(src='/js/libs/respond.js')
+    //if lt IE 7
+      script(src='/fonts/icons/lte-ie7.js')
 
-    if locals.env === 'production' 
+    if locals.env === 'production' || locals.env === 'staging' 
       script(data-main='/js/main-built', src='/js/libs/require.js')
-      link(href='http://fonts.googleapis.com/css?family=Libre+Baskerville', rel='stylesheet', type='text/css')
     else 
       script(data-main='/js/main', src='/js/libs/require.js')
   body
-    include nav
-    #alert-region
-    #dialog-region
-    #app
-      block homepage
+    #wrap
+      #nav-region
+        include nav
+      #alert-region
+      #dialog-region
+      #app
+        block content
+      #push
     include footer

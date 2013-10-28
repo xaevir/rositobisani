@@ -3,7 +3,8 @@ define([
   'hbs!apps/products/templates/list_layout',
   'hbs!apps/products/templates/list_header',
   'hbs!apps/products/templates/list_subheader',
-], function(itemTpl, layoutTpl, headerTpl, subHeaderTpl){
+  'appMarionette',
+], function(itemTpl, layoutTpl, headerTpl, subHeaderTpl, App){
 
   var Model = Backbone.Model.extend({})
 
@@ -18,14 +19,21 @@ define([
 
     tagName: "li",
 
+    events: {
+      "click a": "navigate"
+    },
 
-
+    navigate: function(e){
+      e.preventDefault();
+      var slug = this.model.get('slug')
+      App.trigger("product:show", slug);
+    },
   });
 
   var SubHeaderView = Backbone.Marionette.CompositeView.extend({
 
     template: subHeaderTpl,
-   
+
     itemViewContainer: ".item-rows",
 
     className: 'sub-section',

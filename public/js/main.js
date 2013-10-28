@@ -1,14 +1,7 @@
 require.config({
-/*
-  map: {
-    '*': {
-      'css': 'libs/require-css/css' // or whatever the path to require-css is
-    }
-  },
-  */
   hbs: {
-    disableI18n: true,        
-    disableHelpers: true,     
+    disableI18n: true,
+    disableHelpers: true,
     helperPathCallback:       // Callback to determine the path to look for helpers
       function (name) {       // ('/template/helpers/'+name by default)
         return 'cs!' + name;
@@ -28,16 +21,19 @@ require.config({
     'backbone.validation':   'libs/backbone.validation',
     text:                    'libs/text',
     templates:               '../templates',
-    transition:              'libs/bootstrap/js/bootstrap-transition',
-    carousel:                'libs/bootstrap/js/bootstrap-carousel',
-    collapse:                'libs/bootstrap/js/bootstrap-collapse',
-    dropdown:                'libs/bootstrap/js/bootstrap-dropdown',
+    transition:              'libs/bootstrap/js/transition',
+    carousel:                'libs/bootstrap/js/carousel',
+    collapse:                'libs/bootstrap/js/collapse',
+    dropdown:                'libs/bootstrap/js/dropdown',
+    tab:                     'libs/bootstrap/js/tab',
+    scrollspy:               'libs/bootstrap/js/scrollspy',
     utilities:               'libs/utilities',
     'iframe-transport' :     'libs/jquery.iframe-transport',
     appMarionette:           'app_marionette',
     spin:                    'libs/spin',
     'spin.jquery':           'libs/spin.jquery',
-    'jquery-ui':             'libs/jquery-ui-1.10.3'
+    'jquery-ui':             'libs/jquery-ui-1.10.3',
+    picky:                   'libs/picky',
   },
 
   shim: {
@@ -47,11 +43,14 @@ require.config({
     transition: ['jquery'],
     collapse : ['jquery'],
     dropdown : ['jquery'],
+    scrollspy : ['jquery'],
+    tab : ['jquery'],
     carousel: ['transition'],
     'jquery-ui': ['jquery'],
     utilities: ['jquery', 'backbone', 'backbone.validation'],
     marionette : ['jquery', 'underscore', 'backbone'],
     'spin.jquery': ['jquery', 'spin'],
+    picky: ['backbone', 'underscore'],
     app: [
       'json2',
       'backbone', 
@@ -62,12 +61,15 @@ require.config({
       'jquery-ui', 
       'Hogan', 
       'dropdown', 
+      'tab',
       'iframe-transport'
     ],
     appMarionette: [
       'marionette',
       'hbs', 
-      'spin.jquery'
+      'spin.jquery',
+      'picky',
+      'scrollspy'
     ]
   },
 
@@ -76,15 +78,25 @@ require.config({
 require([
   'app', 
   'appMarionette', 
-  'require',
+  'require'
   ], function(app, appMarionette, require) {
+
     app.initialize();
     require([
-      'apps/manuals/manuals_app', 
-      'apps/categories/categories_app', 
-      'entities/categories', 
-      'entities/manuals', 
-      //'apps/common/loading',
+      'entities/categories',
+      'entities/manuals',
+      'entities/products',
+      //'entities/nav',
+      'entities/reviews',
+      //'apps/nav/nav_app',
+      'apps/products/products_app',
+      'apps/contact/contact_app',
+      'apps/subnav/subnav_app',
+      'apps/static/static_app',
+      'apps/manuals/manuals_app',
+      'apps/categories/categories_app',
+      'apps/reale/reale_app',
+      'apps/reviews/reviews_app',
     ], function(){
       appMarionette.start();
     })

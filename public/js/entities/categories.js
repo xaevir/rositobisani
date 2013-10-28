@@ -8,13 +8,27 @@ define([
   var Children = Backbone.Collection.extend({ model: Child });
 
   var Category = Backbone.Model.extend({ 
+
     idAttribute: "_id", 
+
     urlRoot: "/categories",
-    });
+
+    initialize: function(){
+      var selectable = new Backbone.Picky.Selectable(this);
+      _.extend(this, selectable);
+    }
+  });
 
   var Categories = Backbone.Collection.extend({
+
     model: Category,
-    url: '/categories'
+
+    url: '/categories',
+
+    initialize: function(){
+      var singleSelect = new Backbone.Picky.SingleSelect(this);
+      _.extend(this, singleSelect);
+    }
   });
 
   var API = {
@@ -50,7 +64,6 @@ define([
       var promise = defer.promise();
       return promise;
     },
-
   }
 
   App.reqres.setHandler("category:entities", function(){

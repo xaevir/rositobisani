@@ -14,6 +14,10 @@
       img(src="/img/zumex.jpg")
     .item
       img(src="/img/synesso-logo.jpg")
-  //- Carousel nav
-  a.carousel-control.left(href="#myCarousel", data-slide="prev") &lsaquo;
-  a.carousel-control.right(href="#myCarousel",  data-slide="next") &rsaquo;
+  <!-- Controls -->
+  a.left.carousel-control(href="#myCarousel" data-slide="prev")
+    span.glyphicon.glyphicon-chevron-left
+  a.right.carousel-control(href="#myCarousel" data-slide="next")
+    span.glyphicon.glyphicon-chevron-right
+
+

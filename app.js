@@ -29,9 +29,11 @@ var app = express();
 
 // all environments
 //app.set('port', process.env.PORT || 8070);
+app.use(require('prerender-node'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.logger('dev'));
+app.use(express.compress());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
@@ -55,6 +57,18 @@ app.configure('development', function(){
     env: 'development',
   });
 });
+
+app.configure('staging', function(){
+  mediaBasePath = '/home/bobby/Dropbox/http/rositobisani/public/'
+  uploadedFiles = uploadedFiles(app, mediaBasePath, __dirname + '/public/js/fileUpload')
+  app.set('port', process.env.PORT || 8070);
+  app.use(express.errorHandler());
+  db = mongo.db("localhost/dev_rosito?auto_reconnect=true", {safe: true})
+  app.locals({
+    env: 'staging',
+  });
+});
+
 
 // production only
 app.configure('production', function(){
@@ -117,48 +131,50 @@ app.get('/*', function(req, res, next) {
 })
 
 app.get('/', function(req, res) {
-  locals.title = ''
-  if (req.xhr) {
+  if (!(req.xhr)) {
+    res.render('layout', locals)
+  } else {
+    locals.title = ''
     res.render('home', locals, function(err, html){
       res.send({title: locals.title, body: html});
     });
-  } else {
-    res.render('home_full', locals);
-  }
-});
-
-app.get('/contact', function(req, res) {
-  locals.title = 'Contact'
-  if (req.xhr) {
-    res.render('contact', locals, function(err, html){
-      res.send({title: locals.title, body: html});
-    });
-  } else {
-    res.render('contact_full', locals);
   }
 });
 
 app.get('/about', function(req, res) {
-  locals.title = 'About Us'
-  if (req.xhr) {
+  if (!(req.xhr)) {
+    res.render('layout', locals)
+  } else {
+    locals.title = 'About Us'
     res.render('about', locals, function(err, html){
       res.send({title: locals.title, body: html});
     });
-  } else {
-    res.render('about_full', locals);
   }
 });
 
-app.get('/home-espresso-machine', function(req, res) {
-  locals.title = 'Best Home Espresso Machine'
-  if (req.xhr) {
-    res.render('landing/home-espresso-machine', locals, function(err, html){
+
+app.get('/contact', function(req, res) {
+  if (!req.xhr) {
+    res.render('layout', locals)
+  } else {
+    locals.title = 'Contact'
+    res.render('contact', locals, function(err, html){
       res.send({title: locals.title, body: html});
     });
-  } else {
-    res.render('landing/home-espresso-machine-full', locals);
   }
 });
+
+app.post('/contact', function(req, res, next) {
+  var html  = '<p>name: '+req.body.name+'</p>'
+      html += '<p>email: '+req.body.email+'</p>'
+      html += '<p>message: '+req.body.message+'</p>'
+  email(
+    {
+      subject: 'Website Contact Page', 
+      html: html 
+    })
+    res.send(req.body)
+})
 
 app.get('/privacy-policy', function(req, res) {
   locals.title = 'Privacy Policy'
@@ -170,7 +186,6 @@ app.get('/privacy-policy', function(req, res) {
     res.render('privacyPolicy_full', locals);
   }
 });
-
 
 app.get('/user', function(req, res){
   res.send(req.session.user) 
@@ -270,17 +285,6 @@ app.get("/check-email", function(req, res){
   })
 })
 
-app.post('/contact', function(req, res, next) {
-  var html  = '<p>name: '+req.body.name+'</p>'
-      html += '<p>email: '+req.body.email+'</p>'
-      html += '<p>message: '+req.body.message+'</p>'
-  email(
-    {
-      subject: 'Website Contact Page', 
-      html: html 
-    })
-    res.send(req.body)
-})
 
 function email(opts) {
   if (app.settings.env === 'development')
@@ -337,9 +341,15 @@ app.get('/categories/:id', xhrOnly, categories.getOne);
 
 /* Products */
 app.get('/products', xhrOnly, products.list);
+app.get('/products/sorted', xhrOnly, products.sortedList);
 app.post('/products', restrict, products.create);
 app.put('/products/:slug', restrict, products.update);
-//app.get('/products/Reale', xhrOnly, products.reale);
+app.get('/products/reale*', xhrOnly, function(req, res) {
+  locals.title = 'Reale Espresso Machine'
+  res.render('reale/index', locals, function(err, html){
+    res.send({title: locals.title, body: html});
+  });
+});
 app.get('/products/:slug', xhrOnly, products.listOne);
 
 

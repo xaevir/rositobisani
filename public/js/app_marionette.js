@@ -5,7 +5,7 @@ define([
   var App = new Marionette.Application();
 
   App.addRegions({
-    //headerRegion: "#header-region",
+    navRegion: "#nav-region",
     //mainRegion: "#main-region",
     mainRegion: "#app",
     dialogRegion: "#dialog-region",

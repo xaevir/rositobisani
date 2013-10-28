@@ -52,12 +52,12 @@ define([
   });
 
   var API = {
-    getOne: function(id){
-      var product = new Product({_id: id});
+    getOne: function(slug){
+      var product = new Product({slug: slug});
       var defer = $.Deferred();
       product.fetch({
         success: function(data){
-          defer.resolve(manual);
+          defer.resolve(data);
         },
         error: function(data){
           defer.resolve(undefined);
@@ -68,8 +68,8 @@ define([
     },
   };
 
-  App.reqres.setHandler("product:entity", function(id){
-    return API.getOne(id);
+  App.reqres.setHandler("product:entity", function(slug){
+    return API.getOne(slug);
   });
 
   return Product;

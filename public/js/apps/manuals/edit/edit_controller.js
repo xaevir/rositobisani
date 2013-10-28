@@ -27,12 +27,12 @@ define([
 
         view.on("form:submit", function(data){
           if(manual.save(data)){
-             
+
             App.dialogRegion.close() //this should be in view?
 
             var alertView = new AlertView()
             App.alertRegion.show(alertView);
-          
+
             App.trigger('manual:model:updated', manual) 
           }
         });
