@@ -32,7 +32,9 @@
 .fonticon-thermometer:before {
 	content: "\e602";
 }
-
+.fonticon-rosito-bisani:before {
+	content: "\e603";
+}
 .fonticon-rb-icon:before {
 	content: "\e604";
 }
@@ -61,10 +63,8 @@
 	content: "\e60c";
 }
 .fonticon-specialty-foodservice-equipment:before {
+	content: "\e60e";
+}
+.fonticon-made-italy5:before {
 	content: "\e60d";
 }
-
-.fonticon-rosito-bisani:before {
-	content: "\e603";
-}
-

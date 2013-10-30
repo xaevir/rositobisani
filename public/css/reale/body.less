@@ -1,59 +1,42 @@
 #reale {
   .body {
-    //background: url(/img/noise_f6f6f6.png) repeat top left;
-    //background: #62ffe1;
-  }
-  .section1 {
-  }
-  .section2 {
-    background: #fff;
-  }
-  .quote {
-    margin-top: 75px;
-    font-family: 'garamondBook';
-    font-weight: normal; 
-    font-size: 30px;
-    text-align: center;
-    line-height: 1;
-    width: 700px;
-    .clearfix;
-    .quotemark {
-      font-size: 40px;
+    //background: #f7f7f7;
+    //background: url(/img/bg.png) repeat top left;
+    position: relative;
+    z-index: 1;
+    background: #eee;
+    > .container {
+      background: #fff;
     }
-    .quote-left {
-      margin-top: -20px;
-      margin-right: 10px;
-    }
-    .quote-right {
-      //margin-top: 20px;
-      margin: 0;
-      position: relative;
-      top: 6px;
-      margin-left: 10px;
+  }
+  section {
+  }
+  section._1 { 
+  }
+  .row.first {
+    padding-bottom: 50px;
+    .tab-content {
+      height: 294px;
+      display: table-cell;
+      vertical-align:middle;
+      padding-top: 50px;
     }
   }
   .coffeegeek {
+    font-family: 'proximaNovaLight';
+    font-size: 40px;
+    text-align: center;
+    line-height: 1;
+    color: #fff;
     .clearfix;
-    .quote {
-      float: left;
-      width: 580px;
-      font-size: 40px;
-    }
-    .quote-left {
-      float: left;
-      margin-right: 0;
-    }
     .author {
       .clearfix;
-      width: 250px;
       float: right;
-      margin-top: -30px;
       .line-one {
-        font-size: 28px;
         vertical-align: bottom;
         margin-bottom: 0;
         img {
-          width: 150px;
+          width: 100px;
         }
       }
       .line-two {
@@ -61,7 +44,27 @@
       }
     }
   }
-  .reale-engineers {
+  .engineers-wrapper {
+    //background: #c9f3ff;
+    //background: #00acdf;
+    //background: #f9f9f9;
+    //background: #f2fcff;
+    padding: 80px 0;
+    //color: #fff;
+    //background: #fff;
+    //border: 1px solid #f2f2f2;
+    //border: 1px solid #e7f2f6;
+    //border-radius: 3px;
+    //margin-top: 5px;
+  }
+  .engineers {
+    font-family: 'garamondBook';
+    font-family: 'proximaNovaLight';
+    width: 75%;
+    margin: 0 auto;
+    line-height: 1;
+    font-size: 35px;
+    text-align: center;
     .quote-left {
       width: 40px;
     }
@@ -69,8 +72,9 @@
       width: 40px;
     }
     .author {
-      width: 400px;
-      float: right;
+      width: 50%;
+      text-align: left;
+      margin-left: auto;
       .line-two {
         font-size: 13px;
       }
@@ -143,108 +147,71 @@
       text-align: center;
     }
   }
-  .manufacturing-percentage {
+  .manufacturing-wrapper {
     .clearfix;
-    border-top: 1px solid #e2e2e2;
-    margin-top: 30px;
-    padding-top: 40px;
-    h2 {
-      margin-top: 40px; 
-      font-weight: normal; 
-      font-size: 48px;
-      font-family: 'quicksandBook';
-      line-height: 1;
-      margin-bottom: .5em;
+    background: #fff;
+    border: 1px solid #f2f2f2;
+    border-radius: 3px;
+    margin: 30px auto;
+    //padding-top: 40px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    .manufacturing {
+      width: 75%;
+      margin: 0 auto;
     }
-    dl {
-      display: table-row;
-      dd {
-        display: table-cell;
-        padding-right: 5px;
-        vertical-align: middle;
-      }
+    h2 {
+      text-align: center;
+      //line-height: 1;
+      //margin-bottom: .5em;
     }
     .percent {
-      width: 300px;
-      height: 300px;
-      background: skyblue;
+      width: 120px;
+      height: 120px;
+      //background: skyblue;
+      background: #6c7175;
       .border-radius-pie(999px);
       color: #fff;
-      font-size: 115px;
-      float: left;
-      margin-right: 20px;
-      line-height: 2.6;
-      //margin: 0 auto;
+      font-size: 50px;
+      //margin-right: 20px;
+      line-height: 2.5;
+      margin: 0 auto;
+      border: 1px solid #333;
+      //text-shadow: 1px 1px 0px rgba(0,0,0,.8);
       p {
         text-align: center;
       }
     }
     .explanation {
       //font-family: verdana;
-      font-size: 24px;
+      //font-size: 24px;
       margin-top: 30px;
-      line-height: 1.5;
+      //line-height: 1.5;
     }
   }
-  .nav {
-    //margin-top: -37px;
-    margin: 0;
-    position: absolute;
-    bottom: 0;
-    a {
-      color: #fff;
-      color: #d7dae7;
-      font-size: 24px;
-      font-family: openSans;
-      &:hover {
-        color: #555;
-        background: #fff;
-      }
-    }
-    .active a {
-      color: #555;
-      background: url(/img/noise_f6f6f6.png) repeat top left;
-    }
-  }
-  .nav-tabs {
-    border-bottom: none;
-  }
+
   .buy-box {
-    .clearfix;
-    float: right;
-    //background-color: #f7f7f7;
-    background-color: pink;
-    border: 2px solid #666;
+    border: 1px solid #fff;
+    background: rgba(0,0,0, .5);
+    background: rgba(255,255,255, .5);
+    background: #f5f5f5;
+    border-radius: 3px;
     margin-left: 50px;
     margin-top: 10px;
-    width: 250px;
+    width: 280px;
     clear: both;
-    //padding: 15px;
-    font-size: 13px;
-    //background: url(/img/noise_f6f6f6.png) repeat top left;
-    .wrapper {
-      padding: 10px;
-      //border: 2px solid #666;
-      border: 5px solid @light-cyan-drk;
-      background: orange;
+    padding: 10px;
+    .product-name {
+      font-size: 20px;
+      text-align: center;
     }
-    .line-one {
-      margin-bottom: 20px;
-      a {
-        //color: #666;
-        //color: #00c8d7;
-        //text-decoration: underline;
-      }
+    .price {
+      text-align: center;
     }
-    .price-line {
-      margin-bottom: 20px;
-      .product-name {
-        font-size: 16px;
-      }
-      .price {
-        float: right;
-        padding-top: 3px;
-      }
+    .rating-wrapper {
+      display: table;
+      margin: 0 auto;
+      margin-bottom: 30px;
     }
     dl.rating-container {
       display: table-row;
@@ -280,16 +247,38 @@
     .buy-btn {
       margin: 40px;
       text-align: center;
+      //border-radius: 3px;
+      //background-clip: padding-box;
+
+      .buy-wrap {
+        //border: 1px solid #fff;
+        //border-radius: 4px;
+      }
       a {
-        display: block;
+        //display: block;
+        box-shadow: inset 0 -1px 0 #e64c00;
+        //#gradient > .horizontal(#fa143f, #fe5c08); check 'bottom' means
+        background: -webkit-linear-gradient(bottom, #ff6500 0%, #fe7b23 100%);
+        color: #fff;
+        border: 1px solid #fff;
+        padding: 10px 50px;
+        &:hover {
+         background: #fe7b23;
+        }
       }
     }
     .product-incentives {
+      padding: 0;
       .clearfix;
       list-style: none;
       margin: 0;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
       a {
-        //color: #00c8d7;
+        font-size: 12px;
       }
     }
   }

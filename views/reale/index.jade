@@ -1,32 +1,45 @@
 #reale
+  .nav-wrapper
+    ul.nav.nav-pills.container
+      li.active: a(href="#", data-target="#features") Features
+      li: a(href="#", data-target="#specs") Specs
+      li: a(href="#", data-target="#reviews") Reviews
+      li: a(href="#", data-target="#warranty") Warranty
+      li: a(href="#", data-target="#faq") FAQ
+      li: a(href="#", data-target="#support") Support
   .header
-    .wrap.ht
-      .girl
-        img(src="/img/reale-banner-girl-opacity.png")
-      .container.content.ht
-        .row-fluid.ht
-          .span6.ht
-            .headline
+    .girl
+      img.ht(src="/img/reale-banner-girl-opacity.png")
+    .header-inner
+      .scrolldown
+        span LEARN MORE
+        img(src="/img/scroll_down.png")
+      .container
+        .row
+          .col-md-6
+            .headline.fade
               h1 Meet the 
                 span.fonticon-reale-logo 
               h2 a commercial espresso machine for your home
-          .span6
+          .col-md-6.pull-right
             .machine
-              img(src="/img/reale.png")
-        ul.nav.nav-tabs
-          li.active: a(href="#", data-target="#features") Features
-          li: a(href="#", data-target="#specs") Specs
-          li: a(href="#", data-target="#reviews") Reviews
-          li: a(href="#", data-target="#warranty") Warranty
-          li: a(href="#", data-target="#faq") FAQ
-          li: a(href="#", data-target="#support") Support
+              img(src="/img/reale-420.png")
+          .col-md-6.review-container.fade
+            .review
+                p.quote  &ldquo;Simple, beautiful, and makes excellent espresso...&rdquo;
+                .author
+                  p.line-one
+                    img.pull-right(src="/img/coffeegeek.png")
+                  p.line-two espresso machine review site
+
   .body
-    .section1
+    section._1
       .container
-          .span8
+        .row.first
+          .col-md-8
             .tab-content
               .tab-pane.active#features
-                include features-part1
+                include features-part2
               .tab-pane#specs
                 include specs
               .tab-pane#reviews
@@ -36,14 +49,14 @@
                 h1 F.A.Q.
               .tab-pane#support
                 h1 Support
-          .span4
+          .col-md-4
             .buy-box
-              .wrapper
-                .line-one
-                  a(href="#") Free Shipping
-                  a.pull-right(href="#") No Sales Tax
-                .price-line.
-                  <span class="product-name">Reale Espresso Machine</span> <span class="price">1,549.99</span>
+              .product-name Reale Espresso Machine
+              .price &#36;1,549.99
+              .buy-btn
+                .buy-wrap
+                  a.btn.btn-default.btn-lg Buy
+              .rating-wrapper
                 dl.rating-container
                   dd.rating-ratio
                     div
@@ -51,10 +64,20 @@
                       span.rating-stars.rating-stars-on &#9733;&#9733;&#9733;&#9733;&#9733;
                   dd.rating-ratio-count
                      a(href="#") 4 Reviews
-                .buy-btn
-                  a.btn.btn-success.btn-large Buy
-                ul.product-incentives
-                  li.pull-left <i class="icon-ok-sign"></i> <a href="#">30 Day Guarantee</a></li>
-                  li.pull-right <i class="icon-lock"></i> <a href="#">Safe and Secure</a></li>
-    .section2
+              .product-incentives
+                ul.pull-left
+                  li: a(href="#")
+                    span.glyphicon.glyphicon-plane 
+                    |  Free Shipping
+                  li: a(href="#")
+                    span.glyphicon.glyphicon-tag 
+                    |  No Sales Tax
+                ul.pull-right
+                  li: a(href="#")
+                    span.glyphicon.glyphicon-ok-sign 
+                    |  30 Day Guarantee
+                  li: a(href="#")
+                    span.glyphicon.glyphicon-lock 
+                    |  Safe and Secure
+    //.section2
       include features-part2

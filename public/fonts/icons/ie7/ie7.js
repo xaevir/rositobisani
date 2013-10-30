@@ -20,7 +20,8 @@
 		'fonticon-espresso-machine': '&#xe60a;',
 		'fonticon-reale-logo': '&#xe60b;',
 		'fonticon-facebook': '&#xe60c;',
-		'fonticon-specialty-foodservice-equipment': '&#xe60d;',
+		'fonticon-specialty-foodservice-equipment': '&#xe60e;',
+		'fonticon-made-italy5': '&#xe60d;',
 		'0': 0
 		},
 		els = document.getElementsByTagName('*'),
