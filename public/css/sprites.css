@@ -1,0 +1,40 @@
+.RB-icon, .bruxie, .NBC_Universal, .onevillage, .saxbys, .scroll_down{
+	background: url(/img/sprites.png) no-repeat;
+}
+
+.RB-icon{
+	background-position: 0 0;
+	width: 101px;
+	height: 100px;
+}
+
+.bruxie{
+	background-position: -105px 0;
+	width: 100px;
+	height: 41px;
+}
+
+.NBC_Universal{
+	background-position: -314px 0;
+	width: 135px;
+	height: 52px;
+}
+
+.onevillage{
+	background-position: -208px 0;
+	width: 100px;
+	height: 64px;
+}
+
+.saxbys{
+	background-position: -456px 0;
+	width: 80px;
+	height: 79px;
+}
+
+.scroll_down{
+	background-position: -542px 0;
+	width: 50px;
+	height: 11px;
+}
+
