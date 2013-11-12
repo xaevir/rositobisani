@@ -126,14 +126,14 @@ define([
     },
 
     slideIn: function(){
-      $( '.nav .fonticon-reale-logo' ).animate({
+      $( '.nav .fonticon-reale-logo' ).stop().animate({
         'margin-left': '0px'
       }, 700, function() {
       });
     },
 
     slideOut: function(){
-      $( '.nav .fonticon-reale-logo' ).animate({
+      $( '.nav .fonticon-reale-logo' ).stop().animate({
         'margin-left': '-97px'
       }, 700, function() {
       });
