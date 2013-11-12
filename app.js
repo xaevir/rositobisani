@@ -1,23 +1,21 @@
-/**
- * Module dependencies.
- */
+/* global __dirname */
 
-var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
-  , products = require('./routes/products')
-  , categories = require('./routes/categories')
-  , manuals = require('./routes/manuals')
-  , uploadedFiles = require('./routes/uploadedFiles')
-  , http = require('http')
-  , path = require('path')
-  , nodemailer = require("nodemailer")
-  , smtpTransport = nodemailer.createTransport("SMTP", {host: "localhost"})
-  , mongo = require('mongoskin')
-  , RedisStore = require('connect-redis')(express)
-  , bcrypt = require('bcrypt')
+var express = require('express'),
+  routes = require('./routes'),
+  user = require('./routes/user'),
+  products = require('./routes/products'),
+  categories = require('./routes/categories'),
+  manuals = require('./routes/manuals'),
+  uploadedFiles = require('./routes/uploadedFiles'),
+  http = require('http'),
+  path = require('path'),
+  nodemailer = require('nodemailer'),
+  smtpTransport = nodemailer.createTransport('SMTP', {host: 'localhost'}),
+  mongo = require('mongoskin'),
+  RedisStore = require('connect-redis')(express),
+  bcrypt = require('bcrypt');
 
-// setup Backbone models    
+// setup Backbone models
 Backbone = require('backbone')
 _ = require('underscore')
 var Validation = require('./public/js/libs/backbone.validation.js')
@@ -29,7 +27,7 @@ var app = express();
 
 // all environments
 //app.set('port', process.env.PORT || 8070);
-app.use(require('prerender-node'));
+//app.use(require('prerender-node'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.logger('dev'));
@@ -37,7 +35,7 @@ app.use(express.compress());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
-app.use(express.session({ secret: "batman", store: new RedisStore }));
+app.use(express.session({ secret: 'batman', store: new RedisStore }));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -52,7 +50,7 @@ app.configure('development', function(){
   uploadedFiles = uploadedFiles(app, mediaBasePath, __dirname + '/public/js/fileUpload')
   app.set('port', process.env.PORT || 8070);
   app.use(express.errorHandler());
-  db = mongo.db("localhost/dev_rosito?auto_reconnect=true", {safe: true})
+  db = mongo.db('localhost/dev_rosito?auto_reconnect=true', {safe: true})
   app.locals({
     env: 'development',
   });
@@ -63,7 +61,7 @@ app.configure('staging', function(){
   uploadedFiles = uploadedFiles(app, mediaBasePath, __dirname + '/public/js/fileUpload')
   app.set('port', process.env.PORT || 8070);
   app.use(express.errorHandler());
-  db = mongo.db("localhost/dev_rosito?auto_reconnect=true", {safe: true})
+  db = mongo.db('localhost/dev_rosito?auto_reconnect=true', {safe: true})
   app.locals({
     env: 'staging',
   });
@@ -75,7 +73,7 @@ app.configure('production', function(){
   mediaBasePath = '/srv/http/rositobisani/public/'
   uploadedFiles = uploadedFiles(mediaBasePath)
   app.set('port', process.env.PORT || 8100);
-  db = mongo.db("localhost/rosito?auto_reconnect=true", {safe: true})
+  db = mongo.db('localhost/rosito?auto_reconnect=true', {safe: true})
   app.locals({
     env: 'production',
   });
@@ -125,7 +123,7 @@ app.get('/*', function(req, res, next) {
 app.get('/*', function(req, res, next) { 
   locals = {}
   locals.user = req.session.user ? JSON.stringify(req.session.user) : JSON.stringify({})
-  if (app.settings.env == 'development') 
+  if (app.settings.env === 'development') 
     locals.development = true 
   next()
 })
@@ -134,10 +132,7 @@ app.get('/', function(req, res) {
   if (!(req.xhr)) {
     res.render('layout', locals)
   } else {
-    locals.title = ''
-    res.render('home', locals, function(err, html){
-      res.send({title: locals.title, body: html});
-    });
+    res.render('home', locals)
   }
 });
 
@@ -165,9 +160,9 @@ app.get('/contact', function(req, res) {
 });
 
 app.post('/contact', function(req, res, next) {
-  var html  = '<p>name: '+req.body.name+'</p>'
-      html += '<p>email: '+req.body.email+'</p>'
-      html += '<p>message: '+req.body.message+'</p>'
+  var html  = '<p>name: '+req.body.name+'</p>'+
+              '<p>email: '+req.body.email+'</p>'+
+              '<p>message: '+req.body.message+'</p>'
   email(
     {
       subject: 'Website Contact Page', 
@@ -268,33 +263,31 @@ function isUniqueUsername(username, fn) {
 }
 module.exports.isUniqueUsername = isUniqueUsername
 
-app.get("/is-unique-username", function(req, res) {
+app.get('/is-unique-username', function(req, res) {
   var username = req.query.username
   isUniqueUsername(username, function(isUnique){
     res.send(isUnique)
   })
 })
 
-app.get("/check-email", function(req, res){
-  if (req.query.email == '')  return res.send(true)
+app.get('/check-email', function(req, res){
+  if (req.query.email === '')  return res.send(true)
   var email = req.query.email.toLowerCase()
   db.collection('users').findOne({email: email}, function(err, user){
-    return user
-      ? res.send(false)
-      : res.send(true);
+    return (user) ? res.send(false) : res.send(true);
   })
 })
 
 
 function email(opts) {
-  if (app.settings.env === 'development')
+  if (app.settings.env === 'development' || app.settings.env === 'staging' )
     return console.log(opts.html)
 
   var message = {
-      from: 'Website Contact Page <contact@rosito-bisani.com>',
-      // Comma separated list of recipients
-      to: 'gregl@rosito-bisani.com',
-      bcc: 'bobby.chambers33@gmail.com'
+    from: 'Website Contact Page <contact@rosito-bisani.com>',
+    // Comma separated list of recipients
+    to: 'gregl@rosito-bisani.com',
+    bcc: 'bobby.chambers33@gmail.com'
   }
   message.subject = opts.subject
   message.html = opts.html
@@ -303,7 +296,7 @@ function email(opts) {
     if(error)
       console.log(error);
     else
-      console.log("Email sent: " + response.message);
+      console.log('Email sent: ' + response.message);
     smtpTransport.close(); // shut down the connection pool, no more messages
   })
 }
@@ -344,12 +337,28 @@ app.get('/products', xhrOnly, products.list);
 app.get('/products/sorted', xhrOnly, products.sortedList);
 app.post('/products', restrict, products.create);
 app.put('/products/:slug', restrict, products.update);
-app.get('/products/reale*', xhrOnly, function(req, res) {
-  locals.title = 'Reale Espresso Machine'
-  res.render('reale/index', locals, function(err, html){
-    res.send({title: locals.title, body: html});
-  });
+app.get('/espresso-machines/reale*', function(req, res) {
+  locals.id = 'reale-page'
+  if (!(req.xhr)) {
+    res.render('layout', locals)
+  } else {
+    locals.title = 'Reale Espresso Machine'
+    res.render('reale/index', locals, function(err, html){
+      res.send({title: locals.title, body: html});
+    });
+  }
 });
+app.get('/espresso-machines/:slug', xhrOnly, products.listOne);
+app.get('/espresso-grinders/:slug', xhrOnly, products.listOne);
+app.get('/pizza-ovens/:slug', xhrOnly, products.listOne);
+app.get('/pasta-machines/:slug', xhrOnly, products.listOne);
+app.get('/gelato/:slug', xhrOnly, products.listOne);
+app.get('/citrus-juicers/:slug', xhrOnly, products.listOne);
+app.get('/mixers/:slug', xhrOnly, products.listOne);
+app.get('/panini-grills/:slug', xhrOnly, products.listOne);
+app.get('/panini-grills/:slug', xhrOnly, products.listOne);
+app.get('/meat-slicers/:slug', xhrOnly, products.listOne);
+app.get('/hot-chocolate/:slug', xhrOnly, products.listOne);
 app.get('/products/:slug', xhrOnly, products.listOne);
 
 

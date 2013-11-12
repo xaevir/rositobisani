@@ -13,7 +13,7 @@ define([
             'comment in another month or so when I have spent longer getting to know this machine.',
       date: 'July 9, 2013',
       stars: 5,
-      recommed: 'Yes, I recommend this product.'
+      recommend: '<b>Yes</b>, I recommend this product.'
     },
     {
       name: 'ryan9736',
@@ -24,10 +24,10 @@ define([
             'month so I can’t say for sure how components will hold up but so far so good!',
       date: 'July 20, 2013',
       stars: 4,
-      recommend: 'Yes, I recommend this product.'
+      recommend: '<b>Yes</b>, I recommend this product.'
     },
     {
-      name: 'Tim Noble, a Coffeegeek.com reviewer from Town Hall Coffee',
+      name: 'Tim Noble, Town Hall Coffee',
       headline: 'The Reale is simple, beautiful, and makes excellent espresso for a practiced hand.',
       date: 'August 3, 2013',
       text:'Straight out of the box, the Reale is pretty much ready to go. It’s been bench tested at the factory- water remained in the sand filter, '+
@@ -58,7 +58,7 @@ define([
             'better as I become more a practiced barista. In terms of style its, I think the manufacturer did a great job on making it look sleak and elegant.',
       date: 'August 11, 2013',
       stars: 4,
-      recommend: 'Yes, I recommend this product.'
+      recommend: '<b>Yes</b>, I recommend this product.'
     },
     {
       name: 'MSantomero',
@@ -66,15 +66,15 @@ define([
       text: 'I love this machine. Its simple to use, seems durable, and the espresso tastes great.',
       date: 'August 25, 2013',
       stars: 5,
-      recommend: 'Yes, I recommend this product.'
+      recommend: '<b>Yes</b>, I recommend this product.'
     },
     {
-      name: 'espressofan',
+      name: 'Priyal',
       headline: 'best machine I have used',
       text: 'The Reale is the best machine I have ever had the pleasure of brewing with. Its right on par with the commercial machines. Its only been 2 months but there is really nothing bad I can think of to say about it.',
-      data: 'September 6, 2013',
+      date: 'September 6, 2013',
       stars: 5,
-      recommend: 'Yes, I recommend this product.'
+      recommend: '<b>Yes</b>, I recommend this product.'
     },
     {
       name: 'Ellary',
@@ -82,7 +82,7 @@ define([
       text: "Making expresso can be a fussy business. Once you master this machine you'll be hard pressed to go out for expresso again!",
       date: 'October 2, 2013',
       stars: 4,
-      recommend: 'Yes, I recommend this product.'
+      recommend: '<b>Yes</b>, I recommend this product.'
     }
   ]
 })

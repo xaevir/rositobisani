@@ -21,7 +21,7 @@ define([
     about: function(){
       AboutController.showAbout()
       App.execute("set:active:link", "about")
-    },
+    }
 
   };
 

@@ -12,7 +12,7 @@ return Backbone.View.extend({
   className: 'well',
 
   events: {
-    'submit form' : 'submit',
+    'submit form' : 'submit'
   },
 
   initialize: function(options){
@@ -73,7 +73,7 @@ return Backbone.View.extend({
 
   notice: function(){
     new AlertView({message: '<strong>Saved</strong>', type: 'info'})
-  },
+  }
 });
 
 });

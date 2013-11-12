@@ -12,7 +12,7 @@ var ItemView = Backbone.View.extend({
     "click a.setMainImage": 'setMainImage',
     "click a.editCaption": 'editCaption',
     "keypress .caption-input"  : "updateOnEnter",
-    "dblclick div.caption-text"    : "editCaption",
+    "dblclick div.caption-text"    : "editCaption"
   },
 
   template: Hogan.compile(tpl),
@@ -84,7 +84,7 @@ var ItemView = Backbone.View.extend({
     this.addInputBlur()
     this.model.view = this
     return this
-  },
+  }
 });
 
 return Backbone.View.extend({
@@ -127,7 +127,7 @@ return Backbone.View.extend({
     if (mainImage)
       this.addMainImageHeader(mainImage)
     return this
-  },
+  }
 })
 
 })

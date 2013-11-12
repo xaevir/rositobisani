@@ -77,12 +77,12 @@ define(function(require) {
       },
       password: {
         required: true,
-        minLength: 6,
+        minLength: 6
       },
       slug: {required: function(){
           if (typeof exports === 'object')
             return {required: true}
-        } 
+        }
       }
     },
 
@@ -101,8 +101,7 @@ define(function(require) {
           fn()
         })
       }) 
-    },
-    
+    }
   })
 
   return User

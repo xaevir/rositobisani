@@ -12,7 +12,7 @@ define([
     id: "contact-form",
 
     events: {
-      'submit form' : 'submitClicked',
+      'submit form' : 'submitClicked'
     },
 
     modelEvents: {
@@ -41,7 +41,7 @@ define([
     regions: {
       formRegion: "#form-region",
       contentRegion: "#content-region"
-    },
+    }
   });
 
   return Contact

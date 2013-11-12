@@ -50,8 +50,7 @@ login.login = Backbone.View.extend({
 
   renderError: function(){
     new AlertErrorView({message: this.errorMsg})
-  },
-
+  }
 });
 
   
@@ -71,7 +70,7 @@ login.modal = login.login.extend({
     var alert = new AlertContainedView({message: this.errorMsg})
     var html = alert.render().el
     $(this.el).prepend(html)
-  },
+  }
 })
 
 return login

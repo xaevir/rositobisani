@@ -7,13 +7,13 @@ define([
       name: '',
       type: '',
       medium: '',
-      thumb: '',
-    },
+      thumb: ''
+    }
   })
 
   return Backbone.Collection.extend({
     model: File,
-    url : '/files',
+    url : '/files'
     //urlRoot : '/files',
   })
 });

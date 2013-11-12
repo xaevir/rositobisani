@@ -14,7 +14,7 @@ return Backbone.View.extend({
   //el: '.uploadForm',
 
   events: {
-    'change input[type="file"]':  'fileUpload',
+    'change input[type="file"]':  'fileUpload'
   },
 
   initialize: function(options){
@@ -56,7 +56,7 @@ return Backbone.View.extend({
   render: function(){
     $(this.el).html(tpl);
     return this; 
-  },
+  }
 });
 
 });

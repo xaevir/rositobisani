@@ -33,7 +33,7 @@ alerts.alert = Backbone.View.extend({
 
   render: function(){
     var template = this.template.render({
-      message: this.message, 
+      message: this.message
     })
     $(this.el).html(template)
     $('#dialog-region').html(this.el)
@@ -51,13 +51,12 @@ alerts.alert = Backbone.View.extend({
       $(self.el).remove();
      });
     }, duration);
-  },
-
+  }
 });
 
 alerts.error = alerts.alert.extend({
   template: Hogan.compile(tplError),
-  shouldFadeOut: false,
+  shouldFadeOut: false
 })
 
 alerts.contained = Backbone.View.extend({
@@ -73,11 +72,11 @@ alerts.contained = Backbone.View.extend({
 
   render: function(){
     var template = this.template.render({
-      message: this.message, 
+      message: this.message
     })
     $(this.el).html(template)
     return this
-  },
+  }
 })
 
 

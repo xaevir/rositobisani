@@ -68,7 +68,7 @@ define([
     tagName: "ul",
     className: 'item-rows',
     //template: tplList, 
-    itemView: Manual,
+    itemView: Manual
     //itemViewContainer: "tbody"
   })
 

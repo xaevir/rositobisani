@@ -13,7 +13,7 @@ define([
     contact: function(){
       ShowController.showContact()
       App.execute("set:active:link", "contact")
-    },
+    }
   };
 
   App.on("contact:show", function(){

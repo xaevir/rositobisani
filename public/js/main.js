@@ -5,7 +5,7 @@ require.config({
     helperPathCallback:       // Callback to determine the path to look for helpers
       function (name) {       // ('/template/helpers/'+name by default)
         return 'cs!' + name;
-      },
+      }
   },
   paths: {
     //for hbs
@@ -29,12 +29,13 @@ require.config({
     scrollspy:               'libs/bootstrap/js/scrollspy',
     affix:                   'libs/bootstrap/js/affix',
     utilities:               'libs/utilities',
-    'iframe-transport' :     'libs/jquery.iframe-transport',
+    'iframe-transport':      'libs/jquery.iframe-transport',
     appMarionette:           'app_marionette',
     spin:                    'libs/spin',
     'spin.jquery':           'libs/spin.jquery',
     'jquery-ui':             'libs/jquery-ui-1.10.3',
     picky:                   'libs/picky',
+    stripe:                  'https://checkout.stripe.com/v2/checkout'
   },
 
   shim: {
@@ -70,28 +71,26 @@ require.config({
     appMarionette: [
       'marionette',
       'hbs', 
-      'spin.jquery',
       'picky',
       'scrollspy'
     ]
-  },
-
+  }
 });
 
 require([
   'app', 
-  'appMarionette', 
-  'require'
-  ], function(app, appMarionette, require) {
-
+  'appMarionette',
+  'require',
+], function(app, appMarionette, require) {
+  'use strict';
     app.initialize();
     require([
       'entities/categories',
       'entities/manuals',
       'entities/products',
-      //'entities/nav',
+      'entities/nav',
       'entities/reviews',
-      //'apps/nav/nav_app',
+      'apps/nav/nav_app',
       'apps/products/products_app',
       'apps/contact/contact_app',
       'apps/subnav/subnav_app',
@@ -102,5 +101,6 @@ require([
       'apps/reviews/reviews_app',
     ], function(){
       appMarionette.start();
+
     })
 });

@@ -11,7 +11,7 @@ define([
     tagName: "li",
 
     events: {
-      "click a": "showCategory",
+      "click a": "showCategory"
     },
 
     showCategory: function(e) {
@@ -39,7 +39,7 @@ define([
     },
 
     events: {
-      "click a": "showCategory",
+      "click a": "showCategory"
     },
 
 
@@ -55,7 +55,7 @@ define([
 
     className: "nav nav-list well",
 
-    tagName: "ul",
+    tagName: "ul"
   });
 
   return CategoriesView

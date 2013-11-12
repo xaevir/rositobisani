@@ -5,7 +5,7 @@ define(function(require) {
 
     model: File,
 
-    url : '/files',
+    url : '/files'
 
   })
 })

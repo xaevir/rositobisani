@@ -1,10 +1,10 @@
 doctype 5
 html(lang="en")
   head
-    script
-      var user = !{user} 
-    meta(charset='utf-8')
     meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+    script.
+      var user = !{user}
+    meta(charset='utf-8')
     if locals.title
       title #{title} - Rosito Bisani 
     else
@@ -13,6 +13,9 @@ html(lang="en")
     meta(name='description', content='Serving the needs of the foodservice industry')
     link(rel='shortcut icon', href='/img/favicon.png')
     link(rel='stylesheet', href='/css/main.css')
+
+    //if lt IE 9
+      link(rel='stylesheet', href='/css/ie.css')
     //- HTML5 shim, for IE6-8 support of HTML5 elements
     //if lt IE 9
       script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
@@ -20,17 +23,26 @@ html(lang="en")
     //if lt IE 7
       script(src='/fonts/icons/lte-ie7.js')
 
-    if locals.env === 'production' || locals.env === 'staging' 
+    if locals.env === 'production'
       script(data-main='/js/main-built', src='/js/libs/require.js')
-    else 
+    else if locals.env === 'staging'
+      script(data-main='/js/main-built', src='/js/libs/require.js')
+      //- script(data-main='/js/main-built', src='/js/libs/require.js')
+      //- script(data-main='/js/dev-built', src='/js/libs/require.js')
+    else
       script(data-main='/js/main', src='/js/libs/require.js')
-  body
+  body(id=locals.id?locals.id:'normal')
     #wrap
+      #spinner-region
+        .spinner
+          span LOADING
       #nav-region
         include nav
       #alert-region
       #dialog-region
       #app
         block content
+        .spinner
+          span LOADING
       #push
     include footer

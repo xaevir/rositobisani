@@ -8,7 +8,7 @@ define([
     validation: {
       category: {required: true},
       title: {required: true},
-      file: {required: true},
+      file: {required: true}
       /*subcategory: {required: function(){
         var currentCat = this.get('category')
         var hasSubCats = _.find(this.cats, function(cat){ 
@@ -17,7 +17,7 @@ define([
         if (hasSubCats) return true
       }},
       */
-    },
+    }
   });
 
   var API = {
@@ -34,7 +34,7 @@ define([
       });
       var promise = defer.promise();
       return promise;
-    },
+    }
   };
 
   App.reqres.setHandler("manual:entity", function(id){

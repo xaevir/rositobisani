@@ -1,16 +1,16 @@
+/* jshint expr: true */
 define([ 
-  'exports',
-], function(exports){
-
+], function(){
+  'use strict';
   var App = new Marionette.Application();
 
   App.addRegions({
-    navRegion: "#nav-region",
-    //mainRegion: "#main-region",
-    mainRegion: "#app",
-    dialogRegion: "#dialog-region",
-    alertRegion: "#alert-region",
-    //dialogRegion: Marionette.Region.Dialog.extend({ el: "#dialog-region" })
+    navRegion: '#nav-region',
+    //mainRegion: '#main-region',
+    mainRegion: '#app',
+    dialogRegion: '#dialog-region',
+    alertRegion: '#alert-region',
+    spinnerRegion: '#spinner-region'
   });
 
   App.navigate = function(route,  options){
@@ -22,15 +22,31 @@ define([
     return Backbone.history.fragment
   };
 
-  App.on("initialize:after", function(){
-    //require(['apps/manuals/manuals_app', 'apps/categories/categories_app'],function(){ 
-      if(Backbone.history){
-        Backbone.history.start({pushState: true})
-      }
-    //});
+  App.on('initialize:after', function(){
+    if(Backbone.history){
+      Backbone.history.start({pushState: true})
+    }
   });
 
-   ///exports.App = App
+
+  App.mainRegion.on('close', function(){
+    $('html, body').animate({
+      'scrollTop': 0
+    }, 700)
+  })
+
+  App.mainRegion.on('show', function(){
+    $('#spinner-region').css('display', 'none')
+  });
+
+  $.ajaxSetup({ cache: false });
+
+  $(document).on('click', 'a[href]:not([data-bypass], [href^="http"])', function () {
+    $('#spinner-region').css('display', 'block');
+
+    if ($('.navbar-collapse.in').length) // for link on products page and logo
+      $('.navbar-collapse').collapse('toggle')
+  })
 
   return App;
 });

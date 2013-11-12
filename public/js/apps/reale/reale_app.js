@@ -5,20 +5,20 @@ define([
 
   App.Router = Marionette.AppRouter.extend({
     appRoutes: {
-      'products/reale': 'showReale',
-      'products/reale/tabs/:tab': 'showReale'
+      'espresso-machines/reale': 'showReale',
+      'espresso-machines/reale/tabs/:tab': 'showReale'
     }
   });
 
   var API = {
     showReale: function(tab){
       ShowController.showReale(tab)
-    },
+    }
   };
 
   App.on("reale:show", function(){
     API.showReale()
-    App.navigate("products/reale");
+    App.navigate("espresso-machines/reale");
   });
 
   new App.Router({ controller: API });

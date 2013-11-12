@@ -63,7 +63,7 @@ define([
       });
       var promise = defer.promise();
       return promise;
-    },
+    }
   }
 
   App.reqres.setHandler("category:entities", function(){

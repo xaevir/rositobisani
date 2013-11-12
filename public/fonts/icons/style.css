@@ -38,9 +38,6 @@
 .fonticon-rb-icon:before {
 	content: "\e604";
 }
-.fonticon-pizza-oven:before {
-	content: "\e605";
-}
 .fonticon-pasta:before {
 	content: "\e606";
 }
@@ -60,11 +57,14 @@
 	content: "\e60b";
 }
 .fonticon-facebook:before {
-	content: "\e60c";
-}
-.fonticon-specialty-foodservice-equipment:before {
-	content: "\e60e";
-}
-.fonticon-made-italy5:before {
 	content: "\e60d";
+}
+.fonticon-pizza-oven:before {
+	content: "\e60f";
+}
+.fonticon-logo-top:before {
+	content: "\e605";
+}
+.fonticon-logo-bottom:before {
+	content: "\e60c";
 }

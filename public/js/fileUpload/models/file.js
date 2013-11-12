@@ -6,9 +6,7 @@ return Backbone.Model.extend({
     name: '',
     type: '',
     medium: '',
-    thumb: '',
-  },
-
-
+    thumb: ''
+  }
 })
 })

@@ -8,7 +8,7 @@ define([
   var Review = Backbone.Model.extend()
 
   var Reviews = Backbone.Collection.extend({
-    model: Review,
+    model: Review
   });
 
   var initializeReviews = function(){

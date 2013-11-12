@@ -1,7 +1,9 @@
 define([ 
   'hbs!apps/reviews/templates/review',
-  'Handlebars'
-], function(tpl, Handlebars){
+  'Handlebars',
+  'hbs!apps/reviews/templates/composite',
+], function(tpl, Handlebars, compositeTpl){
+  'use strict';
 
   Handlebars.registerHelper('genStars', genStars);
 
@@ -13,16 +15,20 @@ define([
     return new Handlebars.SafeString(str)
   }
 
-
   var Review = Marionette.ItemView.extend({
     template: tpl,
-    tagName: "li",
+    tagName: "li"
   });
 
+  return Backbone.Marionette.CompositeView.extend({
+    
+    className: 'reviewContent',
 
-  return Marionette.CollectionView.extend({
-    tagName: 'ul',
+    template: compositeTpl,
+
     itemView: Review,
-  });
+
+    itemViewContainer: 'ul'
+  })
 
 });

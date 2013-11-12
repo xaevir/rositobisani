@@ -29,7 +29,7 @@ define([
     editManual: function(id) {
       AdminController.composite('', id);
       //EditController(id)
-    },
+    }
 
   };
 

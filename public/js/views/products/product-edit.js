@@ -19,13 +19,13 @@ return Backbone.View.extend({
   render: function(){
     var productDetailsEdit = new ProductDetailsEdit({ 
       el: this.$(".details"), 
-      model: this.model,
+      model: this.model
     })
     productDetailsEdit.render()
 
     var uploadView = new UploadView({
       el: this.$('.files'), 
-      model: this.model,
+      model: this.model
     })
     uploadView.render()
  
@@ -35,7 +35,7 @@ return Backbone.View.extend({
     var html = thumbsView.render().el
     this.$('.files').append(html)
     return this; 
-  },
+  }
 
 });
 

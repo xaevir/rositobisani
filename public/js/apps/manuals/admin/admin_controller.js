@@ -26,7 +26,6 @@ define([
       })
 
       App.mainRegion.show(layoutView);
-    },
-
+    }
   }
 });

@@ -1,17 +1,19 @@
-define([ ], function(){
+define([ 
+  'Handlebars',
+], function(Handlebars){
 
   return Marionette.ItemView.extend({
     id: 'home',
     initialize: function(){
-      if(this.options.tpl)
-        this.template = this.options.tpl
-      else
-        this.el = this.options.homeEl
+      if(this.options.tpl) {
+        this.template = Handlebars.compile(this.options.tpl)
+        //this.template = this.options.tpl
+      }
     },
 
     events: {
       'click .show-hide-link': 'showHide',
-      "click .icons a": "navigate",
+      "click .icons a": "navigate"
     },
 
     showHide: function(e){

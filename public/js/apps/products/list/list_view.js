@@ -5,7 +5,7 @@ define([
   'hbs!apps/products/templates/list_subheader',
   'appMarionette',
 ], function(itemTpl, layoutTpl, headerTpl, subHeaderTpl, App){
-
+  'use strict';
   var Model = Backbone.Model.extend({})
 
   var TreeCollection = Backbone.Collection.extend({
@@ -17,24 +17,27 @@ define([
 
     template: itemTpl,
 
-    tagName: "li",
+    className: 'col-md-4 col-sm-4',
+
+    tagName: 'li',
 
     events: {
-      "click a": "navigate"
+      'click a': 'navigate'
     },
 
     navigate: function(e){
       e.preventDefault();
       var slug = this.model.get('slug')
-      App.trigger("product:show", slug);
-    },
+      var catSlug = this.model.get('category').slug
+      App.trigger('product:show', slug, catSlug);
+    }
   });
 
   var SubHeaderView = Backbone.Marionette.CompositeView.extend({
 
     template: subHeaderTpl,
 
-    itemViewContainer: ".item-rows",
+    itemViewContainer: '.item-rows',
 
     className: 'sub-section',
 
@@ -46,14 +49,14 @@ define([
         this.collection = new TreeCollection(products) 
         this.model.set('hasProducts', true);
       }
-    },
+    }
   });
 
   var Categories = Backbone.Marionette.CompositeView.extend({
 
     template: headerTpl,
 
-    tagName: "section",
+    tagName: 'section',
 
     initialize: function(){
 
@@ -71,7 +74,7 @@ define([
         if (products) {
           this.collection = new TreeCollection(products)
           this.itemView = ProductView
-          this.itemViewContainer = ".item-rows"
+          this.itemViewContainer = '.item-rows'
           this.model.set('hasProducts', true)
           this.model.set('hasSubHeaders', false)
         }
@@ -84,7 +87,7 @@ define([
 
   API.Products = Backbone.Marionette.CollectionView.extend({
     className: 'items',
-    itemView: Categories,
+    itemView: Categories
   })
 
 
@@ -95,8 +98,8 @@ define([
     template: layoutTpl,
 
     regions: {
-      productsRegion: "#products-region",
-      subnavRegion: "#subnav-region"
+      productsRegion: '#products-region',
+      subnavRegion: '#subnav-region'
     },
 
     onLayoutRendered: function(target){

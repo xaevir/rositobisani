@@ -11,7 +11,7 @@ return Backbone.View.extend({
 
   events: {
     "click a": "preventDefault",
-    "click a:not([href^='#'])": "pushState",
+    "click a:not([href^='#'])": "pushState"
   },
 
   initialize: function(options){
@@ -34,7 +34,6 @@ return Backbone.View.extend({
     var href = linkEl.attr("href");
     var router = new Backbone.Router();
     router.navigate(href.substr(1), true)
-  },
-
+  }
 })
 })

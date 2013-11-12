@@ -3,7 +3,7 @@ define(function(require) {
 var BaseRouter = require('routers/baseRouter')
   , SignupView = require('views/users/signup').signup
   , LoginView = require('views/users/login').login
-  , NavView = require('views/navbar/navbar')
+//  , NavView = require('views/navbar/navbar')
   , User = require('models/user')
   , NewUser = require('models/newUser')
 //  , Product = require('entities/product') 
@@ -35,8 +35,7 @@ var BaseRouter = require('routers/baseRouter')
       _.bindAll(this) 
       this.user = user 
       window.dispatcher.on('session:logout', this.logout, this)
-      var navView = new NavView({user: this.user}).render()
-      $.ajaxSetup({ cache: false });
+      //var navView = new NavView({user: this.user}).render()
     },
 
     routes: {
@@ -249,7 +248,7 @@ var BaseRouter = require('routers/baseRouter')
         this.contextualMenuView.remove()
       if (this.pageHeaderView)    
         this.pageHeaderView.remove()
-    },
+    }
   });
 
  

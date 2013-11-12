@@ -29,13 +29,13 @@ return Backbone.Model.extend({
     description: '',
     category: '',
     subcategory: '',
-    mainImage: '',
+    mainImage: ''
   },
 
   validation: {
     name: {required: true},
     //description: {required: true},
-    category: {required: true},
+    category: {required: true}
   },
 
   parse: function(res){
@@ -45,7 +45,6 @@ return Backbone.Model.extend({
     files.parent = this
     res.files = files 
     return res
-  },
-
+  }
 })
 })

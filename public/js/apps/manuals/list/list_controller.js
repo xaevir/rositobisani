@@ -5,8 +5,8 @@ define([
 ], function(App, Loading, ManualsListView){
   return {
     listManuals: function(view){
-      var loadingView = new Loading();
-      App.mainRegion.show(loadingView);
+      //var loadingView = new Loading();
+      //App.mainRegion.show(loadingView);
         
       var fetchingManuals = App.request("manual:entities:sorted");
       

@@ -1,23 +1,24 @@
 define([ 
   'appMarionette',
   'apps/reale/show/show_view',
-], function(App, ShowView){
+], function(App, ShowReale){
+  'use strict';
   return {
     showReale: function(tab) {
-      $.get('/products/reale', function(obj) {
+      $.get('/espresso-machines/reale', function(obj) {
 
-        var showView = new ShowView({template: obj.body})
+        var showReale = new ShowReale({tpl: obj.body})
 
         document.title = obj.title
 
-        showView.on('show', function() {
+        showReale.on('show', function() {
           if (tab)
-            showView.triggerMethod('load:tab', tab)
+            showReale.triggerMethod('load:tab', tab)
 
-          App.trigger("reviews:list", showView.reviewsRegion)
+          App.trigger('reviews:list', showReale.reviewsRegion)
         })
 
-        App.mainRegion.show(showView);
+        App.mainRegion.show(showReale);
       })
     }
   }

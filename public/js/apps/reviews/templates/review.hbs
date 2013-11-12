@@ -1,16 +1,23 @@
-<div class="metadata">
-  <span class="rating-stars rating-stars-off"> &#9733;&#9733;&#9733;&#9733;&#9733;</span>
-  <span class="rating-stars rating-stars-on">{{genStars stars}}</span>
+<div class="content">
+  <span class="glyphicon glyphicon-user"></span>
+
+  {{#if stars}}
+  <div class="metadata">
+    <span class="rating-stars rating-stars-off"> &#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    <span class="rating-stars rating-stars-on">{{genStars stars}}</span>
+  </div>
+  {{/if}}
+  <span class="name">{{name}}</span> &sdot; <span class="date">{{date}}</span>
+
+  <div class="headline">
+    {{headline}}
+  </div>
+  <p>
+    {{text}}
+  </p>
+  {{#if recommend}}
+    <div class="recommend">
+      <span class="glyphicon glyphicon-ok-sign"></span> {{{recommend}}}
+    </div>
+  {{/if}}
 </div>
-<p>
-  {{name}} {{date}}
-</p>
-<p>
-  {{headline}}
-</p>
-<p>
-  {{text}}
-</p>
-<p>
-  {{recommend}}
-</p>

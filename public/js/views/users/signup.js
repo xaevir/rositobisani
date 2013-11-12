@@ -1,8 +1,8 @@
 define(function(require) {
 
 var tpl = require('text!templates/users/signup.html')
-  , AlertView = require('views/site/alert').alert         
-  , AlertContainedView = require('views/site/alert').contained         
+  , AlertView = require('views/site/alert').alert
+  , AlertContainedView = require('views/site/alert').contained
   , NewUser = require('models/newUser')
 
 var signup = {}
@@ -44,7 +44,7 @@ signup.signup = Backbone.View.extend({
   close: function(){
     var router = new Backbone.Router()
     router.navigate('', true);
-  },
+  }
 
 });
 
@@ -63,7 +63,7 @@ signup.modal = signup.signup.extend({
   renderError: function(){
     var alert = new AlertContainedView({message: this.errorMsg})
     $(this.errorEl).prepend(alert.render().el)
-  },
+  }
 
 })
 

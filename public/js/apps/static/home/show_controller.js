@@ -3,17 +3,18 @@ define([
   'apps/static/home/show_view',
 //  'views/site/stopClick',
 ], function(App, ShowHome){
+  'use strict';
   return {
     showHome: function() {
-      $.get('/', function(obj) {
-        var showHome = new ShowHome({tpl: obj.body})
+      $.get('/', function(html) {
+        var showHome = new ShowHome({tpl: html})
         App.mainRegion.show(showHome);
-        document.title = obj.title
+        document.title = 'Rosito Bisani'
 
-        showHome.on("navigate", function(target){
+        showHome.on('navigate', function(target){
           App.trigger('products:list', target);
         });
       })
-    },
+    }
   }
 });

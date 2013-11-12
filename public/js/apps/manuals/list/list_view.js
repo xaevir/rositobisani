@@ -16,7 +16,7 @@ define([
 
     template: itemTpl,
 
-    tagName: "li",
+    tagName: "li"
     
   });
 
@@ -36,7 +36,7 @@ define([
         this.collection = new TreeCollection(manuals) 
         this.model.set('hasManuals', true);
       }
-    },
+    }
   });
 
 
@@ -75,7 +75,7 @@ define([
 
     itemView: CategoryView,
 
-    itemViewContainer: ".body",
+    itemViewContainer: ".body"
 
   });
 

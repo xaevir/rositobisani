@@ -8,12 +8,9 @@ define(function(require) {
 
     isLoggedIn: function(){
       return Boolean(this.get("username"))
-    }, 
-
-    parse: function(res){
-    
     },
 
+    parse: function(res){ }
   })
 
   return User

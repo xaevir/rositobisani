@@ -1,105 +1,174 @@
-define([ ], function(){
+/* global StripeCheckout */
+define([
+  'appMarionette',
+  'stripe'
+], function(App){
   'use strict';
+
   return Marionette.Layout.extend({
     id: 'reale',
 
     events: {
-      'click .nav': 'tabClicked'
+      'click .nav a[href]':                           'realLink',
+      'click .nav a:not([href])':                     'tabClicked',
+      'click .scroll-down-wrap a':                    'scrollNavToTop',
+      'click .buy-btn a':                             'buy',
+      'click .review-link-js':                        'tabClicked'
     },
 
     regions: {
-      reviewsRegion: '#reviews',
+      reviewsRegion: '#reviews'
     },
 
-    initialize: function() {
+    initialize: function(){
+      if(this.options.tpl)
+        this.template = this.options.tpl
+
+      _.bindAll(this);
+      this.alreadyCalledSlideIn = false
+      this.alreadyCalledSlideOut =  false
+
+      $(window).on('resize', this.setHeights)
       $(window).on('scroll', this.scrollBanner)
-      $(window).on('resize', this.windowHeight)
+    },
+
+    buy: function() {
+
+      var token = function(res){
+        var $input = $('<input type=hidden name=stripeToken />').val(res.id);
+        $('form').append($input).submit();
+      };
+
+      StripeCheckout.open({
+        key:         'pk_test_kO65ouSwP01jQ1EcxQfUkHA4',
+        address:     true,
+        amount:     154999,
+        currency:    'usd',
+        name:        'Reale',
+        description: 'Espresso Machine',
+        panelLabel:  'Checkout',
+        token:       token
+      });
+
+      return false;
+
+    },
+
+    realLink: function(e){
+      e.preventDefault()
+      var linkEl = $(e.currentTarget)
+      var href = linkEl.attr('href')
+      if (href === '/contact')
+        App.trigger('contact:show')
+      if (href === '/espresso-machines/reale')
+        App.trigger('reale:show')
     },
 
     tabClicked: function(e){
       e.preventDefault()
 
-      var clickedEl = $(e.target)
+      $('#spinner-region').css('display', 'block');
 
-      var contentTarget = clickedEl.data('target')
+      this.scrollNavToTop()
+
+      var clickedEl = $(e.target)
 
       $(clickedEl).tab('show')
 
-      if (contentTarget === '#features')
-        $('#part2-region').css('display', 'block')
-      else
-        $('#part2-region').css('display', 'none')
+      $('#spinner-region').css('display', 'none')
     },
+
+    scrollNavToTop: function(){
+      var navHeight = $('#reale .nav').height()
+
+      var buyBoxHeight = $('.buy-box').offset().top - navHeight
+      $('html, body').animate({
+        'scrollTop': buyBoxHeight
+      }, 1500)
+    },
+
     onLoadTab: function(tab) {
+      this.setHeights() //this is entry point so set up page
       var anchor = this.$el.find('[data-target="#'+tab+'"]');
       anchor.click()
     },
+
     onShow: function(){
       $('.navbar').css('display', 'none')
-      $('#reale .fade').delay(1000).animate({ opacity: 1 }, 700);
-      this.windowHeight();
+      $('#reale .fadeIn').delay(700).animate({ opacity: 1 }, 700);
 
-      //$('#reale .nav a[data-target="#features"], #reale .scrollDown').click( function() {
-       // $("html, body").animate({ scrollTop: $('#features').offset().top }, 1500);
-        //return false;
-      //});
-
-      //$('.contact-numbers').css('display', 'none')
-      //$('html, body').animate({
-      //  'scrollTop': 682
-      //}, 1500)
-      //$('.navbar').css('display', 'none')
-
+      this.setHeights()
     },
+
     onBeforeClose: function(){
-      // prevent the view from being closed
-      //return false;
+      $('body').removeAttr('id')
+      $('.navbar').css('display', 'block')
+      // not sure if needed
+      $(window).unbind( 'resize', this.setHeights)
+      $(window).unbind( 'scroll', this.scrollBanner)
     },
 
-    windowHeight: function() {
-      var height= $(window).height()
-      var nav = $('#reale .nav').height()
+    setHeights: function() {
+      var windowHeight= $(window).height()
+      //var scrollDownArrowHeight = $('#reale .header .scroll-down').height()
+      $('#reale > .header').css('height', windowHeight+'px');
 
-      $('#reale .header').css('height', height +'px');
-      $('#reale .header .header-inner').css('height', (height - nav)+'px');
-      $('#reale .header .ht').css('height', (height - nav) +'px');
-      // position content 
-      var offsetTop = (height - nav- 420)/2
-      $('#reale .header .row').css('margin-top', offsetTop+'px');
+      //$('#reale .header .row').css('height', (windowHeight - scrollDownArrowHeight)+'px');
+
+      var machineHeight = 425
+      var contentOffsetTop = (windowHeight - machineHeight)/2
+      $('#reale .header .row').css('padding-top', contentOffsetTop+'px');
 
       // center machine
       var colWidth = $('#reale .col-md-6').width()
       $('#reale .machine').css('width', colWidth+'px' )
 
-      //$('#reale .header .machine').css('height', ($(window).height()-offset-100) +'px');
+    },
+
+    slideIn: function(){
+      $( '.nav .fonticon-reale-logo' ).animate({
+        'margin-left': '0px'
+      }, 700, function() {
+      });
+    },
+
+    slideOut: function(){
+      $( '.nav .fonticon-reale-logo' ).animate({
+        'margin-left': '-97px'
+      }, 700, function() {
+      });
     },
 
     scrollBanner: function() {
-      //Get the scoll position of the page
-      var scrollPos = $(this).scrollTop();
-      console.log('scroll top: '+ scrollPos);
+      var scrollPos = $(window).scrollTop();
       var height = $(window).height()
       var nav = $('#reale .nav').height()
 
-      if( scrollPos > (height - nav) )
+      if( scrollPos > (height - nav) ) {
         $('.nav-wrapper').addClass('reale-nav-fixed');
-      else
+        if(this.alreadyCalledSlideIn === false) {
+          this.slideIn()
+          this.alreadyCalledSlideIn = true
+          this.alreadyCalledSlideOut = false
+        }
+      } else {
         $('.nav-wrapper').removeClass('reale-nav-fixed');
-
-      //Scroll and fade out the banner text
-      //var x = scrollPos/3
-      //var y = scrollPos/900
+        if(this.alreadyCalledSlideOut === false) {
+          this.slideOut()
+          this.alreadyCalledSlideOut = true
+          this.alreadyCalledSlideIn = false
+        }
+      }
 
       $('#reale .girl img').css({
         'opacity' : 1-(scrollPos/height)
       });
 
-      $('#reale .headline').css({
+      $('#reale .header .headline').css({
         'margin-top' : -(scrollPos/3)+'px',
         'opacity' : 1-(scrollPos/height)
       });
       $('#reale .review-container').css({
-        'bottom' : (scrollPos/3)+'px',
         'opacity' : 1-(scrollPos/height)
       });
 
@@ -108,10 +177,7 @@ define([ ], function(){
       $('#reale .machine').css({
         'margin-top' : (-scrollPos/4)+'px'
       }); 
-
-
-    },
-
+    }
 
 /*
     ///////////////////////////////		

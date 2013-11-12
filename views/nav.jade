@@ -1,13 +1,12 @@
 .navbar
   .container
     .navbar-header
-      button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-collapse")
+      button.navbar-toggle(data-toggle="collapse", data-target=".navbar-collapse")
         span.icon-bar
         span.icon-bar
         span.icon-bar
       a.navbar-brand(href="/")
-        span.fonticon-rosito-bisani
-        span.fonticon-specialty-foodservice-equipment
+        span.fonticon-logo
     .navbar-collapse.collapse
       ul.nav.navbar-nav
         li: a(href="/") Home 
@@ -15,11 +14,14 @@
         li: a(href="/about") About 
         li: a(href="/manuals") Manuals 
         li: a(href="/contact") Contact 
+        li.contact-numbers
+          ul.list-unstyled
+            li
+              a(href="tel:1-800-848-4444", data-bypass="true") West Coast Support 
+                span.phone-number 1-800-848-4444
+            li
+              a(href="tel:1-800-215-8563", data-bypass="true") East Coast Support 
+                span.phone-number 1-800-215-8563
       .user-menu.pull-right
-      .pull-right.contact-numbers  
-        ul
-          li West Coast Support
-          li 1-800-848-4444
-        ul
-          li East Coast Support
-          li 1-800-215-8563
+
+

@@ -3,11 +3,22 @@ define([
   'apps/products/list/list_controller',
   'apps/products/show/show_controller',
 ], function(App, ListController, ShowController ){
+  'use strict';
 
   App.Router = Marionette.AppRouter.extend({
     appRoutes: {
-      "products":       "listProducts",
-      "products/:slug": "showProduct"
+      'products':                 'listProducts',
+      //'products/:slug':           'showProduct',
+      'espresso-machines/:slug':  'showProduct',
+      'espresso-grinders/:slug':  'showProduct',
+      'pizza-ovens/:slug':        'showProduct',
+      'pasta-machines/:slug':     'showProduct',
+      'gelato/:slug':             'showProduct',
+      'citrus-juicers/:slug':     'showProduct',
+      'mixers/:slug':             'showProduct',
+      'panini-grills/:slug':      'showProduct',
+      'meat-slicers/:slug':       'showProduct',
+      'hot-chocolate/:slug':      'showProduct'
     }
   });
 
@@ -15,26 +26,27 @@ define([
 
     listProducts: function(target){
       ListController.listProducts(target)
-      App.execute("set:active:link", "products")
+      App.execute('set:active:link', 'products')
     },
 
     showProduct: function(slug){
-      if (slug =='reale')
+      if (slug ==='reale')
         App.trigger('reale:show')
       else
         ShowController.showProduct(slug)
-      App.execute("set:active:link", "")
-    },
+      App.execute('set:active:link', '')
+    }
   };
 
-  App.on("products:list", function(target){
+  App.on('products:list', function(target){
     API.listProducts(target)
-    App.navigate("products");
+    App.navigate('products');
   });
 
-  App.on("product:show", function(slug){
+  App.on('product:show', function(slug, catSlug){
     API.showProduct(slug)
-    App.navigate("products/"+slug);
+    if (slug !=='reale')
+      App.navigate(catSlug+'/'+slug);
   });
 
 

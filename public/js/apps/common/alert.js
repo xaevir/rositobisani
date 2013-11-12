@@ -26,6 +26,6 @@ define([
         $(self.el).remove();
        });
       }, duration);
-    },
+    }
   });
 });

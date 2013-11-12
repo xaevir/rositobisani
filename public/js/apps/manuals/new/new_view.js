@@ -12,7 +12,7 @@ define([
     },
 
     events: {
-      'click button.js-new': 'submitClicked',
+      'click button.js-new': 'submitClicked'
     },
 
     //submitClicked: function(e) {
@@ -51,6 +51,6 @@ define([
       this.model.clear() //bc file is set
       this.model.set(res)
       this.trigger('form:success', this.model)
-    },
+    }
   });
 });

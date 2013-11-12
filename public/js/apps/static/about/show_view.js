@@ -1,7 +1,6 @@
 define([ ], function(){
 
   return Marionette.ItemView.extend({
-    id: 'about',
-
+    id: 'about'
   });
 });

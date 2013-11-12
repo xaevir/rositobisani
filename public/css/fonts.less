@@ -3,7 +3,29 @@
 @font-face{
 	font-family: 'caslon';
 	@folder: 'caslon';
-	@name: 'CaslonPro-Regular';
+	@name: 'acaslonpro-regular-webfont';
+	src: url("@{base-url}/@{folder}/@{name}.eot");
+   	src: url("@{base-url}/@{folder}/@{name}.eot?#iefix") format('embedded-opentype'),
+     	     url("@{base-url}/@{folder}/@{name}.woff") format('woff'),
+     	     url("@{base-url}/@{folder}/@{name}.ttf") format('truetype'),
+     	     url("@{base-url}/@{folder}/@{name}.svg#adobe_caslon_proregular") format('svg');
+}
+
+@font-face{
+	font-family: 'proximaNovaLightItalic';
+	@folder: 'proximaNovaLightItalic';
+	@name: 'proximanova-lightitalic-webfont';
+	src: url("@{base-url}/@{folder}/@{name}.eot");
+   	src: url("@{base-url}/@{folder}/@{name}.eot?#iefix") format('embedded-opentype'),
+     	     url("@{base-url}/@{folder}/@{name}.woff") format('woff'),
+     	     url("@{base-url}/@{folder}/@{name}.ttf") format('truetype'),
+     	     url("@{base-url}/@{folder}/@{name}.svg#proxima_novalight_italic") format('svg');
+}
+
+@font-face{
+	font-family: 'proximaNovaItalic';
+	@folder: 'proximaNovaItalic';
+	@name: 'proximaNovaItalic';
 	src: url("@{base-url}/@{folder}/@{name}.eot");
    	src: url("@{base-url}/@{folder}/@{name}.eot?#iefix") format('embedded-opentype'),
      	     url("@{base-url}/@{folder}/@{name}.woff") format('woff'),
@@ -14,12 +36,12 @@
 @font-face{
 	font-family: 'proximaNovaLight';
 	@folder: 'proximaNovaLight';
-	@name: 'ProximaNova-Light';
+	@name: 'proximanova-light-webfont';
 	src: url("@{base-url}/@{folder}/@{name}.eot");
    	src: url("@{base-url}/@{folder}/@{name}.eot?#iefix") format('embedded-opentype'),
      	     url("@{base-url}/@{folder}/@{name}.woff") format('woff'),
      	     url("@{base-url}/@{folder}/@{name}.ttf") format('truetype'),
-     	     url("@{base-url}/@{folder}/@{name}.svg#") format('svg');
+     	     url("@{base-url}/@{folder}/@{name}.svg#proxima_novalight") format('svg');
 }
 
 @font-face{
@@ -34,17 +56,18 @@
 }
 
 
-@font-face{
-	font-family: 'proximaNova';
-	@folder: 'proximaNova';
-	@name: 'ProximaNova-Regular';
-	src: url("@{base-url}/@{folder}/@{name}.eot");
-   	src: url("@{base-url}/@{folder}/@{name}.eot?#iefix") format('embedded-opentype'),
-     	     url("@{base-url}/@{folder}/@{name}.woff") format('woff'),
-     	     url("@{base-url}/@{folder}/@{name}.ttf") format('truetype'),
-     	     url("@{base-url}/@{folder}/@{name}.svg#") format('svg');
+@font-face {
+    font-family: 'proximaNova';
+    @folder: 'proximaNova';
+    @name: 'proximanova-regular';
+    src: url('@{base-url}/@{folder}/@{name}-webfont.eot');  /* IE9 Compat Modes */
+    src: url('@{base-url}/@{folder}/@{name}-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('@{base-url}/@{folder}/@{name}-webfont.woff') format('woff'),  /* Modern Browsers */
+         url('@{base-url}/@{folder}/@{name}-webfont.ttf') format('truetype'),   /* Safari, Android, iOS */
+         url('@{base-url}/@{folder}/@{name}-webfont.svg#proxima_nova_rgregular') format('svg'); /* Legacy iOS */
+    font-weight: normal;
+    font-style: normal;
 }
-
 
 @font-face{
 	font-family: 'codeLight';

@@ -6,19 +6,18 @@ define(function(require) {
 
     validation: {
       name: {
-        required: true,
+        required: true
       },
 
       email: [{
-        required: true,
+        required: true
       },{
         pattern: 'email',
         msg: 'Please enter a valid email'
       }],
       message: {
-        required: true,
-      },
-    }, 
-
+        required: true
+      }
+    }
   })
 })

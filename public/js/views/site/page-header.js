@@ -17,7 +17,6 @@ return Backbone.View.extend({
     var template = this.template(this.header)
     $(this.el).html(template)
     $('#app').before(this.el)
-  },
-
+  }
 })
 })

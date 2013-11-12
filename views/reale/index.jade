@@ -1,83 +1,108 @@
-#reale
-  .nav-wrapper
+mixin nav
+  .nav-wrapper.tabs
     ul.nav.nav-pills.container
-      li.active: a(href="#", data-target="#features") Features
-      li: a(href="#", data-target="#specs") Specs
-      li: a(href="#", data-target="#reviews") Reviews
-      li: a(href="#", data-target="#warranty") Warranty
-      li: a(href="#", data-target="#faq") FAQ
-      li: a(href="#", data-target="#support") Support
-  .header
-    .girl
-      img.ht(src="/img/reale-banner-girl-opacity.png")
-    .header-inner
-      .scrolldown
-        span LEARN MORE
-        img(src="/img/scroll_down.png")
-      .container
-        .row
-          .col-md-6
-            .headline.fade
-              h1 Meet the 
-                span.fonticon-reale-logo 
-              h2 a commercial espresso machine for your home
-          .col-md-6.pull-right
-            .machine
-              img(src="/img/reale-420.png")
-          .col-md-6.review-container.fade
-            .review
-                p.quote  &ldquo;Simple, beautiful, and makes excellent espresso...&rdquo;
-                .author
-                  p.line-one
-                    img.pull-right(src="/img/coffeegeek.png")
-                  p.line-two espresso machine review site
+      li.reale-logo: a(href="/espresso-machines/reale")
+        span.fonticon-reale-logo
+      li.active: a(data-target="#features") Features
+      li: a(data-target="#specs") Specs
+      li: a(data-target="#reviews") Reviews
+      li: a(data-target="#return") Return Policy
+      li: a(href="/contact") Contact
+      //- li: a(data-target="#warranty") Warranty
+      //- li: a(data-target="#faq") FAQ
+      //- li: a(data-target="#support") Support
 
+mixin girl
+  .girl
+    img.ht(src="/img/reale-banner-girl-opacity.png")
+
+mixin scrollDown
+  .scroll-down-wrap
+    a
+      span LEARN MORE
+      br
+      span.scroll_down
+
+mixin headline
+  .headline.fadeIn
+    h1 Meet the 
+      span.fonticon-reale-logo
+    h2 a commercial espresso machine for your home
+
+mixin machine
+  .machine
+    img(src="/img/reale-420.png")
+
+mixin review
+  .review.fadeIn
+    .quote  &ldquo;Simple, beautiful, <br>and makes excellent<br> espresso...&rdquo;
+    .author
+      .line-one - coffeegeek.com
+      .line-two espresso machine review site
+
+mixin buyBox
+  .buy-box
+    .hd
+      .product-name Reale Espresso Machine
+      .price 
+        span.small Price: 
+        | &#36;1,549.99
+      .rating-wrapper
+        dl.rating-container
+          dd.rating-ratio
+            div
+              span.rating-stars.rating-stars-off &#9733;&#9733;&#9733;&#9733;&#9733;
+              span.rating-stars.rating-stars-on &#9733;&#9733;&#9733;&#9733;&#9733;
+          dd.rating-ratio-count
+             a.review-link-js(data-target="#reviews") 7 Reviews
+    .bd
+      .product-incentives
+        ul.pull-left
+          li: a()
+            span.glyphicon.glyphicon-plane 
+            |  Free Shipping
+          li: a()
+            span.glyphicon.glyphicon-tag 
+            |  No Sales Tax
+        ul.pull-right
+          li: a()
+            span.glyphicon.glyphicon-ok-sign 
+            |  30 Day Guarantee
+          li: a()
+            span.glyphicon.glyphicon-lock 
+            |  Safe and Secure
+      .buy-btn
+        a.btn.btn-default.btn-lg Buy
+
+
+#reale
+  mixin nav
+  .header
+    mixin girl
+    mixin scrollDown
+    .container
+      .row
+        .col-md-6
+          mixin headline
+        .col-md-6.pull-right.machine-container
+          mixin machine
+        .col-md-6.review-container
+          mixin review
   .body
-    section._1
-      .container
-        .row.first
-          .col-md-8
-            .tab-content
-              .tab-pane.active#features
-                include features-part2
-              .tab-pane#specs
-                include specs
-              .tab-pane#reviews
-              .tab-pane#warranty
-                h1 Warranty
-              .tab-pane#faq
-                h1 F.A.Q.
-              .tab-pane#support
-                h1 Support
-          .col-md-4
-            .buy-box
-              .product-name Reale Espresso Machine
-              .price &#36;1,549.99
-              .buy-btn
-                .buy-wrap
-                  a.btn.btn-default.btn-lg Buy
-              .rating-wrapper
-                dl.rating-container
-                  dd.rating-ratio
-                    div
-                      span.rating-stars.rating-stars-off &#9733;&#9733;&#9733;&#9733;&#9733;
-                      span.rating-stars.rating-stars-on &#9733;&#9733;&#9733;&#9733;&#9733;
-                  dd.rating-ratio-count
-                     a(href="#") 4 Reviews
-              .product-incentives
-                ul.pull-left
-                  li: a(href="#")
-                    span.glyphicon.glyphicon-plane 
-                    |  Free Shipping
-                  li: a(href="#")
-                    span.glyphicon.glyphicon-tag 
-                    |  No Sales Tax
-                ul.pull-right
-                  li: a(href="#")
-                    span.glyphicon.glyphicon-ok-sign 
-                    |  30 Day Guarantee
-                  li: a(href="#")
-                    span.glyphicon.glyphicon-lock 
-                    |  Safe and Secure
-    //.section2
-      include features-part2
+    .container
+      mixin buyBox
+      .tab-content
+        .tab-pane.active#features
+          include features
+        .tab-pane#specs
+          include specs
+        .tab-pane#reviews
+        .tab-pane#return
+          include return
+        .tab-pane#warranty
+          h1 Warranty
+        .tab-pane#faq
+          h1 F.A.Q.
+        .tab-pane#support
+          h1 Support
+

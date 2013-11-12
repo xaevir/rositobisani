@@ -1,6 +1,6 @@
 define([ 
   'appMarionette',
-  'apps/nav/list/list_view',
+  'apps/nav/list/list_view'
 ], function(App, NavView){
 
   return {

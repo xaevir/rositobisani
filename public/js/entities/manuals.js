@@ -5,7 +5,7 @@ define([
 
   var Manuals = Backbone.Collection.extend({
     url: "/manuals",
-    model: Manual,
+    model: Manual
   });
 
   var API = {

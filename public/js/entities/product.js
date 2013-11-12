@@ -32,13 +32,13 @@ define([
       description: '',
       category: '',
       subcategory: '',
-      mainImage: '',
+      mainImage: ''
     },
 
     validation: {
       name: {required: true},
       //description: {required: true},
-      category: {required: true},
+      category: {required: true}
     },
 
     parse: function(res){
@@ -48,7 +48,7 @@ define([
       files.parent = this
       res.files = files 
       return res
-    },
+    }
   });
 
   var API = {
@@ -65,7 +65,7 @@ define([
       });
       var promise = defer.promise();
       return promise;
-    },
+    }
   };
 
   App.reqres.setHandler("product:entity", function(slug){
