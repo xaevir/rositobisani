@@ -26,7 +26,7 @@ html(lang="en")
     if locals.env === 'production'
       script(data-main='/js/main-built', src='/js/libs/require.js')
     else if locals.env === 'staging'
-      script(data-main='/js/main-built', src='/js/libs/require.js')
+      script(data-main='/js/main', src='/js/libs/require.js')
       //- script(data-main='/js/main-built', src='/js/libs/require.js')
       //- script(data-main='/js/dev-built', src='/js/libs/require.js')
     else

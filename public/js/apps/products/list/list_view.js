@@ -87,7 +87,19 @@ define([
 
   API.Products = Backbone.Marionette.CollectionView.extend({
     className: 'items',
-    itemView: Categories
+
+    itemView: Categories,
+
+
+    onLayoutRendered: function(target){
+      $('body').scrollspy({ target: '.spy-nav', offset: 70 })
+      if(target){
+        var selector = 'a[href="#'+target+'"]'
+        var anchor = $(selector);
+        setTimeout(function(){ anchor.trigger('click')}, 300);
+      }
+    }
+
   })
 
 
@@ -102,15 +114,15 @@ define([
       subnavRegion: '#subnav-region'
     },
 
-    onLayoutRendered: function(target){
+    /*onLayoutRendered: function(target){
       $('body').scrollspy({ target: '.spy-nav', offset: 70 })
       if(target){
         var selector = 'a[href="#'+target+'"]'
         var anchor = $(selector);
         setTimeout(function(){ anchor.trigger('click')}, 300);
       }
-    }
-
+    },
+    */
   });
 
 
