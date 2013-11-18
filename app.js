@@ -72,7 +72,7 @@ app.configure('staging', function(){
 app.configure('production', function(){
   mediaBasePath = '/srv/http/rositobisani/public/'
   uploadedFiles = uploadedFiles(mediaBasePath)
-  app.set('port', process.env.PORT || 8100);
+  app.set('port', process.env.PORT || 8030);
   db = mongo.db('localhost/rosito?auto_reconnect=true', {safe: true})
   app.locals({
     env: 'production',
