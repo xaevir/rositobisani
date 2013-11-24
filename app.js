@@ -72,7 +72,7 @@ app.configure('staging', function(){
 app.configure('production', function(){
   mediaBasePath = '/srv/http/rositobisani/public/'
   uploadedFiles = uploadedFiles(mediaBasePath)
-  app.set('port', process.env.PORT || 8100);
+  app.set('port', process.env.PORT || 8030);
   db = mongo.db('localhost/rosito?auto_reconnect=true', {safe: true})
   app.locals({
     env: 'production',
@@ -128,6 +128,7 @@ app.get('/*', function(req, res, next) {
   next()
 })
 
+/*
 app.get('/', function(req, res) {
   if (!(req.xhr)) {
     res.render('layout', locals)
@@ -135,6 +136,20 @@ app.get('/', function(req, res) {
     res.render('home', locals)
   }
 });
+*/
+
+app.get('/', function(req, res) {
+  locals.id = 'reale-page'
+  if (!(req.xhr)) {
+    res.render('layout', locals)
+  } else {
+    locals.title = 'Reale Espresso Machine'
+    res.render('reale/index', locals, function(err, html){
+      res.send({title: locals.title, body: html});
+    });
+  }
+});
+
 
 app.get('/about', function(req, res) {
   if (!(req.xhr)) {
