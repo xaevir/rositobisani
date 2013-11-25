@@ -160,9 +160,9 @@ define([
         }
       }
 
-      $('#reale .girl img').css({
-        'opacity' : 1-(scrollPos/height)
-      });
+      //$('#reale .girl img').css({
+      //  'opacity' : 1-(scrollPos/height)
+      //});
 
       $('#reale .header .headline').css({
         'margin-top' : -(scrollPos/3)+'px',

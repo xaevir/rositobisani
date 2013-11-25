@@ -345,17 +345,21 @@ form.form-inline {
     position: relative;
     width: 133px;
     font-size: 34px;
+    .fonticon-logo {
+      display: inline-block; // clips width in chrome android. Could be chrome bug
+    }
     .fonticon-logo:before { //top
       content: "\e605";
       color: @red;
-      position: absolute;
-      top: 0;
+      //position: absolute;
+      //top: 0;
     }
     .fonticon-logo:after {//bottom
       content: "\e60c";
       color: #111;
       position: absolute;
       top: 0;
+      left: 0;
     }
     @media (min-width: @grid-float-breakpoint) {
       margin-right: 20px;

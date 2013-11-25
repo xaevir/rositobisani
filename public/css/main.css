@@ -8970,17 +8970,19 @@ form.form-inline span.error {
   width: 133px;
   font-size: 34px;
 }
+.navbar .navbar-brand .fonticon-logo {
+  display: inline-block;
+}
 .navbar .navbar-brand .fonticon-logo:before {
   content: "\e605";
   color: #ec1c2d;
-  position: absolute;
-  top: 0;
 }
 .navbar .navbar-brand .fonticon-logo:after {
   content: "\e60c";
   color: #111;
   position: absolute;
   top: 0;
+  left: 0;
 }
 @media (min-width: 992px) {
   .navbar .navbar-brand {
@@ -9884,12 +9886,12 @@ body.signup {
   display: none;
 }
 #reale > .header {
-  background-image: -webkit-gradient(linear, 0% top, 100% top, from(#fa143f), to(#fe5c08));
-  background-image: -webkit-linear-gradient(left, color-stop(#fa143f 0%), color-stop(#fe5c08 100%));
-  background-image: -moz-linear-gradient(left, #fa143f 0%, #fe5c08 100%);
-  background-image: linear-gradient(to right, #fa143f 0%, #fe5c08 100%);
+  background-image: -webkit-gradient(linear, 0% top, 100% top, from(#ec1c2d), to(#fe5c08));
+  background-image: -webkit-linear-gradient(left, color-stop(#ec1c2d 0%), color-stop(#fe5c08 100%));
+  background-image: -moz-linear-gradient(left, #ec1c2d 0%, #fe5c08 100%);
+  background-image: linear-gradient(to right, #ec1c2d 0%, #fe5c08 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffa143f', endColorstr='#fffe5c08', GradientType=1);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec1c2d', endColorstr='#fffe5c08', GradientType=1);
   height: 100%;
   overflow: hidden;
   position: relative;
