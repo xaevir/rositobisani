@@ -14,8 +14,9 @@ define([
   var API = {
 
     home: function(){
-      HomeController.showHome()
-      App.execute("set:active:link", "home")
+      App.trigger('reale:show')
+      //HomeController.showHome()
+      //App.execute("set:active:link", "home")
     },
 
     about: function(){
