@@ -8664,7 +8664,7 @@ div.wijmo-wijmenu .wijmo-wijmenu-child .wijmo-wijmenu-text {
   display: block;
   width: 200px;
   border-radius: 6px;
-  behavior: url(/js/libs/PIE.ht5);
+  behavior: url(/js/libs/PIE.htc);
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
@@ -8777,7 +8777,7 @@ body {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  behavior: url(/js/libs/PIE.ht5);
+  behavior: url(/js/libs/PIE.htc);
   font-size: 16px;
   padding: 10px;
   text-align: center;
@@ -8831,7 +8831,7 @@ form.form-inline span.error {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  behavior: url(/js/libs/PIE.ht5);
+  behavior: url(/js/libs/PIE.htc);
   font-size: 16px;
   padding: 10px;
   text-align: center;
@@ -9388,7 +9388,7 @@ body.signup {
   background-color: #fff;
   border: 1px solid #e5e5e5;
   border-radius: 5px;
-  behavior: url(/js/libs/PIE.ht5);
+  behavior: url(/js/libs/PIE.htc);
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
@@ -10024,7 +10024,7 @@ body.signup {
 }
 #reale .nav-wrapper .nav a:hover {
   border-radius: 0px;
-  behavior: url(/js/libs/PIE.ht5);
+  behavior: url(/js/libs/PIE.htc);
 }
 #reale .nav-wrapper .nav .active a {
   border-radius: 0;
