@@ -13,7 +13,8 @@ var express = require('express'),
   smtpTransport = nodemailer.createTransport('SMTP', {host: 'localhost'}),
   mongo = require('mongoskin'),
   RedisStore = require('connect-redis')(express),
-  bcrypt = require('bcrypt');
+  //bcrypt = require('bcrypt');
+  bcrypt = {};
 
 // setup Backbone models
 Backbone = require('backbone')
