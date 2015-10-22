@@ -1,13 +1,10 @@
-define([ 
+define([
   'appMarionette',
-  'apps/common/loading',
   'apps/categories/list/list_view',
 ], function(App, Loading, ListCategoriesView){
 
   return {
     listCategories: function(regionView){
-      var loadingView = new Loading();
-      regionView.show(loadingView);
 
       var fetchingCategories = App.request("category:entities");
 

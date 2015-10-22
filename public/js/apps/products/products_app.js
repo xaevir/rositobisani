@@ -1,4 +1,4 @@
-define([ 
+define([
   'appMarionette',
   'apps/products/list/list_controller',
   'apps/products/show/show_controller',
@@ -30,10 +30,7 @@ define([
     },
 
     showProduct: function(slug){
-      if (slug ==='reale')
-        App.trigger('reale:show')
-      else
-        ShowController.showProduct(slug)
+      ShowController.showProduct(slug)
       App.execute('set:active:link', '')
     }
   };
@@ -45,8 +42,7 @@ define([
 
   App.on('product:show', function(slug, catSlug){
     API.showProduct(slug)
-    if (slug !=='reale')
-      App.navigate(catSlug+'/'+slug);
+    App.navigate(catSlug+'/'+slug);
   });
 
 

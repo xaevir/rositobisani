@@ -1,6 +1,7 @@
 /* global __dirname */
 
 var express = require('express'),
+  util = require('util'),
   routes = require('./routes'),
   user = require('./routes/user'),
   products = require('./routes/products'),
@@ -11,10 +12,13 @@ var express = require('express'),
   path = require('path'),
   nodemailer = require('nodemailer'),
   smtpTransport = nodemailer.createTransport('SMTP', {host: 'localhost'}),
-  mongo = require('mongoskin'),
-  RedisStore = require('connect-redis')(express),
-  //bcrypt = require('bcrypt');
-  bcrypt = {};
+  mongo = require('mongoskin');
+
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
+
+var bcrypt = require('bcrypt');
+//var  bcrypt = {};
 
 // setup Backbone models
 Backbone = require('backbone')
@@ -24,8 +28,11 @@ _.extend(Backbone.Model.prototype, Backbone.Validation.mixin);
 var NewUser = require('./public/js/models/newUser')
 
 
-var app = express();
+db = mongo.db("mongodb://localhost:27017/rosito", {native_parser:true});
 
+
+var app = express();
+app.set('db', db);
 // all environments
 //app.set('port', process.env.PORT || 8070);
 //app.use(require('prerender-node'));
@@ -36,7 +43,10 @@ app.use(express.compress());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
-app.use(express.session({ secret: 'batman', store: new RedisStore }));
+app.use(session({
+    store: new RedisStore(),
+    secret: 'keyboard cat'
+}));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -51,30 +61,16 @@ app.configure('development', function(){
   uploadedFiles = uploadedFiles(app, mediaBasePath, __dirname + '/public/js/fileUpload')
   app.set('port', process.env.PORT || 8070);
   app.use(express.errorHandler());
-  db = mongo.db('localhost/dev_rosito?auto_reconnect=true', {safe: true})
   app.locals({
     env: 'development',
   });
 });
-
-app.configure('staging', function(){
-  mediaBasePath = '/home/bobby/Dropbox/http/rositobisani/public/'
-  uploadedFiles = uploadedFiles(app, mediaBasePath, __dirname + '/public/js/fileUpload')
-  app.set('port', process.env.PORT || 8070);
-  app.use(express.errorHandler());
-  db = mongo.db('localhost/dev_rosito?auto_reconnect=true', {safe: true})
-  app.locals({
-    env: 'staging',
-  });
-});
-
 
 // production only
 app.configure('production', function(){
   mediaBasePath = '/srv/http/rositobisani/public/'
   uploadedFiles = uploadedFiles(mediaBasePath)
   app.set('port', process.env.PORT || 8100);
-  db = mongo.db('localhost/rosito?auto_reconnect=true', {safe: true})
   app.locals({
     env: 'production',
   });
@@ -85,7 +81,7 @@ function userData(session){
   var data = {user: {}}
   if (session.user) {
     data.user = {
-      username: session.user.username, 
+      username: session.user.username,
       _id:  session.user._id
     }
   }
@@ -121,11 +117,11 @@ app.get('/*', function(req, res, next) {
 });
 
 // set user and globals
-app.get('/*', function(req, res, next) { 
+app.get('/*', function(req, res, next) {
   locals = {}
   locals.user = req.session.user ? JSON.stringify(req.session.user) : JSON.stringify({})
-  if (app.settings.env === 'development') 
-    locals.development = true 
+  if (app.settings.env === 'development')
+    locals.development = true
   next()
 })
 
@@ -166,8 +162,8 @@ app.post('/contact', function(req, res, next) {
               '<p>message: '+req.body.message+'</p>'
   email(
     {
-      subject: 'Website Contact Page', 
-      html: html 
+      subject: 'Website Contact Page',
+      html: html
     })
     res.send(req.body)
 })
@@ -184,7 +180,7 @@ app.get('/privacy-policy', function(req, res) {
 });
 
 app.get('/user', function(req, res){
-  res.send(req.session.user) 
+  res.send(req.session.user)
 })
 
 function setUserSession(req, user){
@@ -193,7 +189,7 @@ function setUserSession(req, user){
     username: user.username,
     slug: user.slug,
     role: user.role
-  }    
+  }
   req.session.user = userOmittedData
   return userOmittedData
 }
@@ -209,27 +205,26 @@ app.post('/session', function(req, res) {
     } catch(e) {
       key = 'username'
     }
-    spec[key] = req.body.login  
+    spec[key] = req.body.login
     return spec
   }
 
-  var spec = isEmailorUsername(req.body.login)  
+  var spec = isEmailorUsername(req.body.login)
+
 
   db.collection('users').findOne(spec, function(err, user){
     if (!user)
       return res.send({success: false, message: 'user not found'});
-    bcrypt.compare(req.body.password, user.password, function(err, match) {
-      if (!match) 
-        return res.send({success: false, message: 'user not found'});
-      var userData = setUserSession(req, user)
-      res.send(userData)
-    })
+    if(req.body.password !== user.password)
+      return res.send({success: false, message: 'user not found'});
+    var userData = setUserSession(req, user)
+    res.send(userData)
   })
 })
 
 app.del('/user', function(req, res) {
   req.session.destroy(function(){
-    res.send({success: true, 
+    res.send({success: true,
               message: 'user logged out'
     })
   })
@@ -237,10 +232,10 @@ app.del('/user', function(req, res) {
 
 
 
-app.post('/user', function(req, res){ 
+app.post('/user', function(req, res){
   var user = new NewUser(req.body)
   var errors = user.validate()
-  if (errors) 
+  if (errors)
     res.send({success: false, errors: errors})
   else {
     user.setPassword(function(){
@@ -258,7 +253,7 @@ function isUniqueUsername(username, fn) {
   db.collection('users').findOne({username: username}, function(err, user){
     if (user)
       fn(false)
-    else 
+    else
       fn(true)
   })
 }
@@ -308,7 +303,7 @@ app.get('/signup', xhrOnly);
 
 
 function addAppVar(req, res, next) {
-  req.app = app; 
+  req.app = app;
   next();
 }
 

@@ -1,5 +1,5 @@
 /* jshint expr: true */
-define([ 
+define([
 ], function(){
   'use strict';
   var App = new Marionette.Application();
@@ -10,7 +10,7 @@ define([
     mainRegion: '#app',
     dialogRegion: '#dialog-region',
     alertRegion: '#alert-region',
-    spinnerRegion: '#spinner-region'
+    spinnerRegion: '#spinner-stop'
   });
 
   App.navigate = function(route,  options){
@@ -36,13 +36,12 @@ define([
   })
 
   App.mainRegion.on('show', function(){
-    $('#spinner-region').css('display', 'none')
+    //$('#spinner-region').css('display', 'none')
   });
 
   $.ajaxSetup({ cache: false });
 
   $(document).on('click', 'a[href]:not([data-bypass], [href^="http"])', function () {
-    $('#spinner-region').css('display', 'block');
 
     if ($('.navbar-collapse.in').length) // for link on products page and logo
       $('.navbar-collapse').collapse('toggle')

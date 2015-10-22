@@ -6,7 +6,7 @@ var BaseRouter = require('routers/baseRouter')
 //  , NavView = require('views/navbar/navbar')
   , User = require('models/user')
   , NewUser = require('models/newUser')
-//  , Product = require('entities/product') 
+//  , Product = require('entities/product')
 //  , ProductView = require('views/products/product')
   , ProductEditView = require('views/products/product-edit')
   , ContextualMenuView = require('views/products/contextual-menu')
@@ -17,23 +17,23 @@ var BaseRouter = require('routers/baseRouter')
     document.title = title;
   }
 
-  var alreadyLoggedIn = function(callback) { 
-    if (this.user.isLoggedIn()) 
+  var alreadyLoggedIn = function(callback) {
+    if (this.user.isLoggedIn())
       return this.navigate('/', true)
-    callback.apply(this, Array.prototype.slice.call(arguments,1)); 
+    callback.apply(this, Array.prototype.slice.call(arguments,1));
   }
 
-  var restrict = function(callback) { 
-    if (!this.user.isLoggedIn()) 
+  var restrict = function(callback) {
+    if (!this.user.isLoggedIn())
       return this.navigate('/login', true)
-    callback.apply(this, Array.prototype.slice.call(arguments,1)); 
+    callback.apply(this, Array.prototype.slice.call(arguments,1));
   }
 
-  var Router = Backbone.Router.extend({ 
+  var Router = Backbone.Router.extend({
 
     initialize: function(user) {
-      _.bindAll(this) 
-      this.user = user 
+      _.bindAll(this)
+      this.user = user
       window.dispatcher.on('session:logout', this.logout, this)
       //var navView = new NavView({user: this.user}).render()
     },
@@ -53,7 +53,7 @@ var BaseRouter = require('routers/baseRouter')
       var routeStripped = route.replace('route:', '');
       if(this.prev_route)
         if(_.has(this, 'reset_'+this.prev_route)){
-          var path = 'reset_'+this.prev_route 
+          var path = 'reset_'+this.prev_route
           this[path]()
         }
       this.prev_route = routeStripped
@@ -69,7 +69,7 @@ var BaseRouter = require('routers/baseRouter')
           callback.apply(this, arguments);
       });
     },
-  
+
     /*home: function() {
       if ($('#home').length) {
         homeSetup()
@@ -80,6 +80,7 @@ var BaseRouter = require('routers/baseRouter')
         document.title = obj.title
         homeSetup()
       })
+      
 
       function homeSetup(){
 
@@ -91,7 +92,7 @@ var BaseRouter = require('routers/baseRouter')
 
         var winWidth = $(window).width() // for screen larger than 1600 width
         if(winWidth >1600 )
-          $('#myCarousel img').css('width', winWidth) 
+          $('#myCarousel img').css('width', winWidth)
 
         $( ".click-show-hide" ).click(function(e) {
           e.preventDefault()
@@ -101,12 +102,12 @@ var BaseRouter = require('routers/baseRouter')
         });
 
       }
-    }, 
+    },
     */
 
     privacyPolicy: function() {
       $('body').addClass('narrowPage')
-      if ($('#privacyPolicy').length) 
+      if ($('#privacyPolicy').length)
         return
       $.get('/privacy-policy', function(obj) {
         $('#app').html(obj.body);
@@ -129,7 +130,7 @@ var BaseRouter = require('routers/baseRouter')
       $('body').removeClass('login')
     },
 
-    signup: _.wrap(function(){ 
+    signup: _.wrap(function(){
         this.signupView = new SignupView({model: new NewUser(), user: this.user})
         this.signupView.render();
         $('body').addClass('signup')
@@ -148,7 +149,7 @@ var BaseRouter = require('routers/baseRouter')
         type: "DELETE",
         url: "/user",
         success: function(){
-          this.user.clear(); 
+          this.user.clear();
           var router = new Backbone.Router();
           router.navigate('login', {trigger: true})
         }
@@ -187,11 +188,11 @@ var BaseRouter = require('routers/baseRouter')
       });
     }, restrict),
 
-    /*products: function(){ 
+    /*products: function(){
       var products = new Products()
       var self = this
       products.fetch({success: function(collection, res){
-        this.productsView = new ProductsView({collection: collection})  
+        this.productsView = new ProductsView({collection: collection})
         var template = this.productsView.render().el
         $('#app').html(template)
         this.subnavView = new SubnavView()
@@ -200,11 +201,11 @@ var BaseRouter = require('routers/baseRouter')
         //self.subnavView = new SubnavView()
         //self.pageHeaderView = new PageHeaderView({header: header})
         //self.pageHeaderView.render()
-        document.title = 'Products' 
+        document.title = 'Products'
       }})
-    },  
+    },
     */
-    
+
     'reset_products': function(){
       if (this.pageHeaderView)
         this.pageHeaderView.remove()
@@ -213,7 +214,7 @@ var BaseRouter = require('routers/baseRouter')
     },
 
     contextualMenu: function(model){
-      if (this.user.isLoggedIn()){ 
+      if (this.user.isLoggedIn()){
         this.contextualMenuView = new ContextualMenuView({model: model})
         var template = this.contextualMenuView.render().el
         $('.nav.main').after(template)
@@ -225,19 +226,19 @@ var BaseRouter = require('routers/baseRouter')
       var product = new Product({slug: slug})
       var self = this
       //if scrolled down when clicking on product from products page
-      // then the top navbar was being cut off on click of the specific product 
+      // then the top navbar was being cut off on click of the specific product
       $('html, body').scrollTop(0)
       product.fetch({success: function(model, res){
         var productView = new ProductView({model: model})
         $('#app').html(productView.render().el)
         document.title = model.get('name')+' - '+model.get('category').name
-        self.contextualMenu(model) 
+        self.contextualMenu(model)
 
         var header = model.get('category').name
         if (model.get('subcategory').name)
           header += ' / ' +model.get('subcategory').name
 
-        self.pageHeaderView = new PageHeaderView({header: header}) 
+        self.pageHeaderView = new PageHeaderView({header: header})
         self.pageHeaderView.render()
 
       }})
@@ -246,12 +247,12 @@ var BaseRouter = require('routers/baseRouter')
     reset_product: function(){
       if (this.contextualMenuView)
         this.contextualMenuView.remove()
-      if (this.pageHeaderView)    
+      if (this.pageHeaderView)
         this.pageHeaderView.remove()
     }
   });
 
- 
+
 
   return Router;
 });

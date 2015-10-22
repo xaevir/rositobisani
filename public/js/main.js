@@ -31,8 +31,8 @@ require.config({
     utilities:               'libs/utilities',
     'iframe-transport':      'libs/jquery.iframe-transport',
     appMarionette:           'app_marionette',
-    spin:                    'libs/spin',
-    'spin.jquery':           'libs/spin.jquery',
+//    spin:                    'libs/spin',
+//    'spin.jquery':           'libs/spin.jquery',
     'jquery-ui':             'libs/jquery-ui-1.10.3',
     picky:                   'libs/picky',
     stripe:                  'https://checkout.stripe.com/v2/checkout'
@@ -52,25 +52,25 @@ require.config({
     'jquery-ui': ['jquery'],
     utilities: ['jquery', 'backbone', 'backbone.validation'],
     marionette : ['jquery', 'underscore', 'backbone'],
-    'spin.jquery': ['jquery', 'spin'],
+//    'spin.jquery': ['jquery', 'spin'],
     picky: ['backbone', 'underscore'],
     app: [
       'json2',
-      'backbone', 
-      'carousel', 
-      'backbone.validation', 
-      'utilities', 
-      'collapse', 
-      'affix', 
-      'jquery-ui', 
-      'Hogan', 
-      'dropdown', 
+      'backbone',
+      'carousel',
+      'backbone.validation',
+      'utilities',
+      'collapse',
+      'affix',
+      'jquery-ui',
+      'Hogan',
+      'dropdown',
       'tab',
       'iframe-transport'
     ],
     appMarionette: [
       'marionette',
-      'hbs', 
+      'hbs',
       'picky',
       'scrollspy'
     ]
@@ -78,7 +78,7 @@ require.config({
 });
 
 require([
-  'app', 
+  'app',
   'appMarionette',
   'require',
 ], function(app, appMarionette, require) {

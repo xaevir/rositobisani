@@ -1,15 +1,11 @@
-define([ 
+define([
   'appMarionette',
-  'apps/common/loading',
   'apps/manuals/edit/edit_view',
   'apps/manuals/show/show_view',
   'apps/common/alert',
-], function(App, Loading, EditView, ShowView, AlertView){
+], function(App, EditView, ShowView, AlertView){
 
   return function(id) {
-
-    var loadingView = new Loading();
-    App.dialogRegion.show(loadingView);
 
     var fetchingManual = App.request("manual:entity", id) // in case url is random id
 
@@ -33,12 +29,12 @@ define([
             var alertView = new AlertView()
             App.alertRegion.show(alertView);
 
-            App.trigger('manual:model:updated', manual) 
+            App.trigger('manual:model:updated', manual)
           }
         });
       }
       else {
-        view = new ShowView.MissingManual() 
+        view = new ShowView.MissingManual()
       }
       App.dialogRegion.show(view);
     })

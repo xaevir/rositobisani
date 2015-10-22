@@ -1,8 +1,7 @@
-define([ 
+define([
   'appMarionette',
-  'apps/common/loading',
   'apps/category/show/show_view',
-], function(App, Loading, ShowView){
+], function(App, ShowView){
   return {
     showManualsByCategory: function(id){
       var loadingView = new Loading();
