@@ -1,7 +1,7 @@
 define([
   'appMarionette',
   'apps/manuals/list/list_view',
-], function(App, Loading, ManualsListView){
+], function(App, ManualsListView){
   return {
     listManuals: function(view){
 

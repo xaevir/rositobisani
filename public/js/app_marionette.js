@@ -10,7 +10,6 @@ define([
     mainRegion: '#app',
     dialogRegion: '#dialog-region',
     alertRegion: '#alert-region',
-    spinnerRegion: '#spinner-stop'
   });
 
   App.navigate = function(route,  options){

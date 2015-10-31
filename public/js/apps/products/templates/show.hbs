@@ -9,14 +9,14 @@
     <div class="col-md-6 col-md-push-6 img-wrapper">
       {{#mainImage}}
         <img alt="{{name}}" src="/product-images/{{medium}}"/>
-      {{/mainImage}} 
+      {{/mainImage}}
     </div>
     <div class="col-md-6 col-md-pull-6">
       <h2>Description</h2>
       <div class="description">{{{description}}}</div>
       {{#if pdfs}}
+      <hr />
       <h3>Spec Sheets</h3>
-      {{/if}}
       <div class="row pdfs">
         {{#pdfs}}
         <div class="col-sm-4">
@@ -24,11 +24,64 @@
             <span class="thumbnail">
               <img src="/product-pdfs/{{thumb}}" class="pdf"/>
             </span>
-            <p class="caption">{{caption}}</p>
+            <p class="title">{{caption}}</p>
           </a>
         </div>
         {{/pdfs}}
       </div>
+      {{/if}}
+
+      {{#if hasCols}}
+      <hr />
+        <h2>Spec Sheets</h2>
+        <div class="row pdfs">
+          <div class="col-sm-4 FIRST-COL">
+            <h3>Standard</h3>
+            {{#column1}}
+              <div class="row" style="margin-bottom: 15px">
+                <div class="col-xs-12">
+                  <a href="/product-pdfs/{{name}}" target='_blank'>
+                    <span class="thumbnail">
+                      <img src="/product-pdfs/{{thumb}}" class="pdf"/>
+                    </span>
+                    <p class="title">{{title}}</p>
+                  </a>
+                </div>
+              </div>
+            {{/column1}}
+          </div>
+          <div class="col-sm-4 SECOND-COLUMN">
+            <h3>CB</h3>
+            {{#column2}}
+              <div class="row" style="margin-bottom: 15px">
+                <div class="col-xs-12">
+                  <a href="/product-pdfs/{{name}}" target='_blank'>
+                    <span class="thumbnail">
+                      <img src="/product-pdfs/{{thumb}}" class="pdf"/>
+                    </span>
+                    <p class="title">{{title}}</p>
+                  </a>
+                </div>
+              </div>
+            {{/column2}}
+          </div>
+          <div class="col-sm-4 THIRD-COLUMN">
+            <h3>CM</h3>
+            {{#column3}}
+              <div class="row" style="margin-bottom: 15px">
+                <div class="col-xs-12">
+                  <a href="/product-pdfs/{{name}}" target='_blank'>
+                    <span class="thumbnail">
+                      <img src="/product-pdfs/{{thumb}}" class="pdf"/>
+                    </span>
+                    <p class="title">{{title}}</p>
+                  </a>
+                </div>
+              </div>
+            {{/column3}}
+          </div>
+        </div>
+      {{/if}}
     </div>
   </div>
 </div>

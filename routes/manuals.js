@@ -1,43 +1,43 @@
-var fs = require('fs')
-    , imagemagick = require('imagemagick')
+var fs = require('fs');
+var imagemagick = require('imagemagick');
 
 function toSlug(text, options){
   return text.replace(/[^a-zA-z0-9_]+/g, '-')
 }
 
-exports.list = function(req, res) { 
+exports.list = function(req, res) {
   db.collection('manuals').find().toArray(function(err, manuals) {
     res.send(manuals);
   })
 }
 
-exports.sortedList = function(req, res) { 
+exports.sortedList = function(req, res) {
 
   db.collection('manuals').find().toArray(function(err, manuals) {
     db.collection('categories').find().toArray(function(err, categories) {
-      _.each(manuals, function(manual){ 
+      _.each(manuals, function(manual){
         var catBelongsIn = _.find(categories, function(category){
           return manual.category == category._id.toString()
         })
-        if (typeof catBelongsIn.manuals === "undefined") 
+        if (typeof catBelongsIn.manuals === "undefined")
           catBelongsIn.manuals = []
         catBelongsIn.manuals.push(manual)
       })
 
-      var parents = [] 
+      var parents = []
       var children = []
-      _.each(categories, function(category){ 
-        if (category.parent) 
+      _.each(categories, function(category){
+        if (category.parent)
           children.push(category)
-        else 
-          parents.push(category); 
+        else
+          parents.push(category);
       });
 
-      _.each(children, function(child){ 
+      _.each(children, function(child){
         var activeParent = _.find(parents, function(parent){
           return _.isEqual(child.parent, parent._id);
         })
-        if (typeof activeParent.children === "undefined") 
+        if (typeof activeParent.children === "undefined")
           activeParent.children = []
         activeParent.children.push(child)
       })
@@ -71,7 +71,7 @@ exports.update = function(req, res) {
   })
 }
 
-exports.remove = function(req, res) { 
+exports.remove = function(req, res) {
   db.collection('manuals').findOne({'_id': db.ObjectID(req.params.id)}, function(err, manual){
     if (err) throw err;
     removeFile(mediaBasePath+'img/manuals/'+ manual.thumb, manual.thumb, function(){
@@ -95,8 +95,8 @@ function removeFile(file, name, func){
 
 function doneRemoving(res, name) {
   res.send({
-    success: true, 
-    message: 'file removed', 
+    success: true,
+    message: 'file removed',
   })
 }
 
@@ -111,8 +111,8 @@ function splitFilename(filename){
 
 function toSlugFile(filename){
   var split = splitFilename(filename)
-  name = toSlug(split.name) 
-  extension = split.extension.toLowerCase() 
+  name = toSlug(split.name)
+  extension = split.extension.toLowerCase()
   return name+'.'+extension
 }
 
@@ -136,7 +136,7 @@ exports.upload = function(req, res) {
   var thumbnailSize = '175x155>'
   var pathOnServer = mediaBasePath+'/img/manuals/'
   req.body = {
-    fileName: file.name, 
+    fileName: file.name,
     thumb: thumbName,
     title: manualTitle,
     category: manualCategory
@@ -164,6 +164,3 @@ function savePdf(input, output, func){
     func()
   })
 }
-
-
-

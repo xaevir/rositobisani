@@ -1,4 +1,4 @@
-define([ 
+define([
   'appMarionette',
   'entities/files',
 ], function(App, Files){
@@ -14,7 +14,7 @@ define([
     },
 
     initialize: function() {
-      var files = new Files 
+      var files = new Files
       files.parent = this
       this.set({'files': files})
       //this.set({'files': new Backbone.Collection})
@@ -42,11 +42,12 @@ define([
     },
 
     parse: function(res){
-      // creating from collection, this model does not get instantiated first 
+      // creating from collection, this model does not get instantiated first
       // repeating the above initialize method. Hack
       var files = new Files(res.files)
       files.parent = this
-      res.files = files 
+      res.orignalFiles = res.files;
+      res.files = files
       return res
     }
   });

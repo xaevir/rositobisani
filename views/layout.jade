@@ -33,17 +33,11 @@ html(lang="en")
       script(data-main='/js/main', src='/js/libs/require.js')
   body(id=locals.id?locals.id:'normal')
     #wrap
-      #spinner-stop
-        #spinner-region
-          .spinner
-            span LOADING
       #nav-region
         include nav
       #alert-region
       #dialog-region
       #app
         block content
-        .spinner
-          span LOADING
       #push
     include footer

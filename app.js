@@ -15,10 +15,7 @@ var express = require('express'),
   mongo = require('mongoskin');
 
 var session = require('express-session');
-var RedisStore = require('connect-redis')(session);
-
-var bcrypt = require('bcrypt');
-//var  bcrypt = {};
+//var RedisStore = require('connect-redis')(session);
 
 // setup Backbone models
 Backbone = require('backbone')
@@ -36,6 +33,11 @@ app.set('db', db);
 // all environments
 //app.set('port', process.env.PORT || 8070);
 //app.use(require('prerender-node'));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: false
+}))
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.logger('dev'));
@@ -43,10 +45,6 @@ app.use(express.compress());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
-app.use(session({
-    store: new RedisStore(),
-    secret: 'keyboard cat'
-}));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
