@@ -347,6 +347,7 @@ app.get('/espresso-grinders/:slug', xhrOnly, products.listOne);
 app.get('/pizza-ovens/:slug', xhrOnly, products.listOne);
 app.get('/pasta-machines/:slug', xhrOnly, products.listOne);
 app.get('/gelato/:slug', xhrOnly, products.listOne);
+app.get('/juicers/:slug', xhrOnly, products.listOne);
 app.get('/citrus-juicers/:slug', xhrOnly, products.listOne);
 app.get('/mixers/:slug', xhrOnly, products.listOne);
 app.get('/panini-grills/:slug', xhrOnly, products.listOne);

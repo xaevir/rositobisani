@@ -17,6 +17,7 @@ define([
       'citrus-juicers/:slug':     'showProduct',
       'mixers/:slug':             'showProduct',
       'panini-grills/:slug':      'showProduct',
+      'juicers/:slug':            'showProduct',
       'meat-slicers/:slug':       'showProduct',
       'hot-chocolate/:slug':      'showProduct'
     }

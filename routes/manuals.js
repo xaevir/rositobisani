@@ -13,7 +13,7 @@ exports.list = function(req, res) {
 
 exports.sortedList = function(req, res) {
 
-  db.collection('manuals').find().toArray(function(err, manuals) {
+  db.collection('manuals').find().sort({title: 1}).toArray(function(err, manuals) {
     db.collection('categories').find().toArray(function(err, categories) {
       _.each(manuals, function(manual){
         var catBelongsIn = _.find(categories, function(category){

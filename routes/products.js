@@ -37,7 +37,7 @@ exports.listOne = function(req, res) {
 exports.sortedList = function(req, res) {
 
   db.collection('products').find().sort({order:1}).toArray(function(err, products) {
-    db.collection('categories').find().sort({order:1}).toArray(function(err, categories) {
+    db.collection('categories').find({ show: { $exists: false } }).sort({order:1}).toArray(function(err, categories) {
       _.each(products, function(product){
         var catBelongsIn = _.find(categories, function(category){
           if (product.subcategory)
