@@ -17,7 +17,8 @@
     "prerender-node": "0.0.7",
     "underscore": "^1.8.3"
   },
-  "dependencies": {
-    "node": "4.2.2"
+  "engine-strict": true,
+  "engines": {
+      "node": "4.2.2"
   }
 }
