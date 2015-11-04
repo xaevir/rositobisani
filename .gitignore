@@ -1,5 +1,4 @@
 /node_modules
 *.rdb
 /art
-/dump
 public/img/manuals
