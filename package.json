@@ -14,11 +14,12 @@
     "mongodb": "^2.0.46",
     "mongoskin": "^2.0.3",
     "nodemailer": "^1.8.0",
+    "nodemailer-smtp-transport": "^1.0.4",
     "prerender-node": "0.0.7",
     "underscore": "^1.8.3"
   },
   "engine-strict": true,
   "engines": {
-      "node": "4.2.2"
+    "node": "4.2.2"
   }
 }

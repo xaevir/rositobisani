@@ -11,8 +11,17 @@ var express = require('express'),
   http = require('http'),
   path = require('path'),
   nodemailer = require('nodemailer'),
-  smtpTransport = nodemailer.createTransport('SMTP', {host: 'localhost'}),
+  smtpTransport = require('nodemailer-smtp-transport')
   mongo = require('mongoskin');
+
+var transporter = nodemailer.createTransport(smtpTransport({
+    host: 'localhost',
+    port: 25,
+    secure: false,
+    tls: {
+      rejectUnauthorized: false
+    }
+}));
 
 var session = require('express-session');
 //var RedisStore = require('connect-redis')(session);
@@ -277,22 +286,20 @@ function email(opts) {
   if (app.settings.env === 'development' || app.settings.env === 'staging' )
     return console.log(opts.html)
 
-  var message = {
+  var mailOptions = {
     from: 'Website Contact Page <contact@rosito-bisani.com>',
     // Comma separated list of recipients
-    //to: 'gregl@rosito-bisani.com',
-    to: 'bobby.chambers33@gmail.com'
-    //bcc: 'bobby.chambers33@gmail.com'
+    to: 'gregl@rosito-bisani.com',
+    bcc: 'bobby.chambers33@gmail.com'
   }
-  message.subject = opts.subject
-  message.html = opts.html
+  mailOptions.subject = opts.subject
+  mailOptions.html = opts.html
 
-  smtpTransport.sendMail(message, function(error, response){
+  transporter.sendMail(mailOptions, function(error, info){
     if(error)
       console.log(error);
     else
-      console.log('Email sent: ' + response.message);
-    smtpTransport.close(); // shut down the connection pool, no more messages
+      console.log('Email sent: ' + info.response);
   })
 }
 
