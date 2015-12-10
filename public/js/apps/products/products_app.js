@@ -19,7 +19,8 @@ define([
       'panini-grills/:slug':      'showProduct',
       'juicers/:slug':            'showProduct',
       'meat-slicers/:slug':       'showProduct',
-      'hot-chocolate/:slug':      'showProduct'
+      'hot-chocolate/:slug':      'showProduct',
+      'pasta-cookers/:slug':      'showProduct'
     }
   });
 

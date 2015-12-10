@@ -359,7 +359,7 @@ app.get('/juicers/:slug', xhrOnly, products.listOne);
 app.get('/citrus-juicers/:slug', xhrOnly, products.listOne);
 app.get('/mixers/:slug', xhrOnly, products.listOne);
 app.get('/panini-grills/:slug', xhrOnly, products.listOne);
-app.get('/panini-grills/:slug', xhrOnly, products.listOne);
+app.get('/pasta-cookers/:slug', xhrOnly, products.listOne);
 app.get('/meat-slicers/:slug', xhrOnly, products.listOne);
 app.get('/hot-chocolate/:slug', xhrOnly, products.listOne);
 app.get('/products/:slug', xhrOnly, products.listOne);
