@@ -1,4 +1,4 @@
-define([ 
+define([
   'appMarionette',
 ], function(App){
 
@@ -25,7 +25,7 @@ define([
       { name: "Home", url: "home", navigationTrigger: "home:show" },
       { name: "Products", url: "products", navigationTrigger: "products:list" },
       { name: "About", url: "about", navigationTrigger: "about:show" },
-      { name: "Manuals", url: "manuals", navigationTrigger: "manuals:list" },
+      { name: "Manuals / Parts", url: "manuals", navigationTrigger: "manuals:list" },
       { name: "Contact", url: "contact", navigationTrigger: "contact:show" },
     ]);
   };
