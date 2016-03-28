@@ -1,4 +1,4 @@
-define([ 
+define([
   'appMarionette',
   'entities/manual',
 ], function(App, Manual){
@@ -25,12 +25,12 @@ define([
     },
 
     getSorted: function(){
-      var manuals = new Manuals();
+      //var manuals = new Manuals();
       var defer = $.Deferred();
 
-      $.get('/manuals/sorted', function(data) {
-        manuals.reset(data)
-        defer.resolve(manuals);
+      $.get('/manuals/newsorted', function(data) {
+        //manuals.reset(data)
+        defer.resolve(data);
       });
 
       var promise = defer.promise();

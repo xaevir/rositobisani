@@ -7,12 +7,19 @@ define([
 
       var fetchingManuals = App.request("manual:entities:sorted");
 
-      $.when(fetchingManuals).done(function(manuals){
-        var manualsListView = new ManualsListView({
-          collection: manuals
+      var ManualView = Backbone.Marionette.ItemView.extend({
+        id: 'manuals',
+      });
+
+      $.when(fetchingManuals).done(function(manualsHtml){
+        console.log(manualsHtml);
+        var manualView = new ManualView({
+          template : function(serialized_model) {
+            return _.template(manualsHtml)({  });
+          }
         });
 
-        App.mainRegion.show(manualsListView);
+        App.mainRegion.show(manualView);
       });
     }
   }

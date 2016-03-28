@@ -47,10 +47,100 @@ exports.sortedList = function(req, res) {
   })
 }
 
+exports.newSortedList = function(req, res) {
+
+  db.collection('manuals').find().sort({name: 1}).toArray(function(err, manuals) {
+    db.collection('categories_manuals').find().toArray(function(err, categories) {
+
+      var data = manuals.concat(categories);
+
+
+      // create a name: node map
+      var dataMap = data.reduce(function(map, node) {
+        map[node._id] = node;
+        return map;
+      }, {});
+
+      // create the tree array
+      var tree = [];
+      data.forEach(function(node) {
+          // add to parent
+          var parent = dataMap[node.parent];
+          if (parent) {
+              // create child array if it doesn't exist
+              (parent.children || (parent.children = []))
+                  // add node to child array
+                  .push(node);
+          } else {
+              // parent is null or missing
+              tree.push(node);
+          }
+      });
+
+      //add depth property and leaf
+      function iterate(current, depth) {
+          current.depth = depth;
+          var children = current.children || 0;
+          if (!children) current.leaf = true;
+          for (var i = 0, len = children.length; i < len; i++) {
+              iterate(children[i], depth + 1);
+          }
+      };
+
+      tree.forEach(function(node) {
+          iterate(node, 0);
+      });
+
+      // remove all categories that dont have manuals
+      tree = _.filter(tree, function(node) {
+      		return node.depth === 0 && node.children !== undefined;
+      });
+
+      var text = '<div class="container"><h1>User Manuals</h1><div class="body">';
+
+
+      function printTree(tree) {
+
+        tree.forEach(function(node) {
+            // set the html wrapper
+        		if (!node.leaf) {
+              // dont start at 0
+              var lvl = node.depth + 2;
+            	text += '<h'+ lvl + '>' + node.name + '</h' + lvl + '>';
+            }
+            else {
+              text += `<li><a href="/img/manuals/${node.fileName}">
+                <div class="thumbnail">
+                  <img alt="${node.name}" src="/img/manuals/${node.thumb}"/>
+                </div>
+                <div class="title">${node.name}</div>
+              </a></li>`;
+            }
+            // add ul wrapper if children leaves
+            if (node['children'] && node['children'][0]['leaf'])  text += '<ul class="item-rows">'
+
+            if (node['children']) {
+                printTree(node['children']);
+            }
+
+            if (node['children'] && node['children'][0]['leaf'])  text += '</ul>'
+        });
+
+      }
+
+      printTree(tree);
+
+      text += '</div></div>';
+
+      res.send(text);
+
+    })
+  })
+}
 
 
 exports.getOne = function(req, res) {
-  db.collection('manuals').findOne({_id: db.ObjectID(req.params.id)}, function(err, manual){
+    db.collection('manuals').findOne({_id: db.ObjectID(req.params.id)}, function(err, manual){
     res.send(manual);
   })
 }

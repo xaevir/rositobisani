@@ -316,6 +316,7 @@ function addAppVar(req, res, next) {
 /* Manuals */
 app.get('/manuals', xhrOnly, manuals.list);
 app.get('/manuals/sorted', xhrOnly, manuals.sortedList);
+app.get('/manuals/newsorted', xhrOnly, manuals.newSortedList);
 app.get('/manuals/:id', xhrOnly, manuals.getOne);
 app.get('/admin/manuals', restrict, xhrOnly);
 app.get('/admin/manuals/:id/edit', restrict, xhrOnly);
