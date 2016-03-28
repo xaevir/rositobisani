@@ -96,7 +96,7 @@ exports.newSortedList = function(req, res) {
       		return node.depth === 0 && node.children !== undefined;
       });
 
-      var text = '<div class="container"><h1>User Manuals</h1><div class="body">';
+      var text = '<div class="container"><h1>User Manuals &amp; Parts</h1><div class="body">';
 
 
       function printTree(tree) {
