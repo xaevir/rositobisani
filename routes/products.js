@@ -36,8 +36,8 @@ exports.listOne = function(req, res) {
 
 exports.sortedList = function(req, res) {
 
-  db.collection('products').find({ 'subcategory.slug': { $not: { $eq: 'bravo' } } }   ).sort({name: 1, order:1}).toArray(function(err, products) {
-    db.collection('categories').find({ show: { $exists: false } }).sort({order:1}).toArray(function(err, categories) {
+  db.collection('products').find({ 'subcategory.slug': { $not: { $eq: 'bravo' } } }).sort({name: 1, order:1}).toArray(function(err, products) {
+    db.collection('categories').find({ 'slug': { $not: { $eq: 'bravo' } } }).sort({order:1}).toArray(function(err, categories) {
       _.each(products, function(product){
         var catBelongsIn = _.find(categories, function(category){
           if (product.subcategory)
@@ -72,16 +72,3 @@ exports.sortedList = function(req, res) {
     })
   })
 }
-
-
-
-/*
-exports.reale = function(req, res) {
-  db.collection('products').findOne({slug: 'Reale'}, function(err, product){
-    res.render('reale', product, function(err, html){
-      res.send({title: 'Reale baby', body: html, model: product});
-    });
-
-  })
-}
-*/
