@@ -49,7 +49,7 @@ exports.sortedList = function(req, res) {
 
 exports.newSortedList = function(req, res) {
 
-  db.collection('manuals').find().sort({name: 1, order: 1}).toArray(function(err, manuals) {
+  db.collection('manuals').find().sort({order: 1}).toArray(function(err, manuals) {
     db.collection('categories_manuals').find().toArray(function(err, categories) {
 
       var data = manuals.concat(categories);

@@ -13,6 +13,7 @@ define([
 
       $.when(fetchingManuals).done(function(manualsHtml){
         console.log(manualsHtml);
+        document.title = 'Manuals and Parts';
         var manualView = new ManualView({
           template : function(serialized_model) {
             return _.template(manualsHtml)({  });
