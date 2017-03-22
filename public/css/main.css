@@ -9337,6 +9337,9 @@ body.signup {
   .product h3 {
     text-align: left;
   }
+  .product #pizza-ovens h3 {
+    text-align: center;
+  }
 }
 .product .breadcrumbs {
   padding: 7px 14px;

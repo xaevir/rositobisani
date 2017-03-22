@@ -97,7 +97,6 @@ require([
       'apps/static/static_app',
       'apps/manuals/manuals_app',
       'apps/categories/categories_app',
-      'apps/reale/reale_app',
       'apps/reviews/reviews_app',
     ], function(){
       appMarionette.start();
