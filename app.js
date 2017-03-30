@@ -340,6 +340,7 @@ app.get('/products', xhrOnly, products.list);
 app.get('/products/sorted', xhrOnly, products.sortedList);
 app.post('/products', restrict, products.create);
 app.put('/products/:slug', restrict, products.update);
+/*
 app.get('/espresso-machines/reale*', function(req, res) {
   locals.id = 'reale-page'
   if (!(req.xhr)) {
@@ -351,6 +352,7 @@ app.get('/espresso-machines/reale*', function(req, res) {
     });
   }
 });
+*/
 app.get('/espresso-machines/:slug', xhrOnly, products.listOne);
 app.get('/espresso-grinders/:slug', xhrOnly, products.listOne);
 app.get('/pizza-ovens/:slug', xhrOnly, products.listOne);

@@ -9030,6 +9030,31 @@ footer .fonticon-rosito-bisani {
   font-size: 28px;
   color: #fff;
 }
+footer #social-media-icons {
+  padding-bottom: 15px;
+  text-align: center;
+}
+footer #social-media-icons p {
+  color: #fff;
+}
+footer #social-media-icons a {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+footer #social-media-icons span {
+  display: inline-block;
+}
+footer #social-media-icons object {
+  position: relative;
+  z-index: -1;
+}
+footer #social-media-icons #facebook-icon {
+  padding: 0 10px;
+}
+footer #social-media-icons #instagram-icon {
+  padding: 0 10px;
+}
 @media (min-width: 768px) {
   footer .footer-logo {
     float: left;
@@ -9091,12 +9116,13 @@ footer {
     height: auto !important;
     height: 100%;
     /* Negative indent footer by it's height */
-    margin: 0 auto -134px;
+    /* was 134px now adding height of added social media icons */
+    margin: 0 auto -220px;
   }
   /* Set the fixed height of the footer here */
   #push,
   footer {
-    height: 134px;
+    height: 220px;
   }
 }
 /* ==========================================================================
