@@ -281,8 +281,8 @@ app.get('/check-email', function(req, res){
 
 
 function email(opts) {
-  if (app.settings.env === 'development' || app.settings.env === 'staging' )
-    return console.log(opts.html)
+  //if (app.settings.env === 'development' || app.settings.env === 'staging' )
+  //  return console.log(opts.html)
 
   var mailOptions = {
     from: 'bobby.chambers33@gmail.com',
