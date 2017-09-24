@@ -11,17 +11,15 @@ var express = require('express'),
   http = require('http'),
   path = require('path'),
   nodemailer = require('nodemailer'),
-  smtpTransport = require('nodemailer-smtp-transport')
   mongo = require('mongoskin');
 
-var transporter = nodemailer.createTransport(smtpTransport({
-    host: 'localhost',
-    port: 25,
-    secure: false,
-    tls: {
-      rejectUnauthorized: false
-    }
-}));
+var transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: 'bobby.chambers33@gmail.com', // Your email id
+    pass: 'ironman33' // Your password
+  }
+});
 
 var session = require('express-session');
 //var RedisStore = require('connect-redis')(session);
@@ -287,12 +285,13 @@ function email(opts) {
     return console.log(opts.html)
 
   var mailOptions = {
-    from: 'Website Contact Page <contact@rosito-bisani.com>',
+    from: 'bobby.chambers33@gmail.com',
     // Comma separated list of recipients
-    to: 'gregl@rosito-bisani.com',
-    bcc: 'bobby.chambers33@gmail.com'
+    //to: 'gregl@rosito-bisani.com',
+    //bcc: 'bobby.chambers33@gmail.com'
+    to: 'bobby.chambers33@gmail.com',
+    subject: 'Website Contact Page'
   }
-  mailOptions.subject = opts.subject
   mailOptions.html = opts.html
 
   transporter.sendMail(mailOptions, function(error, info){
