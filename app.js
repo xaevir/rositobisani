@@ -288,7 +288,7 @@ function email(opts) {
     from: 'bobby.chambers33@gmail.com',
     // Comma separated list of recipients
     to: 'gregl@rosito-bisani.com',
-    bcc: 'bobby.chambers33@gmail.com'
+    bcc: 'bobby.chambers33@gmail.com',
     subject: 'Website Contact Page'
   }
   mailOptions.html = opts.html
