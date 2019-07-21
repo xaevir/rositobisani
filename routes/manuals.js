@@ -52,7 +52,11 @@ exports.newSortedList = function(req, res) {
   db.collection('manuals').find().sort({order: 1}).toArray(function(err, manuals) {
     db.collection('categories_manuals').find().toArray(function(err, categories) {
 
+
+
+
       var data = manuals.concat(categories);
+
 
 
       // create a name: node map
@@ -60,6 +64,7 @@ exports.newSortedList = function(req, res) {
         map[node._id] = node;
         return map;
       }, {});
+
 
       // create the tree array
       var tree = [];
@@ -72,7 +77,7 @@ exports.newSortedList = function(req, res) {
                   // add node to child array
                   .push(node);
           } else {
-              // parent is null or missing
+              // parent is null or missing meaning top level cat
               tree.push(node);
           }
       });
@@ -92,9 +97,16 @@ exports.newSortedList = function(req, res) {
       });
 
       // remove all categories that dont have manuals
+      // didnt remove depth 2 for 'price list'
       tree = _.filter(tree, function(node) {
       		return node.depth === 0 && node.children !== undefined;
       });
+
+      tree = _.filter(tree, function(node) {
+      		return node.depth === 0 && node.children !== undefined;
+      });
+
+console.dir(tree);
 
       var text = '<div class="container"><h1>User Manuals &amp; Parts</h1><div class="body">';
 
